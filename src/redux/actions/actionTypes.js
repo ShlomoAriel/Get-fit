@@ -1,0 +1,8 @@
+// Main
+export const TOGGLE_MENU = 'TOGGLE_MENU'
+export const UPDATE_INPUT_FIELD = 'UPDATE_INPUT_FIELD'
+export const SET_CURRENT_TAB = 'SET_CURRENT_TAB'
+
+// Login
+export const UPDATE_LOGIN_FIELD = 'UPDATE_LOGIN_FIELD'
+export const SET_LOGGED_IN = 'SET_LOGGED_IN'

@@ -1,19 +1,25 @@
-// Common
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$fa-font-path: "fonts";
+@import "fonts/font-awesome/scss/font-awesome";
+@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';// Common
 @import "colors";
 @import "common";
-
+@import "fonts/fonts";
 // Main body styles
 html {
-  // color: $default-text;
-  // font-family: 'Lato', sans-serif;
-  // font-size: 2.6vh;
-  // text-align: center;
-  // font-weight: 300;
-  // min-height: 100vw;
 }
 body {
   margin: 0;
+  font-family: "Comfortaa-Light";
 }
 
 // Components
-@import "../js/components/home/style/main";
+@import "../src/components/home/style/main";
+@import "../src/components/Login/style/main";
+.header{
+	background:#96DFFA;
+	padding:10px 20px;
+	color: #4F4C4D;
+	text-align: center;
+  font-size:30px;
+}

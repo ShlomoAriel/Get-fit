@@ -6,7 +6,7 @@ const dest = path.join(__dirname, 'bundle');
 
 const config = {
     entry: {
-        app: ['babel-polyfill','./js/index.js']
+        app: ['babel-polyfill','./src/index.js']
     },
     output: {
         path: dest,
@@ -31,7 +31,7 @@ const config = {
     ],
     resolve: {
         modules: [
-            path.join(__dirname, "./js"),
+            path.join(__dirname, "./src"),
             "node_modules"
         ]
     }
