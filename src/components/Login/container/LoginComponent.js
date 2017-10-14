@@ -7,7 +7,8 @@ import Login from '../display/Login';
 function mapStateToProps(state) {
     return {
     	username:state.login.username,
-    	password:state.login.password,
+        password:state.login.password,
+    	authenticated:state.login.authenticated,
     	menuOpen:state.system.menuOpen
     }
 }

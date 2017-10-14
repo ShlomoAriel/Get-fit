@@ -6,3 +6,7 @@ export const SET_CURRENT_TAB = 'SET_CURRENT_TAB'
 // Login
 export const UPDATE_LOGIN_FIELD = 'UPDATE_LOGIN_FIELD'
 export const SET_LOGGED_IN = 'SET_LOGGED_IN'
+export const SET_TOKEN = 'SET_TOKEN'
+
+// Signup
+export const UPDATE_SIGNUP_FIELD = 'UPDATE_SIGNUP_FIELD'

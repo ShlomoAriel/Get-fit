@@ -1,15 +1,16 @@
 import React from 'react';
 import TextInput from'../../Elements/TextInput/TextInput'
 
-const Login = ({email, password, onInputFieldChange, login}) => {
+const Login = ({email, password, authenticated, onInputFieldChange, login}) => {
     const emailInput = { fieldClass:'form-control',field: 'email', name:'email', placeholder: 'email', value: email, onUpdate: onInputFieldChange }
     const passwordInput = { type:'password', fieldClass:'form-control',field: 'password', name:'password', placeholder: 'password', value: password, onUpdate: onInputFieldChange }
 
 	return (
 		  <div className="login">
+		  { !authenticated ?
 		  	<form onSubmit={login}>
+		  		<h3>Login & Get Fit!</h3>
 			  	<div className="form">
-				  	<h3>Login & Get Fit!</h3>
 				  	<div className="form__first">
 				  		<TextInput {...emailInput}/>
 				  	</div>
@@ -19,6 +20,9 @@ const Login = ({email, password, onInputFieldChange, login}) => {
 				  	</div>
 			  	</div>
 		  	</form>
+		  	:
+		  	<h3> {email} You are logged in</h3>
+		  }
 			 </div>
 );
 }

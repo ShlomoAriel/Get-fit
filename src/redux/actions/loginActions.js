@@ -10,14 +10,14 @@ export function updateInputField(field, value){
 }
 export function setToken(token){
     return {
-        type: types.UPDATE_LOGIN_FIELD,
+        type: types.SET_TOKEN,
         token: token
     }
 }
 export function login(field, value){
     return (dispatch, getState) => {
         let form = getState().login.form
-        return axios.post('http://localhost:3001/api/authenticate',form)
+        return axios.post('https://get-fit-server.herokuapp.com/api/authenticate',form)
         .then ( 
             response => {
                 dispatch( storeUserCredentials(response.data) )
@@ -26,7 +26,7 @@ export function login(field, value){
         )
         .catch( 
             error => 
-                dispatch( console.log('error loging in: ' + error) )
+                console.log('error loging in: ' + error)
         )
     }
 }

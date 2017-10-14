@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import {bindActionCreators} from 'redux';
+import * as systemActions from 'redux/actions/systemActions'
 import HeaderComponent from 'components/common/Header/container/HeaderComponent';
 
 
@@ -10,9 +12,10 @@ class App extends React.Component {
         super(props, context);
     }
 
-    componentWillUpdate(prevProps, prevState) {
-      if(!this.props.authenticated) {
-        this.props.history.push('/login');
+    componentDidUpdate(prevProps, prevState) {
+      if( !(this.props.authenticated) && !(this.props.location.pathname === '/login')) {
+         this.props.history.push('/login');
+         this.props.goTo('login');
       }
     }
 
@@ -38,8 +41,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-
+       goTo(tab){
+            dispatch(systemActions.setCurrentTab(tab))
+        }
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {pure:false})(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps, null, {pure:false})(App));
