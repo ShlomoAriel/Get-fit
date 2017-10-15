@@ -1,10 +1,14 @@
 import {combineReducers} from 'redux';
 import system from './systemReducer'
 import login from './loginReducer'
-import signup from './signupReducer'
+import trainee from './traineeReducer'
+import trainingPackage from './trainingPackageReducer'
+import exercise from './exerciseReducer'
 
 export default combineReducers({
     system,
     login,
-    signup,
+    trainee,
+    trainingPackage,
+    exercise,
 });

@@ -20,3 +20,76 @@ export function updateInputField(state, field, value){
         value: value
     }
 }
+
+// export function getobjectList(objectName){
+//     return (dispatch, getState) => {
+//         return http.get('https://get-fit-server.herokuapp.com/api/get' + objectName + 's')
+//         .then ( 
+//             response => {
+//                 console.log('Success: ' + response)
+//                 dispatch(setTraineeList(response.data))
+//             }
+//         )
+//         .catch( 
+//             error => 
+//                 console.log('error loging in: ' + error)
+//         )
+//     }
+// }
+// export function addObject(objectName){
+//     return (dispatch, getState) => {
+//         let form = getState().trainee.form
+//         return http.post('https://get-fit-server.herokuapp.com/api/add' + objectName ,form)
+//         .then ( 
+//             response => {
+//                 dispatch(getTraineeList())
+//                 console.log('Success: ' + response)
+//             }
+//         )
+//         .catch( 
+//             error => 
+//                 console.log('error loging in: ' + error)
+//         )
+//     }
+// }
+
+// export function updaeObject(id, trainee, objectName){
+//     return (dispatch, getState) => {
+//         let form = getState().trainee.form
+//         return http.put('https://get-fit-server.herokuapp.com/api/update' + objectName + '/' + id, trainee)
+//         .then (
+//             response => {
+//                 dispatch(getTraineeList())
+//                 console.log('Success: ' + response)
+//             }
+//         )
+//         .catch( 
+//             error => 
+//                 console.log('error loging in: ' + error)
+//         )
+//     }
+// }
+
+// export function removeObject(id, objectName){
+//     return (dispatch, getState) => {
+//         let form = getState().trainee.form
+//         const jwt = localStorage.getItem('token');
+//         return axios.delete('https://get-fit-server.herokuapp.com/api/delete' + objectName + '/' + id,{
+//             headers:{
+//                 Accept: 'application/json',
+//                 'Content-Type': 'application/json',
+//                 'Authorization': jwt
+//             }
+//         })
+//         .then ( 
+//             response => {
+//                 dispatch(getTraineeList())
+//                 console.log('Success: ' + response)
+//             }
+//         )
+//         .catch( 
+//             error => 
+//                 console.log('error loging in: ' + error)
+//         )
+//     }
+// }

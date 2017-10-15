@@ -3,18 +3,16 @@ import R from 'ramda';
 
 const initialState = {
 	form:{
-		email:'',
-        firstName:'',
-        lastName:'',
-        address:'',
-        height:'',
-	}
+	},
+    exerciseList:[],
 }
 
 export default function(state = initialState, action) {
     switch (action.type) {
-    	case types.UPDATE_SIGNUP_FIELD:
+    	case types.UPDATE_EXERCISE_FIELD:
     		return R.assocPath(['form',action.field], action.value, state )
+        case types.SET_EXERCISE_LIST:
+            return R.assoc('exerciseList', action.exerciseList, state )
         default:
             return state;
     }

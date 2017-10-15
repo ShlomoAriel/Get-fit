@@ -1,0 +1,19 @@
+.trainee{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: baseline;
+	align-content: flex-start;
+}
+.custom-row{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+	> div{
+	    padding: 10px 12px;
+	}
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import TextInput from'../../Elements/TextInput/TextInput'
+import TraineeList from'../container/TraineeListComponent'
 
-const Signup = ({form, authenticated, onInputFieldChange, addTrainee}) => {
+const Signup = ({form, authenticated, traineeList, onInputFieldChange, addTrainee, removeTrainee}) => {
 	let formFields = {}
     formFields['emailInput'] = { fieldClass:'form-control',field: 'email', name:'email', placeholder: 'email', value: form.email, onUpdate: onInputFieldChange }
     formFields['passwordInput'] = { type:'password', fieldClass:'form-control',field: 'password', name:'password', placeholder: 'password', value: form.password, onUpdate: onInputFieldChange }
@@ -15,7 +16,7 @@ const Signup = ({form, authenticated, onInputFieldChange, addTrainee}) => {
     formFields['medicalStatusInput'] = {fieldClass:'form-control',field: 'medicalStatus', name:'medicalStatus', placeholder: 'medicalStatus', value: form.medicalStatus, onUpdate: onInputFieldChange }
     formFields['medicineInput'] = {fieldClass:'form-control',field: 'medicine', name:'medicine', placeholder: 'medicine', value: form.medicine, onUpdate: onInputFieldChange }
 	return (
-		  <div className="signup">
+		  <div className="trainee">
 		  	<form onSubmit={addTrainee}>
 		  		<h3>Login & Get Fit!</h3>
 			  	<div className="form">
@@ -26,9 +27,13 @@ const Signup = ({form, authenticated, onInputFieldChange, addTrainee}) => {
 						  	</div>	
 				  		)
 				  	}
-				  	<button className="fa fa-arrow-circle-o-right login-button"></button>
+				  	<div className="form__first">
+				  		<input className="form-control"/>
+				  		<button className="fa fa-arrow-circle-o-right login-button"></button>
+			  		</div>
 			  	</div>
 		  	</form>
+		  	<TraineeList/>
 		  </div>
 );
 }

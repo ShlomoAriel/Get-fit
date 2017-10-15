@@ -21,7 +21,8 @@ function mapDispatchToProps(dispatch) {
         onInputFieldChange(field, value){
             dispatch( loginActions.updateInputField(field, value) )
         },
-        login(){
+        login(e){
+            e.preventDefault();
             dispatch( loginActions.login() )
         }
     }

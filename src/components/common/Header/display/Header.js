@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
-	const tabs = ['home','login','signup','about']
+	const tabs = ['home','login','trainee', 'trainingPackage', 'exercise','about']
 	return (
 	    <nav className="navbar navbar-default">
 		  <div className="container-fluid">
