@@ -35,7 +35,7 @@ export function getExerciseList(){
 export function addExercise(){
     return (dispatch, getState) => {
         let form = getState().exercise.form
-        return http.post('http://localhost:3001/api/addExercise',form)
+        return http.post('https://get-fit-server.herokuapp.com/api/addExercise',form)
         .then ( 
             response => {
                 dispatch(getExerciseList())

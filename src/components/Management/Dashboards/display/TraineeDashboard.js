@@ -1,0 +1,27 @@
+import React from 'react';
+import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
+import TrainingPackageList from'../../TrainingPackage/container/TrainingPackageListComponent'
+import ScheduledExerciseComponent from '../../ScheduledExercise/container/ScheduledExerciseComponent'
+import ScheduledExerciseListComponent from '../../ScheduledExercise/container/ScheduledExerciseListComponent'
+import GoalListComponent from '../../Trainee/container/GoalListComponent'
+import TraineeStatusComponent from '../../Trainee/container/TraineeStatusComponent'
+import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
+// import TraineeTrainingPackageListComponent from'../container/TraineeTrainingPackageListComponent'
+
+const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, trainingPackageList, trainingPackageId, traineePackageList, quantity,
+							setCurrentTrainingPackage, onInputFieldChange, setCurrentTrainee, addTraineeTrainingPackage,}) => {
+	let formFields = {}
+	let traineeInput = {onSelect:setCurrentTrainee,type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] }
+    formFields['quantityInput'] = {fieldClass:'form-control',type:'input',field: 'quantity', name:'quantity', placeholder: 'quantity', value: quantity, onUpdate: onInputFieldChange }
+	formFields['trainingPackageInput'] = {onSelect:setCurrentTrainingPackage,type: 'picklist', fieldClass:'',field: 'trainingPackage', placeholder: 'Training Package', value: trainingPackageId, type: 'picklist', options: trainingPackageList ? trainingPackageList : [] }
+
+	return (
+		<div className="trainee-dashboard">
+			<h2>עמוד מתאמן</h2>
+			<TraineePersonalInfoComponent/>
+			<GoalListComponent/>
+			<TraineeStatusComponent/>
+		</div>
+);
+}
+export default TraineeDashboard;

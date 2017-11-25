@@ -7,7 +7,9 @@ import * as systemActions from 'redux/actions/systemActions'
 import * as loginActions from 'redux/actions/loginActions'
 import * as traineeActions from 'redux/actions/traineeActions'
 import * as trainingPackageActions from 'redux/actions/trainingPackageActions'
+import * as scheduledExerciseActions from 'redux/actions/scheduledExerciseActions'
 import * as exerciseActions from 'redux/actions/exerciseActions'
+import * as goalActions from 'redux/actions/goalActions'
 import HeaderComponent from 'components/common/Header/container/HeaderComponent'
 
 
@@ -63,6 +65,8 @@ function mapDispatchToProps(dispatch) {
             dispatch(traineeActions.getTraineeList())
             dispatch(trainingPackageActions.getTrainingPackageList())
             dispatch(exerciseActions.getExerciseList())
+            dispatch(goalActions.getGoalList())
+            dispatch(scheduledExerciseActions.getScheduledExerciseList())
         }
         
     }

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
 
-const SelectInput = ({ field, label, onSelect, defaultOption, value, options, placeholder }) => {
+const SelectInput = ({ field, label, onSelect, defaultOption, value, options, placeholder, fieldClass }) => {
 
     value = value || defaultOption
 
@@ -14,6 +14,7 @@ const SelectInput = ({ field, label, onSelect, defaultOption, value, options, pl
         <div>
             { label && <label htmlFor={field}>{label}</label> }
             <Select
+                className={fieldClass}
                 name={field}
                 value={value}
                 searchable={false}

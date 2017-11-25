@@ -2,6 +2,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $fa-font-path: "fonts";
 @import "fonts/font-awesome/scss/font-awesome";
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';// Common
+@import '~react-select/dist/react-select.css';
 @import "colors";
 @import "common";
 @import "fonts/fonts";
@@ -11,18 +12,27 @@ html {
 body {
   margin: 0;
   font-family: "Comfortaa-Light";
+  background-color: #e7e7e7;
+  direction: rtl;
 }
 
 // Components
 @import "../src/components/home/style/main";
 @import "../src/components/Login/style/main";
-@import "../src/components/Trainee/style/main";
-@import "../src/components/TrainingPackage/style/main";
-@import "../src/components/Exercise/style/main";
+@import "../src/components/Management/Trainee/style/main";
+@import "../src/components/Management/TrainingPackage/style/main";
+@import "../src/components/Management/Exercise/style/main";
+@import "../src/components/Management/ScheduledExercise/style/main";
 .header{
 	background:#96DFFA;
 	padding:10px 20px;
 	color: #4F4C4D;
 	text-align: center;
   font-size:30px;
+}
+.Select-control{
+	border: none;
+}
+.fa-button{
+	width:40px!important;
 }

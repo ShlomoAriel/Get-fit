@@ -25,9 +25,10 @@ export function parseJSON(response) {
   return response.json();
 }
 
-export function get(url) {
+export function get(url,params) {
 
   return axios.get(url, {
+    params: params,
     headers: headers(),
   })
 }

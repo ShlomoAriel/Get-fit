@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
-	const tabs = ['home','login','trainee', 'trainingPackage', 'exercise','about']
+	const tabs = [{route:'home',name:'ראשי'}, {route:'traineeWorkout',name:'תכנית אימון'},
+				  {route:'traineeDashboard',name:'עמוד מתאמן'}, {route:'paymentDashboard',name:'תשלומים וחבילות'},
+				  {route:'trainee',name:'מתאמנים'}, {route:'trainingPackage',name:'חבילות אימון'},
+				  {route:'exercise',name:'תרגילים'}, {route:'login',name:'התחברות'}]
 	return (
 	    <nav className="navbar navbar-default">
 		  <div className="container-fluid">
@@ -20,9 +23,9 @@ const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
 		      <ul className="nav navbar-nav">
 		      {
 		      	tabs.map( tab => 
-		      		<li key={tab} className={"" + (currentTab === tab ? 'active' : '')} onClick={()=>goTo(tab)}>
-	      				<Link to={'/' + tab}>
-	      					{tab}
+		      		<li key={tab.route} className={"" + (currentTab.route === tab.route ? 'active' : '')} onClick={()=>goTo(tab.route)}>
+	      				<Link to={'/' + tab.route}>
+	      					{tab.name}
 		      			</Link>		
 		      		</li>)
 		      }

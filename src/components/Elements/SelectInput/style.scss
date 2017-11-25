@@ -14,3 +14,28 @@
 .label {
 
 }
+.input,
+	.Select-control,
+	.Select-menu-outer {
+		border-color: $stroke-color;
+		color: #6f8ea6;
+
+		@include placeholders {
+			color: #6f8ea6;
+			font-weight: 400;
+		}
+	}
+	.Select-placeholder,
+	.Select-noresults {
+		color: #6f8ea6;
+	}
+	.Select-arrow {
+		border-color: #6f8ea6 transparent transparent;
+	}
+	.input,
+	.Select-input,
+	.Select--single > .Select-control .Select-value,
+	.date-range-picker__picker {
+		color: black;
+		font-weight: 600;
+	}

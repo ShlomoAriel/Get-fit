@@ -11,10 +11,10 @@ const Login = ({email, password, authenticated, onInputFieldChange, login}) => {
 		  	<form onSubmit={login}>
 		  		<h3>Login & Get Fit!</h3>
 			  	<div className="form">
-				  	<div className="form__first">
+				  	<div>
 				  		<TextInput {...emailInput}/>
 				  	</div>
-				  	<div className="form__last button-holder">
+				  	<div className="button-holder">
 				  		<TextInput {...passwordInput}/>
 				  		<button className="fa fa-arrow-circle-o-right login-button"></button>
 				  	</div>

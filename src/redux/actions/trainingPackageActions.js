@@ -17,6 +17,13 @@ export function setTrainingPackageList(trainingPackageList){
     }
 }
 
+export function setCurrentTrainingPackage(trainingPackageId){
+    return {
+        type: types.SET_CURRENT_TRAINING_PACKAGE,
+        trainingPackageId: trainingPackageId
+    }
+}
+
 export function getTrainingPackageList(){
     return (dispatch, getState) => {
         return http.get('https://get-fit-server.herokuapp.com/api/getTrainingPackages')
