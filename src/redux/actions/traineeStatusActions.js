@@ -62,7 +62,7 @@ export function addTraineeStatus(){
         let form = R.clone(getState().traineeStatus.form)
         form.trainee = getState().trainee.form.traineeId
         form.date = Date()
-        return http.post('http://localhost:3001/api/addTraineeStatus',form)
+        return http.post('https://get-fit-server.herokuapp.com/api/addTraineeStatus',form)
         .then ( 
             response => {
                 dispatch(getTraineeStatusByTrainee())

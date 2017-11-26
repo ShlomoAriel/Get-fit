@@ -65,8 +65,8 @@ function mapDispatchToProps(dispatch) {
             dispatch(traineeActions.getTraineeList())
             dispatch(trainingPackageActions.getTrainingPackageList())
             dispatch(exerciseActions.getExerciseList())
-            dispatch(goalActions.getGoalList())
-            dispatch(scheduledExerciseActions.getScheduledExerciseList())
+            // dispatch(goalActions.getGoalList())
+            // dispatch(scheduledExerciseActions.getScheduledExerciseList())
         }
         
     }

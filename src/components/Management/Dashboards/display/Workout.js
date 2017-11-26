@@ -1,6 +1,6 @@
 import React from 'react';
-import ScheduledExerciseComponent from '../../ScheduledExercise/container/ScheduledExerciseComponent'
-import DietComponent from '../../../Diet/container/DietComponent'
+import ScheduledExerciseListComponent from '../../ScheduledExercise/container/ScheduledExerciseListComponent'
+import DietListComponent from '../../Diet/container/DietListComponent'
 import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
 
 const Workout = ({}) => {
@@ -10,8 +10,8 @@ const Workout = ({}) => {
 		  	{
 		  		<TraineePersonalInfoComponent/>
 		  	}
-		  	<ScheduledExerciseComponent/>
-		  	<DietComponent/>
+		  	<ScheduledExerciseListComponent/>
+		  	<DietListComponent/>
 		  </div>
 );
 }

@@ -1,0 +1,129 @@
+
+.expanded {
+	opacity:1;
+}
+.collapsed {
+	opacity:0;
+}
+.default {
+	overflow:hidden;
+  transition: height 400ms ease-out, opacity 400ms ease-out;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInFromRightTop {
+  0% {
+    transform: translate(5%,-8%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(0);
+  }
+}
+@keyframes slideInFromMiddle {
+  0% {
+    transform: translateY(-5%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.slide-from-top{
+	animation: 0.5s ease-out 0s 1 slideInFromTop;
+}
+.slide-from-right-top{
+  animation: 0.2s ease-out 0s 1 slideInFromRightTop;
+}
+
+.slide-from-middle{
+  animation: 0.5s ease-out 0s 1 slideInFromMiddle;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInFromLeftHard {
+  0% {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.slide-from-left{
+	animation: 0.5s ease-out 0s 1 slideInFromLeft;
+}
+
+.slide-from-left-hard{
+  animation: 0.5s ease-out 0s 1 slideInFromLeftHard;
+}
+
+
+
+
+
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(10%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInFromRightHard {
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.slide-from-right{
+  animation: 0.5s ease-out 0s 1 slideInFromRight;
+}
+
+.slide-from-right-hard{
+  animation: 0.5s ease-out 0s 1 slideInFromRightHard;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+}

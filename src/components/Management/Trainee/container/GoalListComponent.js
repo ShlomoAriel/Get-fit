@@ -10,7 +10,9 @@ class GoalListComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
     }
-    componentWillMount(){}
+    componentWillMount(){
+        this.props.getGoalByTrainee()
+    }
     componentDidUpdate(prevProps, prevState) {
       if(this.props.traineeId != prevProps.traineeId){
          this.props.getGoalByTrainee()
@@ -31,6 +33,7 @@ function mapStateToProps(state) {
         form: state.goal.form,
         traineeId: state.trainee.form.traineeId,
         traineeList: traineeOptions,
+        modalOpen:state.system.modalOpen["goal"],
     }
 }
 
@@ -44,6 +47,9 @@ function mapDispatchToProps(dispatch) {
         },
         getGoalByTrainee(){
             dispatch( goalActions.getGoalByTrainee() )
+        },
+        toggleModal(){
+            dispatch(systemActions.toggleModal("goal"))
         },
         removeGoal(id){
             dispatch( goalActions.removeGoal(id) )

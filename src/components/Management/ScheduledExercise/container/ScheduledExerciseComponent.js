@@ -18,7 +18,7 @@ function mapStateToProps(state) {
         traineeList: traineeOptions,
         exerciseList:exerciseOptions,
         scheduledExerciseList: state.scheduledExercise.scheduledExerciseList,
-        weekDays: [{value:1,label:"ראשון"}, {value:2,label:"שני"}, {value:3,label:"שלישי"}, {value:4,label:"רביעי"}, {value:5,label:"חמישי"}, {value:6,label:"שישי"}, {value:7,label:"שבע"},],
+        weekDays: [{value:"1",label:"ראשון"}, {value:"2",label:"שני"}, {value:"3",label:"שלישי"}, {value:"4",label:"רביעי"}, {value:"5",label:"חמישי"}, {value:"6",label:"שישי"}, {value:"7",label:"שבע"},],
     	authenticated: state.scheduledExercise.authenticated
     }
 }

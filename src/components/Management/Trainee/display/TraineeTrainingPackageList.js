@@ -12,22 +12,22 @@ const TraineeDashboard = ({traineePackageList, quantity, trainingPackageId, trai
 			<div className="training-package-list list-general-wrapper">
 				<div>
 				{
-				<form onSubmit={addTraineeTrainingPackage}>
-					<h3>הוספת חבילה</h3>
-					<div className="form">
-					{
-				  		Object.keys(formFields).map( fieldKey =>
-					  		<div key={fieldKey}>
-						  		<InputWrapper {...formFields[fieldKey]}/>
-						  	</div>	
-				  		)
-				  	}
-				  		<div className="button-holder">
-					  		<input className="form-control"/>
-					  		<button className="fa fa-arrow-circle-o-right login-button"></button>
-				  		</div>
-				  	</div>
-				</form>
+					<form onSubmit={addTraineeTrainingPackage}>
+						<h3>הוספת חבילה</h3>
+						<div className="form">
+						{
+					  		Object.keys(formFields).map( fieldKey =>
+						  		<div key={fieldKey}>
+							  		<InputWrapper {...formFields[fieldKey]}/>
+							  	</div>	
+					  		)
+					  	}
+					  		<div className="button-holder">
+						  		<input className="form-control"/>
+						  		<button className="fa fa-arrow-circle-o-right login-button"></button>
+					  		</div>
+					  	</div>
+					</form>
 				}
 				</div>
 				<div>

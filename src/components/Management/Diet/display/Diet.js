@@ -1,14 +1,13 @@
 import React from 'react';
-import TextInput from'../../Elements/TextInput/TextInput'
-import DietList from'../container/DietListComponent'
+import TextInput from'../../../Elements/TextInput/TextInput'
 
-const Diet = ({form, authenticated, dietList, onInputFieldChange, addDiet, removeDiet}) => {
+const Diet = ({form, authenticated, dietList, onInputFieldChange, addDiet, removeDiet, toggleModal}) => {
 	let formFields = {}
-	formFields['textInput'] = { fieldClass:'form-control',field: 'text', name:'text', placeholder: 'text', value: form.text, onUpdate: onInputFieldChange }	
+	formFields['textInput'] = { fieldClass:'form-control',field: 'text', name:'text', placeholder: 'פריט תזונה', value: form.text, onUpdate: onInputFieldChange }	
 	return (
-		  <div className="training-package">
-		  	<DietList/>
+		   <div className="form-modal fade-in">
 		  	<form onSubmit={addDiet}>
+		  		<i className="fa fa-times-circle-o i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
 		  		<h3>Login & Get Fit!</h3>
 			  	<div className="form">
 				  	{

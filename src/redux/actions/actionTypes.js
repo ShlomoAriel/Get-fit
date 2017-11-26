@@ -1,5 +1,6 @@
 // Main
 export const TOGGLE_MENU = 'TOGGLE_MENU'
+export const TOGGLE_MODAL = 'TOGGLE_MODAL'
 export const UPDATE_INPUT_FIELD = 'UPDATE_INPUT_FIELD'
 export const SET_CURRENT_TAB = 'SET_CURRENT_TAB'
 

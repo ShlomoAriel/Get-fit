@@ -6,6 +6,13 @@ export function toggleMenu(){
     }
 }
 
+export function toggleModal(modalName){
+    return {
+        type: types.TOGGLE_MODAL,
+        modalName:modalName
+    }
+}
+
 export function setCurrentTab(tab){
     return {
         type: types.SET_CURRENT_TAB,

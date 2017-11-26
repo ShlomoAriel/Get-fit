@@ -10,7 +10,9 @@ class ScheduledExerciseListComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
     }
-    componentWillMount(){}
+    componentWillMount(){
+        this.props.getTraineeScheduledExercisesByDay()
+    }
     componentDidUpdate(prevProps, prevState) {
       if(this.props.traineeId != prevProps.traineeId || this.props.form.weekDay != prevProps.form.weekDay){
          this.props.getTraineeScheduledExercisesByDay()
@@ -30,8 +32,9 @@ function mapStateToProps(state) {
         form: state.scheduledExercise.form,
         scheduledExerciseList: state.scheduledExercise.scheduledExerciseList,
         traineeId: state.trainee.form.traineeId,
+        modalOpen:state.system.modalOpen["scheduledExercise"],
         traineeList: traineeOptions,
-        weekDays: [{value:1,label:"ראשון"}, {value:2,label:"שני"}, {value:3,label:"שלישי"}, {value:4,label:"רביעי"}, {value:5,label:"חמישי"}, {value:6,label:"שישי"}, {value:7,label:"שבע"},],
+        weekDays: [{value:"1",label:"ראשון"}, {value:"2",label:"שני"}, {value:"3",label:"שלישי"}, {value:"4",label:"רביעי"}, {value:"5",label:"חמישי"}, {value:"6",label:"שישי"}, {value:"7",label:"שבע"},],
 
 
     }
@@ -41,6 +44,9 @@ function mapDispatchToProps(dispatch) {
     return {
         setCurrentTrainee(field, traineeId){
             dispatch( traineeActions.setCurrentTrainee(traineeId) )
+        },
+        toggleModal(){
+            dispatch(systemActions.toggleModal("scheduledExercise"))
         },
         onInputFieldChange(field, value){
             dispatch( scheduledExerciseActions.updateInputField(field, value) )

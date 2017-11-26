@@ -4,7 +4,7 @@ import TrainingPackageList from'../../TrainingPackage/container/TrainingPackageL
 import ScheduledExerciseComponent from '../../ScheduledExercise/container/ScheduledExerciseComponent'
 import ScheduledExerciseListComponent from '../../ScheduledExercise/container/ScheduledExerciseListComponent'
 import GoalListComponent from '../../Trainee/container/GoalListComponent'
-import TraineeStatusComponent from '../../Trainee/container/TraineeStatusComponent'
+import TraineeStatusListComponent from '../../Trainee/container/TraineeStatusListComponent'
 import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
 // import TraineeTrainingPackageListComponent from'../container/TraineeTrainingPackageListComponent'
 
@@ -20,7 +20,7 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 			<h2>עמוד מתאמן</h2>
 			<TraineePersonalInfoComponent/>
 			<GoalListComponent/>
-			<TraineeStatusComponent/>
+			<TraineeStatusListComponent/>
 		</div>
 );
 }

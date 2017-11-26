@@ -1,19 +1,20 @@
 import React from 'react';
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 import moment from 'moment'
+import TraineeStatusComponent from'../container/TraineeStatusComponent'
 
-const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldChange, editMode}) => {
+const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldChange, modalOpen, toggleModal}) => {
 	let checkbox = { type:'checkbox',fieldClass:'form-control',field: 'checkbox', name:'text', onChange: onInputFieldChange }
 	return (
-			 <div className="training-package-list list-general-wrapper">
+			 <div className="trainee-status list-general-wrapper slide-from-right-hard">
 			  	<div>
+			  		{ modalOpen && <TraineeStatusComponent toggleModal={toggleModal}/>}
 			  		<div>
-			  			<h3>תמונת מצב</h3>
+			  			<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> תמונת מצב</h3>
 			  			<div>
 				  			<div className="custom-row">
 	  							<div>טקסט</div>		
-	  							<div>משקל</div>		
-	  							{ editMode &&<div>הושג</div>}
+	  							<div>משקל</div>
 	  							<div>תאריך</div>
 	  							<div></div>
 	  						</div>
@@ -24,7 +25,6 @@ const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldC
 			  						<div key={traineeStatus._id} className="custom-row">
 			  							<div>{traineeStatus.name}</div>
 			  							<div>{traineeStatus.weight}</div>
-			  							{ editMode && <InputWrapper {...checkbox}/>}
 			  							<div>{moment(traineeStatus.date).format("MMM Do YYYY")}</div>
 			  							<div><i className="fa fa-trash-o" onClick={()=>removeTraineeStatus(traineeStatus._id)}></i></div>
 			  						</div>)

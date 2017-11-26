@@ -11,7 +11,7 @@ const Payment = ({ form, traineeId, traineeList, onInputFieldChange, addPayment,
 	return (
 		  <div className="payment">
 		  	<form onSubmit={addPayment}>
-		  		<h3>Login & Get Fit!</h3>
+		  		<h3>הוספת תשלום</h3>
 			  	<div className="form">
 				  	{
 				  		Object.keys(formFields).map( fieldKey =>

@@ -3,7 +3,7 @@ import R from 'ramda';
 
 const initialState = {
 	form:{
-        weekDay:2
+        weekDay:"2"
 	},
     scheduledExerciseList:[],
 }

@@ -35,7 +35,7 @@ export function getDietList(){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('getDietList in: ' + error)
         )
     }
 }
@@ -43,6 +43,9 @@ export function getDietList(){
 export function getDietByTrainee(){
     return (dispatch, getState) => {
         let traineeId = getState().trainee.form.traineeId
+        if(!traineeId){
+            return
+        }
         return http.get('https://get-fit-server.herokuapp.com/api/getDietByTrainee/' + traineeId)
         .then ( 
             response => {
@@ -52,7 +55,7 @@ export function getDietByTrainee(){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('getDietByTrainee in: ' + error)
         )
     }
 }
@@ -62,7 +65,7 @@ export function addDiet(){
         let form = R.clone(getState().diet.form)
         form.trainee = getState().trainee.form.traineeId
         form.date = Date()
-        return http.post('http://localhost:3001/api/addDiet',form)
+        return http.post('https://get-fit-server.herokuapp.com/api/addDiet',form)
         .then ( 
             response => {
                 dispatch(getDietByTrainee())
@@ -71,7 +74,7 @@ export function addDiet(){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error addDiet: ' + error)
         )
     }
 }
@@ -88,7 +91,7 @@ export function updaeDiet(id, diet){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error updaeDiet: ' + error)
         )
     }
 }
@@ -106,7 +109,7 @@ export function removeDiet(id){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error removeDiet: ' + error)
         )
     }
 }

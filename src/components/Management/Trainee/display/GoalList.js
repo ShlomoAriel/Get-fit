@@ -1,13 +1,15 @@
 import React from 'react';
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 import moment from 'moment'
+import GoalComponent from'../container/GoalComponent'
 
-const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, editMode}) => {
-	let checkbox = { type:'checkbox',fieldClass:'form-control',field: 'checkbox', name:'text', onChange: onInputFieldChange }
+const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, modalOpen, toggleModal}) => {
+	let checkbox = { type:'checkbox',fieldClass:'',field: 'checkbox', name:'text', onChange: onInputFieldChange }
 	return (
-			 <div className="training-package-list list-general-wrapper">
+			 <div className="goal-list list-general-wrapper slide-from-right">
+			 	{ modalOpen && <GoalComponent toggleModal={toggleModal}/>}
 	  			<div>
-	  				<h3>מטרות</h3>
+	  				<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> מטרות</h3>
 		  			<div className="custom-row">
 							<div>טקסט</div>		
 							<div>הושג</div>
@@ -20,7 +22,7 @@ const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, editMode}) 
 	  						return(
 	  						<div key={goal._id} className="custom-row">
 	  							<div>{goal.text}</div>
-	  							{ editMode && <InputWrapper {...checkbox}/>}
+	  							<InputWrapper {...checkbox}/>
 	  							<div>{moment(goal.date).format("MMM Do YYYY")}</div>
 	  							<div><i className="fa fa-trash-o" onClick={()=>removeGoal(goal._id)}></i></div>
 	  						</div>)

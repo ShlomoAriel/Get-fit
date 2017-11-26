@@ -16,24 +16,26 @@ const Signup = ({form, authenticated, traineeList, onInputFieldChange, addTraine
     formFields['medicalStatusInput'] = {fieldClass:'form-control',field: 'medicalStatus', name:'medicalStatus', placeholder: 'medicalStatus', value: form.medicalStatus, onUpdate: onInputFieldChange }
     formFields['medicineInput'] = {fieldClass:'form-control',field: 'medicine', name:'medicine', placeholder: 'medicine', value: form.medicine, onUpdate: onInputFieldChange }
 	return (
-		  <div className="trainee">
-		  	<form onSubmit={addTrainee}>
-		  		<h3>Login & Get Fit!</h3>
-			  	<div className="form">
-				  	{
-				  		Object.keys(formFields).map( fieldKey =>
-					  		<div key={fieldKey}>
-						  		<TextInput {...formFields[fieldKey]}/>
-						  	</div>	
-				  		)
-				  	}
-				  	<div className="button-holder">
-				  		<input className="form-control"/>
-				  		<button className="fa fa-arrow-circle-o-right login-button"></button>
-			  		</div>
-			  	</div>
-		  	</form>
-		  	<TraineeList/>
+		  <div className="trainee-dashboard">
+			  <div className="trainee">
+			  	<form onSubmit={addTrainee}>
+			  		<h3>Login & Get Fit!</h3>
+				  	<div className="form">
+					  	{
+					  		Object.keys(formFields).map( fieldKey =>
+						  		<div key={fieldKey}>
+							  		<TextInput {...formFields[fieldKey]}/>
+							  	</div>	
+					  		)
+					  	}
+					  	<div className="button-holder">
+					  		<input className="form-control"/>
+					  		<button className="fa fa-arrow-circle-o-right login-button"></button>
+				  		</div>
+				  	</div>
+			  	</form>
+			  	<TraineeList/>
+			  </div>
 		  </div>
 );
 }

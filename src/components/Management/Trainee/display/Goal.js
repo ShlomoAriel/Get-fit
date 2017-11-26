@@ -1,35 +1,29 @@
 import React from 'react';
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
-import GoalList from'./GoalList'
 
-const Signup = ({form, traineeId, traineeList, goalList, onInputFieldChange, addGoal, removeGoal, setCurrentTrainee, isEdit}) => {
+const Signup = ({form, traineeId, traineeList, goalList, onInputFieldChange, addGoal, removeGoal, setCurrentTrainee, toggleModal}) => {
 	let formFields = {}
-	formFields['traineeInput'] = {onSelect:setCurrentTrainee, type: 'picklist', fieldClass:'form-control',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] },
+	formFields['traineeInput'] = {onSelect:setCurrentTrainee, type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] },
     formFields['textInput'] = { type: 'input', fieldClass:'form-control',field: 'text', name:'text', placeholder: 'text', value: form.text, onUpdate: onInputFieldChange }
 
 	return (
-		  <div className="trainee">
-		  { isEdit &&
+		  <div className="form-modal fade-in">
 		  	<form onSubmit={addGoal}>
+			  	<i className="fa fa-times-circle-o i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
 		  		<h3>Login & Get Fit!</h3>
-			  	<div className="form">
-				  	{
-				  		Object.keys(formFields).map( fieldKey =>
-					  		<div key={fieldKey}>
-						  		<InputWrapper {...formFields[fieldKey]}/>
-						  	</div>	
-				  		)
-				  	}
+			  	<div className="form slide-from-right">
+			  	{ Object.keys(formFields).map( fieldKey =>
+			  		<div key={fieldKey}>
+				  		<InputWrapper {...formFields[fieldKey]}/>
+				  	</div>	
+			  		)
+			  	}
 				  	<div className="button-holder">
 				  		<input className="form-control"/>
 				  		<button className="fa fa-arrow-circle-o-right login-button"></button>
 			  		</div>
 			  	</div>
 		  	</form>
-		  }
-		  	<GoalList goalList={goalList}
-		  				onInputFieldChange={onInputFieldChange}
-		  				removeGoal={removeGoal}/>
 		  </div>
 );
 }

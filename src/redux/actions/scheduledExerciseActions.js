@@ -28,7 +28,7 @@ export function getScheduledExerciseList(){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error getScheduledExerciseList: ' + error)
         )
     }
 }
@@ -39,6 +39,9 @@ export function getTraineeScheduledExercisesByDay(params){
             weekDay:getState().scheduledExercise.form.weekDay,
             trainee:getState().trainee.form.traineeId
         }
+        if(!params.weekDay || !params.trainee){
+            return
+        }
         return http.get('https://get-fit-server.herokuapp.com/api/getTraineeScheduledExercisesByDay',params)
         .then ( 
             response => {
@@ -48,7 +51,7 @@ export function getTraineeScheduledExercisesByDay(params){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error getTraineeScheduledExercisesByDay: ' + error)
         )
     }
 }
@@ -68,7 +71,7 @@ export function getTraineeScheduledExercises(params){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error getTraineeScheduledExercises: ' + error)
         )
     }
 }
@@ -76,7 +79,7 @@ export function addScheduledExercise(){
     return (dispatch, getState) => {
         let form = getState().scheduledExercise.form
         form.trainee = getState().trainee.currentTrainee._id
-        return http.post('http://localhost:3001/api/addScheduledExercise',form)
+        return http.post('https://get-fit-server.herokuapp.com/api/addScheduledExercise',form)
         .then ( 
             response => {
                 dispatch(getTraineeScheduledExercisesByDay())
@@ -85,7 +88,7 @@ export function addScheduledExercise(){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error addScheduledExercise: ' + error)
         )
     }
 }
@@ -103,7 +106,7 @@ export function updaeScheduledExercise(id, scheduledExercise){
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error updaeScheduledExercise: ' + error)
         )
     }
 }
@@ -115,13 +118,13 @@ export function removeScheduledExercise(id){
         return http.remove('https://get-fit-server.herokuapp.com/api/deleteScheduledExercise/'+id)
         .then ( 
             response => {
-                dispatch(getScheduledExerciseList())
+                dispatch(getTraineeScheduledExercisesByDay())
                 console.log('Success: ' + response)
             }
         )
         .catch( 
             error => 
-                console.log('error loging in: ' + error)
+                console.log('error removeScheduledExercise: ' + error)
         )
     }
 }
