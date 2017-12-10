@@ -11,8 +11,9 @@ const Signup = ({form, authenticated, trainingPackageList, onInputFieldChange, a
 	return (
 		  <div className="trainee-dashboard">
 			  <div className="training-package">
+			  <TrainingPackageList trainingPackageList = {trainingPackageList}/>
 			  	<form onSubmit={addTrainingPackage}>
-			  		<h3>Login & Get Fit!</h3>
+			  		<h3>הוספת חבילה</h3>
 				  	<div className="form">
 					  	{
 					  		Object.keys(formFields).map( fieldKey =>
@@ -27,7 +28,6 @@ const Signup = ({form, authenticated, trainingPackageList, onInputFieldChange, a
 				  		</div>
 				  	</div>
 			  	</form>
-			  	<TrainingPackageList trainingPackageList = {trainingPackageList}/>
 			  </div>
 		  </div>
 );

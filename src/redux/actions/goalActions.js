@@ -94,6 +94,25 @@ export function updaeGoal(id, goal){
     }
 }
 
+export function toggleCheckbox(id, value){
+    return (dispatch, getState) => {
+        let goalList = getState().goal.goalList
+        let goal = R.find(R.propEq('_id',id))(goalList)
+        goal.achieved = value
+        return http.put('https://get-fit-server.herokuapp.com/api/updateGoal/'+id, goal)
+        .then (
+            response => {
+                dispatch(getGoalByTrainee())
+                console.log('Success: ' + response)
+            }
+        )
+        .catch( 
+            error => 
+                console.log('error loging in: ' + error)
+        )
+    }
+}
+
 export function removeGoal(id){
     return (dispatch, getState) => {
         let form = getState().goal.form

@@ -42,10 +42,6 @@ function mapDispatchToProps(dispatch) {
         onInputFieldChange(field, value){
             dispatch( paymentActions.updateInputField(field, value) )
         },
-        setCurrentTrainee(field, traineeId){
-            dispatch( traineeActions.setCurrentTrainee(traineeId) )
-            dispatch( traineeActions.getTraineePackageList() )
-        },
         addPayment(e){
             e.preventDefault();
             dispatch( paymentActions.addPayment() )

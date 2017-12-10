@@ -7,7 +7,11 @@ class TraineePersonalInfoComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
     }
-    componentWillMount(){}
+    componentWillMount(){
+        if(this.props.traineeList[0]){
+            this.props.setCurrentTrainee("",this.props.traineeList[0].value)    
+        }
+    }
     componentDidUpdate(prevProps, prevState) {
       if(!this.props.traineeId && this.props.traineeList){
         this.props.setCurrentTrainee("",this.props.traineeList[0].value)
@@ -39,7 +43,6 @@ function mapDispatchToProps(dispatch) {
     return {
         setCurrentTrainee(field, traineeId){
             dispatch( traineeActions.setCurrentTrainee(traineeId) )
-            dispatch( traineeActions.getTraineePackageList() )
         },
     }
 }

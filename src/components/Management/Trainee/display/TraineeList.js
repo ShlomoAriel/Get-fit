@@ -6,7 +6,7 @@ const Signup = ({traineeList, removeTrainee}) => {
 		  <div className="trainee-list list-general-wrapper">
 		  	<div>
 		  		<div>
-		  			<h3>trainees</h3>
+		  			<h3>מתאמנים</h3>
 		  			<div>
 		  				{
 		  					traineeList.map( trainee =>

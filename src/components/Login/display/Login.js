@@ -14,6 +14,9 @@ const Login = ({email, password, authenticated, onInputFieldChange, login}) => {
 				  	<div>
 				  		<TextInput {...emailInput}/>
 				  	</div>
+				  	<div>
+				  		<TextInput {...passwordInput}/>
+				  	</div>
 				  	<div className="button-holder">
 				  		<TextInput {...passwordInput}/>
 				  		<button className="fa fa-arrow-circle-o-right login-button"></button>

@@ -51,6 +51,9 @@ function mapDispatchToProps(dispatch) {
         toggleModal(){
             dispatch(systemActions.toggleModal("goal"))
         },
+        toggleCheckbox(field, goalId, value){
+            dispatch(goalActions.toggleCheckbox(goalId, value))
+        },
         removeGoal(id){
             dispatch( goalActions.removeGoal(id) )
         },

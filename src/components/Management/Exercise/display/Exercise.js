@@ -10,8 +10,9 @@ const Signup = ({form, authenticated, exerciseList, onInputFieldChange, addExerc
 	return (
 		  <div className="trainee-dashboard">
 			  <div className="training-package">
+			  	<ExerciseList/>
 			  	<form onSubmit={addExercise}>
-			  		<h3>Login & Get Fit!</h3>
+			  		<h3>הוספת תרגיל</h3>
 				  	<div className="form">
 					  	{
 					  		Object.keys(formFields).map( fieldKey =>
@@ -26,7 +27,6 @@ const Signup = ({form, authenticated, exerciseList, onInputFieldChange, addExerc
 				  		</div>
 				  	</div>
 			  	</form>
-			  	<ExerciseList/>
 			  </div>
 		  </div>
 );

@@ -3,8 +3,8 @@ import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 import moment from 'moment'
 import GoalComponent from'../container/GoalComponent'
 
-const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, modalOpen, toggleModal}) => {
-	let checkbox = { type:'checkbox',fieldClass:'',field: 'checkbox', name:'text', onChange: onInputFieldChange }
+const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, modalOpen, toggleModal, toggleCheckbox}) => {
+	let checkbox = { type:'checkbox',fieldClass:'',field: 'checkbox', name:'text', onChange: toggleCheckbox }
 	return (
 			 <div className="goal-list list-general-wrapper slide-from-right">
 			 	{ modalOpen && <GoalComponent toggleModal={toggleModal}/>}
@@ -22,7 +22,8 @@ const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, modalOpen, 
 	  						return(
 	  						<div key={goal._id} className="custom-row">
 	  							<div>{goal.text}</div>
-	  							<InputWrapper {...checkbox}/>
+	  							<InputWrapper {...checkbox}
+	  										id={ goal._id}/>
 	  							<div>{moment(goal.date).format("MMM Do YYYY")}</div>
 	  							<div><i className="fa fa-trash-o" onClick={()=>removeGoal(goal._id)}></i></div>
 	  						</div>)

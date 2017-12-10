@@ -35,10 +35,10 @@ const Signup = ({form,scheduledExerciseList,traineeList,traineeId, weekDays, rem
 	  				{ scheduledExerciseList.map( scheduledExercise =>
 							<div key={scheduledExercise._id} className="custom-row">
 								<div>{scheduledExercise.order}</div>
-								<div>{scheduledExercise.exercise.name}</div>
+								<div>{scheduledExercise.exercise && scheduledExercise.exercise.name}</div>
 								<div>{scheduledExercise.sets}</div>
 								<div>{scheduledExercise.reps}</div>
-								<div><a target="_blanc" href={scheduledExercise.exercise.link}>סרטון</a></div>
+								<div><a target="_blanc" href={scheduledExercise.exercise && scheduledExercise.exercise.link}>סרטון</a></div>
 								<div><i className="fa fa-trash-o" onClick={()=>removeScheduledExercise(scheduledExercise._id)}></i></div>
 								<div><i className="fa fa-pencil" onClick={()=>editScheduledExercise(scheduledExercise._id)}></i></div>
 								{

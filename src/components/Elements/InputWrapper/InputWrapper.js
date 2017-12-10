@@ -7,7 +7,7 @@ import  Checkbox  from '../Checkbox/Checkbox'
 import  DateRangePicker  from '../DateRangePicker/DateRangePicker'
 import  NumberRange  from '../NumberRange/NumberRange'
 
-const InputWrapper = ({ field, label, fieldClass, placeholder, value, onUpdate, onChange, onSelect, name, type, options, minLetters, fromValue, toValue, fetchOptions, clearOptions, search, onEnter }) => {
+const InputWrapper = ({ field, label, fieldClass, placeholder, value, onUpdate, onChange, onSelect, name, type, options, minLetters, fromValue, toValue, fetchOptions, clearOptions, search, onEnter, id }) => {
 return (
 	<div className={"input-wrapper-" + type}>
         {
@@ -68,6 +68,7 @@ return (
         }
         { type == 'checkbox' &&
             <Checkbox
+                id={id}
                 fieldClass={fieldClass}
                 field={field}
                 name={name}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({name, onChange, field, value, className}) => {
+const Checkbox = ({name, onChange, field, value, className, id}) => {
     return (
             
                 <input
@@ -11,7 +11,7 @@ const Checkbox = ({name, onChange, field, value, className}) => {
                     value={value}
                     id={name + '_' + value}
                     checked={value}
-                    onChange={check =>onChange(field,!value)}/>
+                    onChange={check =>onChange(field, id, !value)}/>
             
     );
 };

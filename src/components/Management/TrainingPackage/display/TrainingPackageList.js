@@ -4,7 +4,7 @@ import TextInput from'../../../Elements/TextInput/TextInput'
 const Signup = ({trainingPackageList, removeTrainingPackage}) => {
 	return (
 		  <div className="training-package-list list-general-wrapper">
-		  			<h3>trainingPackages</h3>
+		  			<h3>חבילות</h3>
 		  			<div>
 		  				{
 		  					trainingPackageList.map( trainingPackage =>

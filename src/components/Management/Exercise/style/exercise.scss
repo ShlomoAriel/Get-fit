@@ -1,0 +1,10 @@
+.exercise-list{
+	.custom-row{
+		> div {
+			width: 50px;
+		}
+		div:nth-child(1){
+			width: 100px;
+		}
+	}
+}

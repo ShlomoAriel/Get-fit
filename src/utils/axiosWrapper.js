@@ -42,9 +42,8 @@ export function post(url, data) {
 }
 export function put(url, data) {  
   const body = JSON.stringify(data);
-  return axios.post(url, {
+  return axios.put(url,body, {
     headers: headers(),
-    body: body,
   })
 }
 export function remove(url) {

@@ -20,13 +20,14 @@
 	    flex-wrap: nowrap;
 	    justify-content: start;
 	    width: 100%;
-	    > div:nth-child(2){
-	    	margin-right:50px;
-	    }
+	    
 	    .list-general-wrapper{
 	    	width: 600px;
 	    }
 	}
+	.right-space{
+	    	margin-right:50px;
+	    }
 	.dashboard-picklist{
 		width: 180px;
 	    border: 1px solid rgba(0, 0, 0, 0.3);
