@@ -10,6 +10,7 @@ const Payment = ({ form, traineeId, traineeList, onInputFieldChange, addPayment,
     formFields['typeInput'] = { type: 'input', fieldClass:'form-control',field: 'type', name:'type', placeholder: 'type', value: form.type, onUpdate: onInputFieldChange }
 	return (
 		  <div className="payment">
+		  	<PaymentListComponent/>
 		  	<form onSubmit={addPayment}>
 		  		<h3>הוספת תשלום</h3>
 			  	<div className="form">
@@ -26,7 +27,6 @@ const Payment = ({ form, traineeId, traineeList, onInputFieldChange, addPayment,
 			  		</div>
 			  	</div>
 		  	</form>
-		  	<PaymentListComponent/>
 		  </div>
 );
 }

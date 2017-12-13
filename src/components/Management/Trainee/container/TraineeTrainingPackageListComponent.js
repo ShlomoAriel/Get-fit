@@ -1,9 +1,28 @@
+import React from 'react'
 import {connect} from 'react-redux';
 import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
 import * as traineeActions from 'redux/actions/traineeActions'
 import * as trainingPackageActions from 'redux/actions/trainingPackageActions'
 import TraineeTrainingPackageList from '../display/TraineeTrainingPackageList';
+
+class TraineeTrainingPackageListComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context)
+    }
+    componentWillMount(){
+        this.props.getTraineePackageList()
+    }
+    componentDidUpdate(prevProps, prevState) {
+      if(this.props.traineeId != prevProps.traineeId){
+         this.props.getTraineePackageList()
+      }
+    }
+
+    render() {
+        return <TraineeTrainingPackageList{...this.props}/>
+    }
+}
 
 function mapStateToProps(state) {
 	let trainingPackageOptions = state.trainingPackage.trainingPackageList.map( trainingPackage => {
@@ -17,6 +36,7 @@ function mapStateToProps(state) {
     return {
     	quantity: state.trainingPackage.form.quantity,
     	traineePackageList: traineePackageList,
+        traineeId: state.trainee.form.traineeId,
         trainingPackageList: trainingPackageOptions,
         trainingPackageId: trainingPackageId,
         currentPackcage:currentPackcage,
@@ -34,6 +54,9 @@ function mapDispatchToProps(dispatch) {
         setCurrentTrainingPackage(field, trainingPackageId){
             dispatch( trainingPackageActions.setCurrentTrainingPackage(trainingPackageId) )
         },
+        getTraineePackageList(){
+            dispatch( traineeActions.getTraineePackageList() )
+        },
         addTraineeTrainingPackage(e){
             e.preventDefault();
             dispatch( traineeActions.addTraineeTrainingPackage() )
@@ -41,5 +64,5 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )(TraineeTrainingPackageList)
+export default connect( mapStateToProps, mapDispatchToProps )(TraineeTrainingPackageListComponent)
 

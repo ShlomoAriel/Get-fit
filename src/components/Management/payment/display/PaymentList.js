@@ -13,6 +13,7 @@ const PaymentList = ({paymentList, removeGoal, onInputFieldChange, editMode}) =>
 				  			<div className="custom-row">
 	  							<div>טקסט</div>
 	  							<div>סוג</div>
+	  							<div>סכום</div>
 	  							<div>תאריך</div>
 	  							<div></div>
 	  						</div>
@@ -23,6 +24,7 @@ const PaymentList = ({paymentList, removeGoal, onInputFieldChange, editMode}) =>
 			  						<div key={payment._id} className="custom-row">
 			  							<div>{payment.text}</div>
 			  							<div>{payment.type}</div>
+			  							<div>{payment.amount}</div>
 			  							<div>{moment(payment.date).format("MMM Do YYYY")}</div>
 			  							<div><i className="fa fa-trash-o" onClick={()=>removeGoal(payment._id)}></i></div>
 			  						</div>)

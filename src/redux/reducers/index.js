@@ -9,6 +9,7 @@ import goal from './goalReducer'
 import payment from './paymentReducer'
 import diet from './dietReducer'
 import traineeStatus from './traineeStatusReducer'
+import session from './SessionReducer'
 
 export default combineReducers({
     system,
@@ -19,6 +20,7 @@ export default combineReducers({
     scheduledExercise,
     goal,
     traineeStatus,
+    session,
     payment,
     diet,
 });
