@@ -1,0 +1,18 @@
+.schedule-header{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: center;
+	margin:15px 0px;
+	.personal-info{
+		width:155px;
+		z-index:10;
+		margin-right: 15px;
+		.Select-control{
+			background: none;
+			border: 1px solid #ccc;
+		}
+	}
+}

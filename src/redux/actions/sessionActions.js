@@ -2,6 +2,8 @@ import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
 import axios from 'axios'
 import R from 'ramda'
+import moment from 'moment'
+
 export function updateInputField(field, value){
     return {
         type: types.UPDATE_SESSION_FIELD,
@@ -61,8 +63,14 @@ export function addSession(){
     return (dispatch, getState) => {
         let form = R.clone(getState().session.form)
         form.trainee = getState().trainee.form.traineeId
-        form.date = Date()
-        form.achieved = false
+        form.done = false
+        let day = form.date
+        day.hours(form.start.hours())
+        day.minutes(form.start.minutes())
+        form.start = day.toDate();
+        day.hours(form.end.hours())
+        day.minutes(form.end.minutes())
+        form.end = day.toDate();
         return http.post('https://get-fit-server.herokuapp.com/api/addSession',form)
         .then ( 
             response => {

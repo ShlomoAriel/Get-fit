@@ -9,8 +9,10 @@ import TraineeDashboardComponent from 'components/Management/Dashboards/containe
 import ExerciseComponent from 'components/Management/Exercise/container/ExerciseComponent';
 import PaymentComponent from 'components/Management/Payment/container/PaymentComponent';
 import WorkoutComponent from 'components//Management/Dashboards/container/WorkoutComponent';
+import SettingsComponent from 'components//Management/Dashboards/container/SettingsComponent';
 import PaymentDashboardComponent from 'components/Management/Dashboards/container/PaymentDashboardComponent';
 import ScheduledExerciseComponent from 'components/Management/ScheduledExercise/container/ScheduledExerciseComponent';
+import ScheduleComponent from 'components/Management/Schedule/container/ScheduleComponent';
 
 
 export default (
@@ -24,6 +26,8 @@ export default (
         <Route path="/trainingPackage" component={TrainingPackageComponent}/>
         <Route path="/exercise" component={ExerciseComponent}/>
         <Route path="/payment" component={PaymentComponent}/>
+        <Route path="/schedule" component={ScheduleComponent}/>
+        <Route path="/settings" component={SettingsComponent}/>
         <Route path="/scheduledExercise" component={ScheduledExerciseComponent}/>
     </Switch>
 );

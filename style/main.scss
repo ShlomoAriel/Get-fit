@@ -1,8 +1,10 @@
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $fa-font-path: "fonts";
+@import '~react-big-calendar/lib/css/react-big-calendar.css';
 @import "fonts/font-awesome/scss/font-awesome";
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';// Common
 @import '~react-select/dist/react-select.css';
+@import '~react-datepicker/dist/react-datepicker.css';
 @import "colors";
 @import "common";
 @import "fonts/fonts";
@@ -25,6 +27,9 @@ body {
 @import "../src/components/Management/Exercise/style/main";
 @import "../src/components/Management/ScheduledExercise/style/main";
 @import "../src/components/Management/payment/style/main";
+
+@import "../src/components/Elements/main";
+@import "../src/components/Management/Schedule/style/main";
 .header{
 	background:#96DFFA;
 	padding:10px 20px;
@@ -40,4 +45,11 @@ body {
 }
 .right-margin{
 	margin-right:20px;
+}
+.rbc-month-row {
+    flex: 1;
+    height: 100px;
+}
+.rbc-month-view {
+    flex: 1;
 }

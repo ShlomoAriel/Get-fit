@@ -20,7 +20,7 @@ const Signup = ({form, authenticated, traineeList, onInputFieldChange, addTraine
 			  <div className="trainee">
 			  	<TraineeList/>
 			  	<form onSubmit={addTrainee}>
-			  		<h3>סוהפת מתאמנים</h3>
+			  		<h3>הוספת מתאמנים</h3>
 				  	<div className="form">
 					  	{
 					  		Object.keys(formFields).map( fieldKey =>

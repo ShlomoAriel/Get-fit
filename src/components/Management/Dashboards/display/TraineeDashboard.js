@@ -6,6 +6,7 @@ import ScheduledExerciseListComponent from '../../ScheduledExercise/container/Sc
 import GoalListComponent from '../../Trainee/container/GoalListComponent'
 import TraineeStatusListComponent from '../../Trainee/container/TraineeStatusListComponent'
 import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
+import DietListComponent from '../../Diet/container/DietListComponent'
 // import TraineeTrainingPackageListComponent from'../container/TraineeTrainingPackageListComponent'
 
 const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, trainingPackageList, trainingPackageId, traineePackageList, quantity,
@@ -21,6 +22,10 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 			<TraineePersonalInfoComponent/>
 			<GoalListComponent/>
 			<TraineeStatusListComponent/>
+			<div>
+			  	<ScheduledExerciseListComponent/>
+			  	<DietListComponent/>
+		  	</div>
 		</div>
 );
 }

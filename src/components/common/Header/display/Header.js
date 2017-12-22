@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
 	const tabs = [{route:'home',name:'ראשי'}, {route:'traineeWorkout',name:'תכנית אימון'},
 				  {route:'traineeDashboard',name:'עמוד מתאמן'}, {route:'paymentDashboard',name:'תשלומים וחבילות'},
-				  {route:'trainee',name:'מתאמנים'}, {route:'trainingPackage',name:'חבילות אימון'},
-				  {route:'exercise',name:'תרגילים'}, {route:'login',name:'התחברות'}]
+				  {route:'trainee',name:'מתאמנים'},
+				  {route:'schedule',name:'לוז'},{route:'settings',name:'הגדרות'},
+				  {route:'login',name:'התחברות'},]
+				  // {route:'exercise',name:'תרגילים'}, {route:'trainingPackage',name:'חבילות אימון'}]
 	return (
 	    <nav className="navbar navbar-default">
 		  <div className="container-fluid">

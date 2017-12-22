@@ -13,7 +13,7 @@ class TraineePersonalInfoComponent extends React.Component {
         }
     }
     componentDidUpdate(prevProps, prevState) {
-      if(!this.props.traineeId && this.props.traineeList){
+      if(!this.props.traineeId && this.props.traineeList && this.props.traineeList[0]){
         this.props.setCurrentTrainee("",this.props.traineeList[0].value)
       }
     }

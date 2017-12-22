@@ -5,9 +5,10 @@ import  SelectInput  from '../SelectInput/SelectInput'
 import  TextInput  from '../TextInput/TextInput'
 import  Checkbox  from '../Checkbox/Checkbox'
 import  DateRangePicker  from '../DateRangePicker/DateRangePicker'
+import  DateTime  from '../DateTime/DateTime'
 import  NumberRange  from '../NumberRange/NumberRange'
 
-const InputWrapper = ({ field, label, fieldClass, placeholder, value, onUpdate, onChange, onSelect, name, type, options, minLetters, fromValue, toValue, fetchOptions, clearOptions, search, onEnter, id }) => {
+const InputWrapper = ({ field, startField, endField, dateField, date, label, fieldClass, placeholder, value, onUpdate, onChange, onSelect, name, type, options, minLetters, fromValue, toValue, fetchOptions, clearOptions, search, onEnter, id }) => {
 return (
 	<div className={"input-wrapper-" + type}>
         {
@@ -46,6 +47,20 @@ return (
                 onSelect={onSelect}
                 onKeyDownEnter={onEnter}
                 onUpdate={onUpdate}/>
+        }
+         { type == "dateTime" &&
+            <DateTime
+                date={date}
+                fieldClass={fieldClass}
+                startField={startField}
+                endField={endField}
+                dateField={dateField}
+                date={date}
+                fromValue={fromValue}
+                toValue={toValue}
+                label={label}
+                placeholder={placeholder}
+                onUpdate={onUpdate}v/>
         }
         { type == 'date-range' &&
             <DateRangePicker

@@ -1,0 +1,20 @@
+.session{
+	.form{
+		color: #99DFF9;
+    	width: 330px;
+	}
+	.date-wrapper{
+		> div{
+			display: flex;
+		    justify-content: center;	
+		}
+		.time-holder{
+			.rdtPicker{
+				width:100px;
+			}
+		}
+		.inline{
+			display:inline-block;
+		}
+	}
+}
