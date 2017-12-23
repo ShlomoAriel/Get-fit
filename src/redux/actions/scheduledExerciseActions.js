@@ -69,6 +69,9 @@ export function getTraineeScheduledExercises(){
         let params={
             trainee:getState().trainee.form.traineeId
         }
+        if(!params.trainee){
+            return
+        }
         return http.get('https://get-fit-server.herokuapp.com/api/getTraineeScheduledExercises',params)
         .then ( 
             response => {
