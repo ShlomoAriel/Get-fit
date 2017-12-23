@@ -3,8 +3,9 @@ import R from 'ramda';
 
 const initialState = {
 	form:{
-        weekDay:"2"
+        weekDay:'2'
 	},
+    currentDay:2,
     scheduledExerciseList:[],
 }
 
@@ -14,6 +15,8 @@ export default function(state = initialState, action) {
     		return R.assocPath(['form',action.field], action.value, state )
         case types.SET_SCHEDULED_EXERCISE_LIST:
             return R.assoc('scheduledExerciseList', action.scheduledExerciseList, state )
+        case types.SET_CURRENT_DAY:
+            return R.assoc('currentDay', action.day, state )
         default:
             return state;
     }

@@ -8,7 +8,6 @@ import TraineeStatusListComponent from '../../Trainee/container/TraineeStatusLis
 import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
 import DietListComponent from '../../Diet/container/DietListComponent'
 // import TraineeTrainingPackageListComponent from'../container/TraineeTrainingPackageListComponent'
-
 const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, trainingPackageList, trainingPackageId, traineePackageList, quantity,
 							setCurrentTrainingPackage, onInputFieldChange, setCurrentTrainee, addTraineeTrainingPackage,}) => {
 	let formFields = {}
@@ -20,12 +19,12 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 		<div className="trainee-dashboard">
 			<h2>עמוד מתאמן</h2>
 			<TraineePersonalInfoComponent/>
-			<GoalListComponent/>
-			<TraineeStatusListComponent/>
 			<div>
 			  	<ScheduledExerciseListComponent/>
 			  	<DietListComponent/>
 		  	</div>
+			<GoalListComponent/>
+			<TraineeStatusListComponent/>
 		</div>
 );
 }

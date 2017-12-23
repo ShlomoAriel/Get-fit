@@ -1,4 +1,12 @@
 .trainee-status{
+	.form-modal{
+		form{
+			top:1%;
+			.form{
+				width:500px;
+			}
+		}
+	}
 	.custom-row{
 		> div {
 			width: 70px;
@@ -10,4 +18,17 @@
 			width: 125px;
 		}
 	}
+}
+.fileContainer .uploadPictureContainer {
+    width: 45%;
+    margin: 1%;
+    padding: 0px;
+    // background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    // box-shadow: none;
+    // border: none;
+    position: relative;
 }

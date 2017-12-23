@@ -1,7 +1,15 @@
 import React from 'react';
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 
-const Signup = ({ form, traineeId, traineeList, traineeStatusList, modalOpen,
+import ImagesUploader from 'react-images-uploader';
+import 'react-images-uploader/styles.css';
+import 'react-images-uploader/font.css';
+
+import ImageUploader from 'react-images-upload';
+
+
+
+const Signup = ({ form, traineeId, traineeList, traineeStatusList, modalOpen, holdImages,
 				  toggleModal, onInputFieldChange, addTraineeStatus, removeTraineeStatus, setCurrentTrainee}) => {
 	let formFields = {}
 	formFields['traineeInput'] = {onSelect:setCurrentTrainee, type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] },
@@ -17,7 +25,7 @@ const Signup = ({ form, traineeId, traineeList, traineeStatusList, modalOpen,
 	return (
 		  <div className="">
 			  <div className="form-modal fade-in">
-			  	<form onSubmit={addTraineeStatus}>
+			  	<form onSubmit={(e)=>{e.preventDefault();}}>
 			  		<i className="fa fa-times-circle-o i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
 			  		<h3>Login & Get Fit!</h3>
 				  	<div className="form slide-from-right">
@@ -28,9 +36,17 @@ const Signup = ({ form, traineeId, traineeList, traineeStatusList, modalOpen,
 							  	</div>	
 					  		)
 					  	}
+			            <ImageUploader
+			                withIcon={false}
+			                buttonText='Choose images'
+			                onChange={holdImages}
+			                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+			                maxFileSize={5242880}
+			                withLabel={false}
+			            />
 					  	<div className="button-holder">
 					  		<input className="form-control"/>
-					  		<button className="fa fa-arrow-circle-o-right login-button"></button>
+					  		<button className="fa fa-arrow-circle-o-right login-button" onClick={addTraineeStatus}></button>
 				  		</div>
 				  	</div>
 			  	</form>

@@ -11,11 +11,11 @@ class ScheduledExerciseListComponent extends React.Component {
         super(props, context)
     }
     componentWillMount(){
-        this.props.getTraineeScheduledExercisesByDay()
+        this.props.getTraineeScheduledExercises()
     }
     componentDidUpdate(prevProps, prevState) {
       if(this.props.traineeId != prevProps.traineeId || this.props.form.weekDay != prevProps.form.weekDay){
-         this.props.getTraineeScheduledExercisesByDay()
+         this.props.getTraineeScheduledExercises()
       }
     }
 
@@ -28,13 +28,20 @@ function mapStateToProps(state) {
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
+    let scheduledExerciseList = state.scheduledExercise.scheduledExerciseList ? state.scheduledExercise.scheduledExerciseList : []
+    let weekDays = [{value:1,label:'ראשון'}, {value:2,label:"שני"}, {value:3,label:"שלישי"}, {value:"4",label:"רביעי"}, {value:"5",label:"חמישי"}, {value:"6",label:"שישי"}, {value:"7",label:"שבת"}]
+    weekDays = scheduledExerciseList.map(exercise=>{
+        let weekday = R.find(R.propEq('value',exercise.weekDay))(weekDays)
+        return weekday
+    })
+    let daylList = R.filter(R.propEq('weekDay',state.scheduledExercise.currentDay))(scheduledExerciseList)
     return {
         form: state.scheduledExercise.form,
-        scheduledExerciseList: state.scheduledExercise.scheduledExerciseList,
+        scheduledExerciseList: daylList,
         traineeId: state.trainee.form.traineeId,
         modalOpen:state.system.modalOpen["scheduledExercise"],
         traineeList: traineeOptions,
-        weekDays: [{value:"1",label:"ראשון"}, {value:"2",label:"שני"}, {value:"3",label:"שלישי"}, {value:"4",label:"רביעי"}, {value:"5",label:"חמישי"}, {value:"6",label:"שישי"}, {value:"7",label:"שבע"},],
+        weekDays: weekDays,
 
 
     }
@@ -51,8 +58,14 @@ function mapDispatchToProps(dispatch) {
         onInputFieldChange(field, value){
             dispatch( scheduledExerciseActions.updateInputField(field, value) )
         },
+        setCurrentDay(day){
+            dispatch( scheduledExerciseActions.setCurrentDay(day) )
+        },
         getTraineeScheduledExercisesByDay(){
             dispatch( scheduledExerciseActions.getTraineeScheduledExercisesByDay() )
+        },
+        getTraineeScheduledExercises(){
+            dispatch( scheduledExerciseActions.getTraineeScheduledExercises() )
         },
         removeScheduledExercise(id){
             dispatch( scheduledExerciseActions.removeScheduledExercise(id) )

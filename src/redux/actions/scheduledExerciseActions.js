@@ -10,6 +10,13 @@ export function updateInputField(field, value){
     }
 }
 
+export function setCurrentDay(day){
+    return {
+        type: types.SET_CURRENT_DAY,
+        day: day
+    }
+}
+
 export function setScheduledExerciseList(scheduledExerciseList){
     return {
         type: types.SET_SCHEDULED_EXERCISE_LIST,
@@ -56,11 +63,11 @@ export function getTraineeScheduledExercisesByDay(params){
     }
 }
 //=============================================================================
-export function getTraineeScheduledExercises(params){
+export function getTraineeScheduledExercises(){
     return (dispatch, getState) => {
         let scheduledExerciseState = getState().scheduledExercise
         let params={
-            trainee:scheduledExerciseState.form.trainee
+            trainee:getState().trainee.form.traineeId
         }
         return http.get('https://get-fit-server.herokuapp.com/api/getTraineeScheduledExercises',params)
         .then ( 

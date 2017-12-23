@@ -10,5 +10,25 @@
 			width: 60px;
 		}
 	}
+	.weekdays-wrapper{
+		display:flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: start;
+		align-items: center;
+		align-content: center;
+		width: 80%;
+		> div{
+	        background: #99DFF9;
+			color: #ffffff;
+			padding: 5px;
+			margin-left: 10px;
+			width: 50px;
+			text-align: center;
+			border-radius: 10%;
+			cursor: pointer;
+			box-shadow: 1px 1px 3px 1px grey;
+		}
+	}
 }
 	
