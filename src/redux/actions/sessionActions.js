@@ -45,6 +45,9 @@ export function getSessionList(){
 export function getSessionByTrainee(){
     return (dispatch, getState) => {
         let traineeId = getState().trainee.form.traineeId
+        if(!traineeId){
+            return
+        }
         return http.get('https://get-fit-server.herokuapp.com/api/getSessionByTrainee/' + traineeId)
         .then ( 
             response => {

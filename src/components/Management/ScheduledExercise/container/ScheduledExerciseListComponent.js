@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import R from 'ramda';
+import moment from 'moment'
 import * as systemActions from 'redux/actions/systemActions'
 import * as scheduledExerciseActions from 'redux/actions/scheduledExerciseActions'
 import * as traineeActions from 'redux/actions/traineeActions'
@@ -11,7 +12,7 @@ class ScheduledExerciseListComponent extends React.Component {
         super(props, context)
     }
     componentWillMount(){
-        this.props.getTraineeScheduledExercises()
+        // this.props.getTraineeScheduledExercises()
     }
     componentDidUpdate(prevProps, prevState) {
       if(this.props.traineeId != prevProps.traineeId || this.props.form.weekDay != prevProps.form.weekDay){
@@ -29,11 +30,13 @@ function mapStateToProps(state) {
         return { value:trainee._id, label: trainee.firstName }
     })
     let scheduledExerciseList = state.scheduledExercise.scheduledExerciseList ? state.scheduledExercise.scheduledExerciseList : []
-    let weekDays = [{value:1,label:'ראשון'}, {value:2,label:"שני"}, {value:3,label:"שלישי"}, {value:"4",label:"רביעי"}, {value:"5",label:"חמישי"}, {value:"6",label:"שישי"}, {value:"7",label:"שבת"}]
-    weekDays = scheduledExerciseList.map(exercise=>{
-        let weekday = R.find(R.propEq('value',exercise.weekDay))(weekDays)
-        return weekday
-    })
+    let weekDays = [{value:1,label:'ראשון'}, {value:2,label:"שני"}, {value:3,label:"שלישי"}, {value:4,label:"רביעי"}, {value:5,label:"חמישי"}, {value:6,label:"שישי"}, {value:7,label:"שבת"}]
+    // weekDays = scheduledExerciseList.map(exercise=>{
+    //     let weekday = R.find(R.propEq('value',exercise.weekDay))(weekDays)
+    //     return weekday
+    // })
+    let weekNumber = moment().isoWeek();
+    let test = moment().isoWeek(weekNumber);
     let daylList = R.filter(R.propEq('weekDay',state.scheduledExercise.currentDay))(scheduledExerciseList)
     return {
         form: state.scheduledExercise.form,
@@ -42,8 +45,7 @@ function mapStateToProps(state) {
         modalOpen:state.system.modalOpen["scheduledExercise"],
         traineeList: traineeOptions,
         weekDays: weekDays,
-
-
+        currentDay: state.scheduledExercise.currentDay,
     }
 }
 

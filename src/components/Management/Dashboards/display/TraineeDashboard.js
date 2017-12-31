@@ -19,11 +19,11 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 		<div className="trainee-dashboard">
 			<h2>עמוד מתאמן</h2>
 			<TraineePersonalInfoComponent/>
+			<ScheduledExerciseListComponent/>
 			<div>
-			  	<ScheduledExerciseListComponent/>
+			  	<GoalListComponent/>
 			  	<DietListComponent/>
 		  	</div>
-			<GoalListComponent/>
 			<TraineeStatusListComponent/>
 		</div>
 );

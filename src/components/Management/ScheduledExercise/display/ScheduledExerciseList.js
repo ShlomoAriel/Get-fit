@@ -3,34 +3,30 @@ import TextInput from'../../../Elements/TextInput/TextInput'
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 import ScheduledExerciseComponent from'../container/ScheduledExerciseComponent'
 
-const ScheduledExerciseList = ({form,scheduledExerciseList,traineeList,traineeId, weekDays, setCurrentDay,removeScheduledExercise,onInputFieldChange, setCurrentTrainee, modalOpen, toggleModal}) => {
+const ScheduledExerciseList = ({form,scheduledExerciseList,traineeList,traineeId, currentDay, weekDays, setCurrentDay,removeScheduledExercise,onInputFieldChange, setCurrentTrainee, modalOpen, toggleModal}) => {
 	let formFields = {}
-	// formFields['traineeInput'] = {onSelect:setCurrentTrainee,type: 'picklist', fieldClass:'form-control',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] }
 	formFields['weekDayInput'] = {onSelect:onInputFieldChange,type: 'picklist', fieldClass:'',field: 'weekDay', placeholder: 'Week Day', value: form.weekDay, type: 'picklist', options: weekDays ? weekDays : [] }
-
+	let weekField = {type: 'input',fieldClass:'form-control',field: 'description', name:'description', placeholder: 'תיאור', value: form.description, onUpdate: onInputFieldChange }
 	return (
 		  <div className="scheduled-exercise-list list-general-wrapper">
 			 { modalOpen && <ScheduledExerciseComponent toggleModal={toggleModal}/>}
 		  	<div>
-	  			<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> תכנית אימון</h3>
-	  			<div className="form">
-			  	{
-			  		// Object.keys(formFields).map( fieldKey =>
-				  	// 	<div key={fieldKey} className="form__first">
-					  // 		<InputWrapper {...formFields[fieldKey]}/>
-					  // 	</div>	
-			  		// )
-			  	}
-		  		</div>
 		  		<div className="weekdays-wrapper">
 		  		{
 		  			(weekDays).map( fieldKey =>
-				  		<div key={fieldKey.value} className="weekdays" onClick={()=>setCurrentDay(fieldKey.value)}>
-					  		{fieldKey.label}
-					  	</div>	
+		  				<div>
+					  		<label 	key={fieldKey.value} className={"" + (fieldKey.value == currentDay ? ' active' : '')} 
+					  				onClick={()=>setCurrentDay(fieldKey.value)}>
+						  		{fieldKey.label}
+						  	</label>
+							  	<div onClick={()=>setCurrentDay(fieldKey.value)}>
+							  	<InputWrapper {...weekField}/>
+							  	</div>
+					  	</div>
 			  		)
 		  		}
 		  		</div>
+	  			<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> תכנית אימון</h3>
 	  			<div>
 	  				<div className="custom-row">
 							<div>#</div>
@@ -41,7 +37,8 @@ const ScheduledExerciseList = ({form,scheduledExerciseList,traineeList,traineeId
 							<div></div>
 							<div></div>
 						</div>
-	  				{ scheduledExerciseList.map( scheduledExercise =>
+	  				{ 
+	  					scheduledExerciseList.map( scheduledExercise =>
 							<div key={scheduledExercise._id} className="custom-row">
 								<div>{scheduledExercise.order}</div>
 								<div>{scheduledExercise.exercise && scheduledExercise.exercise.name}</div>
