@@ -26,6 +26,13 @@ export function setCurrentSession(sessionId){
     }
 }
 
+export function setSessionType(sessionType){
+    return {
+        type: types.SET_SESSION_TYPE,
+        sessionType: sessionType
+    }
+}
+
 export function getSessionList(){
     return (dispatch, getState) => {
         return http.get('https://get-fit-server.herokuapp.com/api/getSessions')
@@ -68,31 +75,15 @@ export function addSession(){
         form.trainee = getState().trainee.form.traineeId
         form.done = false
         let day = form.date
+        form.date = R.clone(form.date.startOf('day'))
         day.hours(form.start.hours())
         day.minutes(form.start.minutes())
         form.start = day.toDate();
         day.hours(form.end.hours())
         day.minutes(form.end.minutes())
         form.end = day.toDate();
-        return http.post('https://get-fit-server.herokuapp.com/api/addSession',form)
+        return http.put('https://get-fit-server.herokuapp.com/api/upsertSession',form)
         .then ( 
-            response => {
-                dispatch(getSessionByTrainee())
-                console.log('Success: ' + response)
-            }
-        )
-        .catch( 
-            error => 
-                console.log('error loging in: ' + error)
-        )
-    }
-}
-
-export function updaeSession(id, session){
-    return (dispatch, getState) => {
-        let form = getState().session.form
-        return http.put('https://get-fit-server.herokuapp.com/api/deleteSession/'+id, session)
-        .then (
             response => {
                 dispatch(getSessionByTrainee())
                 console.log('Success: ' + response)

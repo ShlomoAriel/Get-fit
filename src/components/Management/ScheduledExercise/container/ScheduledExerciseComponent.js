@@ -12,10 +12,14 @@ function mapStateToProps(state) {
     let exerciseOptions = state.exercise.exerciseList.map( exercise => {
         return { value:exercise._id, label: exercise.name }
     })
+    let sessionNameOptions = state.sessionName.sessionNameList.map( sessionName => {
+        return { value:sessionName._id, label: sessionName.name }
+    })
     return {
     	form: state.scheduledExercise.form,
         traineeId: state.trainee.form.traineeId,
         traineeList: traineeOptions,
+        sessionNameList: sessionNameOptions,
         exerciseList:exerciseOptions,
         scheduledExerciseList: state.scheduledExercise.scheduledExerciseList,
         weekDays: [{value:"1",label:"ראשון"}, {value:"2",label:"שני"}, {value:"3",label:"שלישי"}, {value:"4",label:"רביעי"}, {value:"5",label:"חמישי"}, {value:"6",label:"שישי"}, {value:"7",label:"שבע"},],

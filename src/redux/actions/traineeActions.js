@@ -43,6 +43,9 @@ export function setTraineePackageList(packageList, traineeId){
 
 export function getTrainee(id){
     return (dispatch, getState) => {
+        if(!id){
+            return
+        }
         return http.get('https://get-fit-server.herokuapp.com/api/getTrainee/' + id)
         .then ( 
             response => {

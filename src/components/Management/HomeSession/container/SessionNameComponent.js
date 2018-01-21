@@ -2,23 +2,23 @@ import React from 'react'
 import {connect} from 'react-redux';
 import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
-import * as sessionActions from 'redux/actions/sessionActions'
+import * as sessionNameActions from 'redux/actions/sessionNameActions'
 import * as traineeActions from 'redux/actions/traineeActions'
-import Session from '../display/Session';
+import SessionName from '../display/SessionName';
 
-class SessionComponent extends React.Component {
+class SessionNameComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
     }
     componentWillMount(){}
     componentDidUpdate(prevProps, prevState) {
       if(this.props.traineeId != prevProps.traineeId){
-         this.props.getSessionByTrainee()
+         this.props.getSessionNameByTrainee()
       }
     }
 
     render() {
-        return <Session{...this.props}/>
+        return <SessionName{...this.props}/>
     }
 }
 
@@ -27,8 +27,8 @@ function mapStateToProps(state) {
         return { value:trainee._id, label: trainee.firstName }
     })
     return {
-        sessionList: state.session.sessionList,
-        form: state.session.form,
+        sessionNameList: state.sessionName.sessionNameList,
+        form: state.sessionName.form,
         traineeId: state.trainee.form.traineeId,
         traineeList: traineeOptions,
     }
@@ -37,30 +37,26 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         onInputFieldChange(field, value){
-            dispatch( sessionActions.updateInputField(field, value) )
-        },
-        onChange(test){
-            alert(test)
+            dispatch( sessionNameActions.updateInputField(field, value) )
         },
         setCurrentTrainee(field, traineeId){
             dispatch( traineeActions.setCurrentTrainee(traineeId) )
         },
-        getSessionByTrainee(){
-            dispatch( sessionActions.getSessionByTrainee() )
+        getSessionNameByTrainee(){
+            dispatch( sessionNameActions.getSessionNameByTrainee() )
         },
-        removeSession(id){
-            dispatch( sessionActions.removeSession(id) )
-            dispatch(systemActions.toggleModal("session"))
+        removeSessionName(id){
+            dispatch( sessionNameActions.removeSessionName(id) )
         },
-        editSession(id){
-            dispatch( sessionActions.updateSession(id) )
+        editSessionName(id){
+            dispatch( sessionNameActions.updateSessionName(id) )
         },
-        addSession(e){
+        addSessionName(e){
             e.preventDefault();
-            dispatch( sessionActions.addSession() )
+            dispatch( sessionNameActions.addSessionName() )
         },
     }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )(SessionComponent)
+export default connect( mapStateToProps, mapDispatchToProps )(SessionNameComponent)
 

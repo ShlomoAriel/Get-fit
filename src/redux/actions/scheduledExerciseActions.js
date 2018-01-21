@@ -17,6 +17,13 @@ export function setCurrentDay(day){
     }
 }
 
+export function setScheduledWeek(value){
+    return {
+        type: types.SET_SCHEDULED_WEEK,
+        value: value
+    }
+}
+
 export function setScheduledExerciseList(scheduledExerciseList){
     return {
         type: types.SET_SCHEDULED_EXERCISE_LIST,
@@ -63,6 +70,29 @@ export function getTraineeScheduledExercisesByDay(params){
     }
 }
 //=============================================================================
+export function getTraineeScheduledExercisesBySessionName(params){
+    return (dispatch, getState) => {
+        let params={
+            sessionName:getState().scheduledExercise.form.sessionName,
+            trainee:getState().trainee.form.traineeId
+        }
+        if(!params.sessionName || !params.trainee){
+            return
+        }
+        return http.get('https://get-fit-server.herokuapp.com/api/getTraineeScheduledExercisesBySessionName',params)
+        .then ( 
+            response => {
+                console.log('Success: ' + response)
+                dispatch(setScheduledExerciseList(response.data))
+            }
+        )
+        .catch( 
+            error => 
+                console.log('error getTraineeScheduledExercisesByDay: ' + error)
+        )
+    }
+}
+//=============================================================================
 export function getTraineeScheduledExercises(){
     return (dispatch, getState) => {
         let scheduledExerciseState = getState().scheduledExercise
@@ -92,7 +122,7 @@ export function addScheduledExercise(){
         return http.post('https://get-fit-server.herokuapp.com/api/addScheduledExercise',form)
         .then ( 
             response => {
-                dispatch(getTraineeScheduledExercisesByDay())
+                dispatch(getTraineeScheduledExercisesBySessionName())
                 console.log('Success: ' + response)
             }
         )
@@ -128,7 +158,7 @@ export function removeScheduledExercise(id){
         return http.remove('https://get-fit-server.herokuapp.com/api/deleteScheduledExercise/'+id)
         .then ( 
             response => {
-                dispatch(getTraineeScheduledExercisesByDay())
+                dispatch(getTraineeScheduledExercisesBySessionName())
                 console.log('Success: ' + response)
             }
         )

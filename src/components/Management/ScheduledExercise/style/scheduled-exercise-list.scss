@@ -1,4 +1,14 @@
 .scheduled-exercise-list{
+	> div{
+		width:100%;
+		>div{
+			width:100%;
+		}
+	}
+	.session-program{
+		display:flex;
+		justify-content: space-between;
+	}
 	.custom-row{
 		> div{
 			width: 20px;
@@ -10,6 +20,18 @@
 			width: 60px;
 		}
 	}
+	.week-header{
+		display:flex;
+	    align-items: center;
+	    justify-content: center;
+	    > div{
+		    border: 1px solid #ccc;
+	    	padding: 7px 15px;
+		}
+		.arrow-button{
+			cursor: pointer;
+		}
+	}
 	.weekdays-wrapper{
 		display:flex;
 		flex-direction: row;
@@ -19,22 +41,25 @@
 		align-content: center;
 		box-shadow: 1px 1px 3px 1px #99DFF9;
 		> div {
-				> label{
+			width:15%;
+			> label{
 		        background: #99DFF9;
 				color: #ffffff;
-				padding: 20px 60px;
+				padding: 20px 50px;
 				border: 2px solid #ffffff;
 				text-align: center;
 				cursor: pointer;
 				margin-bottom: 0px;
 			}
 			> div{
-				padding: 5px;
-    			border-left: 1px solid #99DFF9;
-    			min-height: 60px;
+				display: flex;
+			    justify-content: center;
+			    align-items: center;
+			    border-left: 1px solid #99DFF9;
+			    min-height: 60px;
 			}
 			.active{
-				background:red;
+				background:#306A6A;
 			}
 		}
 		input{

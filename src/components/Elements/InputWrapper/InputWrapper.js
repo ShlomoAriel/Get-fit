@@ -7,6 +7,7 @@ import  Checkbox  from '../Checkbox/Checkbox'
 import  DateRangePicker  from '../DateRangePicker/DateRangePicker'
 import  DateTime  from '../DateTime/DateTime'
 import  NumberRange  from '../NumberRange/NumberRange'
+import DateField from '../DateField/DateField'
 
 const InputWrapper = ({ field, startField, endField, dateField, date, label, fieldClass, placeholder, value, onUpdate, onChange, onSelect, name, type, options, minLetters, fromValue, toValue, fetchOptions, clearOptions, search, onEnter, id }) => {
 return (
@@ -68,6 +69,15 @@ return (
                 field={field}
                 fromValue={fromValue}
                 toValue={toValue}
+                label={label}
+                placeholder={placeholder}
+                onUpdate={onUpdate}/>
+        }
+        { type == 'date' &&
+            <DateField
+                fieldClass={fieldClass}
+                field={field}
+                value={value}
                 label={label}
                 placeholder={placeholder}
                 onUpdate={onUpdate}/>

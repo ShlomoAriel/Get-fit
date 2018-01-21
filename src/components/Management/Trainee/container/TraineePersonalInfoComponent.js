@@ -28,6 +28,7 @@ function mapStateToProps(state) {
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
+    traineeOptions.push({ value:undefined, label: 'כולם' })
     let traineeId = state.trainee.form.traineeId
     // if(!traineeId && traineeOptions[0]){
     //     traineeId = traineeOptions[0].value

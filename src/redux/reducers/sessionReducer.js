@@ -5,6 +5,7 @@ const initialState = {
 	form:{
 	},
     sessionList:[],
+    sessionType:'session',
 }
 
 export default function(state = initialState, action) {
@@ -13,6 +14,8 @@ export default function(state = initialState, action) {
     		return R.assocPath(['form',action.field], action.value, state )
         case types.SET_CURRENT_SESSION:
             return R.assocPath(['form','sessionId'], action.sessionId, state )
+        case types.SET_SESSION_TYPE:
+            return R.assoc('sessionType', action.sessionType, state )
         case types.SET_SESSION_LIST:
             return R.assoc('sessionList', action.sessionList, state )
         default:

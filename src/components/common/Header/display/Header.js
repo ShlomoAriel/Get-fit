@@ -2,10 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
-	const tabs = [{route:'home',name:'ראשי'}, {route:'traineeWorkout',name:'תכנית אימון'},
+	const tabs = [
+				// {route:'home',name:'ראשי'}, 
+				// {route:'traineeWorkout',name:'תכנית אימון'},
+				  {route:'schedule',name:'לוז'},
 				  {route:'traineeDashboard',name:'עמוד מתאמן'}, {route:'paymentDashboard',name:'תשלומים וחבילות'},
 				  {route:'trainee',name:'מתאמנים'},
-				  {route:'schedule',name:'לוז'},{route:'settings',name:'הגדרות'},
+				  {route:'settings',name:'הגדרות'},
 				  {route:'login',name:'התחברות'},]
 				  // {route:'exercise',name:'תרגילים'}, {route:'trainingPackage',name:'חבילות אימון'}]
 	return (

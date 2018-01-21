@@ -18,8 +18,9 @@ const TextInput = ({ field, label, onUpdate, onSelect, placeholder, value, onKey
                     name={field}
                     placeholder={placeholder}
                     value={value}
+                    
                     // onBlur={ event => { event.target.value != '' ? onSelect(field, event.target.value ) : null }}
-                    onChange={ event => onUpdate(field, event.target.value) }
+                    onChange={ event => onUpdate(field, event.currentTarget.value) }
                     // onKeyPress={onKeyPress}
                 />
     );

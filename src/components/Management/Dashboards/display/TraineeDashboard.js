@@ -7,6 +7,7 @@ import GoalListComponent from '../../Trainee/container/GoalListComponent'
 import TraineeStatusListComponent from '../../Trainee/container/TraineeStatusListComponent'
 import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
 import DietListComponent from '../../Diet/container/DietListComponent'
+import SessionNameListComponent from '../../HomeSession/container/SessionNameListComponent'
 // import TraineeTrainingPackageListComponent from'../container/TraineeTrainingPackageListComponent'
 const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, trainingPackageList, trainingPackageId, traineePackageList, quantity,
 							setCurrentTrainingPackage, onInputFieldChange, setCurrentTrainee, addTraineeTrainingPackage,}) => {
@@ -25,6 +26,7 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 			  	<DietListComponent/>
 		  	</div>
 			<TraineeStatusListComponent/>
+			<SessionNameListComponent/>
 		</div>
 );
 }

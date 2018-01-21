@@ -9,7 +9,9 @@ import goal from './goalReducer'
 import payment from './paymentReducer'
 import diet from './dietReducer'
 import traineeStatus from './traineeStatusReducer'
-import session from './SessionReducer'
+import session from './sessionReducer'
+import homeSession from './homeSessionReducer'
+import sessionName from './sessionNameReducer'
 
 export default combineReducers({
     system,
@@ -22,5 +24,7 @@ export default combineReducers({
     traineeStatus,
     session,
     payment,
+    homeSession,
+    sessionName,
     diet,
 });
