@@ -6,7 +6,8 @@ import TraineeList from '../display/TraineeList';
 
 function mapStateToProps(state) {
     return {
-        traineeList: state.trainee.traineeList
+        traineeList: state.trainee.traineeList,
+        currentTraineeId: state.trainee.form._id,
     }
 }
 
@@ -15,8 +16,11 @@ function mapDispatchToProps(dispatch) {
         removeTrainee(id){
             dispatch( traineeActions.removeTrainee(id) )
         },
-        editTrainee(id){
-            dispatch( traineeActions.updateTrainee(id) )
+        setEeditTrainee(id){
+            dispatch( traineeActions.setEeditTrainee(id) )
+        },
+        updaeTrainee(id){
+            dispatch( traineeActions.updaeTrainee(id) )
         }
     }
 }

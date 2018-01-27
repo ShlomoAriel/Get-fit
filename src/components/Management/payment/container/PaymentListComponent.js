@@ -27,12 +27,24 @@ function mapStateToProps(state) {
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
+    let totalBill = 0
+    let packages = state.trainee.traineePackageMap[traineeId]
+    if(packages){
+        totalBill = packages.reduce( (total, current )=>
+            total + current.quantity*current.trainingPackage.amount
+        , 0)
+    }
     let paymentList = state.payment.paymentMap[traineeId] ? state.payment.paymentMap[traineeId] : []
+    let totalPayed = paymentList.reduce( (total, current )=>
+        total + current.amount
+    , 0)
     return {
         form: state.goal.form,
         traineeId: state.trainee.form.traineeId,
         traineeList: traineeOptions,
         paymentList: paymentList,
+        totalPayed:totalPayed,
+        totalBill:totalBill,
     }
 }
 

@@ -6,20 +6,19 @@ import ScheduleComponent from '../../Schedule/container/ScheduleComponent'
 
 const Workout = ({}) => {
 	return (
-		  <div className="workout trainee-dashboard">
-		  	<h2>תכנית אימון</h2>
-		  	{
-		  		<TraineePersonalInfoComponent/>
-		  	}
-		  	<div>
-			  	<ScheduledExerciseListComponent/>
-			  	<DietListComponent/>
-		  	</div>
-		  	<div>
-		  		<ScheduleComponent/>
-		  	</div>
-		  	
-		  </div>
+		<div className="workout trainee-dashboard">
+			<div>
+				<div className="dashboard-header"> <div>מתאמן</div></div>
+					<TrainingPackageComponent/>
+				</div>
+				<div>
+					<ScheduledExerciseListComponent/>
+					<DietListComponent/>
+				</div>
+				<div>
+					<ScheduleComponent/>
+				</div>  	
+		</div>
 );
 }
 export default Workout;

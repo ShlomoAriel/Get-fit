@@ -24,7 +24,7 @@ const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, modalOpen, 
 	  							<div>{goal.text}</div>
 	  							<InputWrapper {...checkbox}
 	  										id={ goal._id}/>
-	  							<div>{moment(goal.date).format("MMM Do YYYY")}</div>
+	  							<div>{moment(goal.date).format("DD/MM/YYYY")}</div>
 	  							<div><i className="fa fa-trash-o" onClick={()=>removeGoal(goal._id)}></i></div>
 	  						</div>)
 	  					}

@@ -1,9 +1,10 @@
 import React from 'react';
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 
-const Session = ({form, traineeId, traineeList, sessionList, onInputFieldChange, onChange, addSession, removeSession, setCurrentTrainee, toggleModal}) => {
+const Session = ({form, traineeId, locationList, setCurrentLocation, traineeList, sessionList, onInputFieldChange, onChange, addSession, removeSession, setCurrentTrainee, toggleModal}) => {
 	let formFields = {}
 	formFields['traineeInput'] = {onSelect:setCurrentTrainee, type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] },
+	formFields['locationInput'] = {onSelect:onInputFieldChange, type: 'picklist', fieldClass:'',field: 'location', placeholder: 'מיקום', value: form.location, type: 'picklist', options: locationList ? locationList : [] },
     formFields['textInput'] = { type: 'input', fieldClass:'form-control',field: 'text', name:'text', placeholder: 'text', value: form.text, onUpdate: onInputFieldChange }
     formFields['startInput'] = { type: 'dateTime', fieldClass:'inline',startField: 'start', endField:'end', dateField:'date', name:'start', 
     							 placeholder: 'start', value: form.start, onUpdate: onInputFieldChange ,
@@ -17,6 +18,9 @@ const Session = ({form, traineeId, traineeList, sessionList, onInputFieldChange,
 		  		<h3>Login & Get Fit!</h3>
 			  	<div className="form slide-from-right">
 			  		<InputWrapper {...formFields['textInput']}/>
+			  		<div className="">
+						  	<InputWrapper {...formFields['locationInput']}/>
+			  		</div>
 			  		<div className="">
 						  	<InputWrapper {...formFields['startInput']}/>
 			  		</div>

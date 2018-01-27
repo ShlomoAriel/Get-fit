@@ -1,20 +1,37 @@
 .scheduled-exercise-list{
+	color: #35ABAB;
 	> div{
 		width:100%;
 		>div{
 			width:100%;
 		}
 	}
+	.program-header{
+	    display: flex;
+	    align-items: center;
+	    margin-top: 50px;
+	    margin-bottom: 10px;
+	    .dashboard-picklist{
+			width: 150px;
+		    border: 1px solid #35ABAB;
+		    border-radius: 2px;
+		}
+	    i{
+	    	margin-right:10px;
+	    	color:#306A6A;
+	    }
+	}
 	.session-program{
 		display:flex;
 		justify-content: space-between;
+	    align-items: start;
 	}
 	.custom-row{
 		> div{
 			width: 20px;
 		}
 		div:nth-child(2){
-			width: 200px;
+			width: 160px;
 		}
 		div:nth-child(3),div:nth-child(4),div:nth-child(5){
 			width: 60px;
@@ -24,8 +41,11 @@
 		display:flex;
 	    align-items: center;
 	    justify-content: center;
+	    margin-bottom: 10px;
+        font-family: open-sans-bold;
+    	color: #35ABAB;
 	    > div{
-		    border: 1px solid #ccc;
+		    // border: 1px solid #ccc;
 	    	padding: 7px 15px;
 		}
 		.arrow-button{
@@ -39,24 +59,32 @@
 		justify-content: start;
 		align-items: center;
 		align-content: center;
-		box-shadow: 1px 1px 3px 1px #99DFF9;
+		box-shadow: 0px 0px 3px 0px #35ABAB;
+		> div{
+		}
+		span{
+	    	color: #306A6A;
+		}
+		.weekday-session{
+		    color: #31A2A2;
+    		font-family: Open-Sans-Bold;
+		}
 		> div {
-			width:15%;
 			> label{
-		        background: #99DFF9;
+		        background: #35ABAB;
 				color: #ffffff;
-				padding: 20px 50px;
-				border: 2px solid #ffffff;
+				padding: 10px 50px;
 				text-align: center;
 				cursor: pointer;
 				margin-bottom: 0px;
 			}
 			> div{
+			    border-left: 1px solid #35ABAB;
 				display: flex;
 			    justify-content: center;
 			    align-items: center;
-			    border-left: 1px solid #99DFF9;
 			    min-height: 60px;
+			    flex-direction: column;
 			}
 			.active{
 				background:#306A6A;

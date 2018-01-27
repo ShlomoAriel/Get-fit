@@ -9,7 +9,6 @@ const Signup = ({form, authenticated, trainingPackageList, onInputFieldChange, a
     formFields['nameInput'] = {fieldClass:'form-control',field: 'name', name:'name', placeholder: 'name', value: form.name, onUpdate: onInputFieldChange }
     formFields['sessionsInput'] = {fieldClass:'form-control',field: 'sessions', name:'sessions', placeholder: 'sessions', value: form.sessions, onUpdate: onInputFieldChange }
 	return (
-		  <div className="trainee-dashboard">
 			  <div className="training-package">
 			  <TrainingPackageList trainingPackageList = {trainingPackageList}/>
 			  	<form onSubmit={addTrainingPackage}>
@@ -29,7 +28,6 @@ const Signup = ({form, authenticated, trainingPackageList, onInputFieldChange, a
 				  	</div>
 			  	</form>
 			  </div>
-		  </div>
 );
 }
 export default Signup;

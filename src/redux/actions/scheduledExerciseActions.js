@@ -73,7 +73,7 @@ export function getTraineeScheduledExercisesByDay(params){
 export function getTraineeScheduledExercisesBySessionName(params){
     return (dispatch, getState) => {
         let params={
-            sessionName:getState().scheduledExercise.form.sessionName,
+            sessionName:getState().homeSession.form.sessionName,
             trainee:getState().trainee.form.traineeId
         }
         if(!params.sessionName || !params.trainee){
@@ -119,6 +119,7 @@ export function addScheduledExercise(){
     return (dispatch, getState) => {
         let form = getState().scheduledExercise.form
         form.trainee = getState().trainee.currentTrainee._id
+        form.sessionName = getState().homeSession.form.sessionName
         return http.post('https://get-fit-server.herokuapp.com/api/addScheduledExercise',form)
         .then ( 
             response => {

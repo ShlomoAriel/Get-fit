@@ -21,7 +21,7 @@ const TraineeDashboard = ({sessionNameList, removeSessionName, onInputFieldChang
 	  						return(
 	  						<div key={sessionName._id} className="custom-row">
 	  							<div>{sessionName.name}</div>
-	  							<div>{moment(sessionName.date).format("MMM Do YYYY")}</div>
+	  							<div>{moment(sessionName.date).format("DD/MM/YYYY")}</div>
 	  							<div><i className="fa fa-trash-o" onClick={()=>removeSessionName(sessionName._id)}></i></div>
 	  						</div>)
 	  					}

@@ -12,7 +12,17 @@
 
 @keyframes slideInFromTop {
   0% {
-    transform: translateY(-20%);
+    transform: translateY(-5%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(5%);
     opacity: 0;
   }
   100% {
@@ -43,6 +53,9 @@
 }
 .slide-from-top{
 	animation: 0.5s ease-out 0s 1 slideInFromTop;
+}
+.slide-from-bottom{
+  animation: 0.5s ease-out 0s 1 slideInFromBottom;
 }
 .slide-from-right-top{
   animation: 0.2s ease-out 0s 1 slideInFromRightTop;

@@ -3,7 +3,7 @@ import R from 'ramda';
 
 const initialState = {
     form:{
-            weekCount:8,
+            weekCount:1,
     },
     homeSessionList:[],
 

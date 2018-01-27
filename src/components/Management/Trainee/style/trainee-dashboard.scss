@@ -1,3 +1,4 @@
+
 .trainee-dashboard {
 	display: flex;
 	flex-direction: colomn;
@@ -8,24 +9,41 @@
 	height: inherit;
 	margin-top: 0px;
 	> div{
-	    margin-top: 0px;
-	    background-color: #ffffff;
-	    border-radius: 4px;
-	    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
-	    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
-	    margin: 10px 0px;
-	    padding: 15px;
-	    display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    justify-content: start;
-	    width: 100%;
-	    
-	    .list-general-wrapper{
-	    	width: 600px;
-	    	overflow-y: scroll;
-	    }
+		width:100%;
+		> div{
+		    margin-top: 0px;
+		    padding:70px 0px 80px;
+		    display: flex;
+		    flex-direction: row;
+		    flex-wrap: nowrap;
+	        justify-content: space-between;
+	        margin-right: auto;
+		    margin-left: auto;
+		    padding-left: 15px;
+		    padding-right: 15px;
+		    width: 1200px;
+	        border-top: 1px solid #35ABAB;
+		    .list-general-wrapper{
+		    	width: 600px;
+		    }
+		}
 	}
+	> div:nth-child(1){
+    	background:#FFFFFF;
+    }
+	> div:nth-child(2){
+    	background:#F5F5F5;
+    }
+    > div:nth-child(3){
+    	background:#E1E1E1;
+    }
+    > div:nth-child(5){
+    	background:#FFFFFF;
+    }
+    > div{
+    	background:#FFFFFF!important;
+	    // border-top: 1px solid #35ABAB;
+    }
 	.right-space{
 	    	margin-right:50px;
 	    }
@@ -33,6 +51,23 @@
 		width: 180px;
 	    border: 1px solid rgba(0, 0, 0, 0.3);
 	    border-radius: 6px;
+	}
+	.dashboard-header{
+        display: block;
+	    width: fit-content;
+	    font-size: 17px;
+	    color: #3e3e3e;
+	    font-weight: 700;
+	    letter-spacing: 3px;
+	    background-color: #fff;
+	    position: relative;
+	    padding: 0px 40px;
+	    top: 35px;
+	    border: none;
+	    > div{
+	    	padding: 20px 60px;
+    		border: 1px solid #35ABAB;
+	    }
 	}
 }
 .custom-row{
@@ -43,7 +78,7 @@
 	align-items: stretch;
 	align-content: stretch;
 	> div{
-	    padding: 10px 12px;
+	    padding: 5px 12px;
 	    width:150px;
 	}
 }

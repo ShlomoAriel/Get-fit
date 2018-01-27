@@ -17,6 +17,7 @@ class ScheduledExerciseListComponent extends React.Component {
     componentWillMount(){
         this.props.getHomeSessionByTrainee()
         this.props.getSessionByTrainee()
+         this.props.getTraineeScheduledExercises()
     }
     componentDidUpdate(prevProps, prevState) {
       if(this.props.traineeId != prevProps.traineeId || this.props.form.weekDay != prevProps.form.weekDay){
@@ -49,20 +50,20 @@ function mapStateToProps(state) {
     let days = []
     for (var i = 0; i <= 6; i++) {
         let day = moment(weekStart).add(i, 'days').format()
-        let newDay = {name:weekDayNames[i].label+' '+ moment(day).format('DD/MM'), value:i+1}
+        let newDay = {name:weekDayNames[i].label+' '+ moment(day).format('DD/MM'), value:i+1, date:moment(day)}
         homeSessions.forEach(homeSession =>{
             if(moment(day).isSame(moment(homeSession.date), 'day')){
-                newDay['text'] = homeSession.sessionName.name
+                newDay['homeSession'] = homeSession.sessionName.name
                 newDay['homeSessionValue'] = homeSession.sessionName._id
             }
         })
         sessions.forEach(session =>{
             if(moment(day).isSame(moment(session.date), 'day')){
-                newDay['text'] = 'אימון אישי\n' + moment(session.start).format('HH:mm')+' - '+moment(session.end).format('HH:mm')
-                delete newDay['homeSessionValue']
+                newDay['session'] = ' אימון אישי\n' + moment(session.start).format('HH:mm')+' - '+moment(session.end).format('HH:mm')
+                // delete newDay['homeSessionValue']
             }
         })
-        newDay['text'] = newDay['text'] ? newDay['text'] : ''
+        // newDay['text'] = newDay['text'] ? newDay['text'] : ''
         days.push(newDay)
     }
     let daylList = R.filter(R.propEq('weekDay',state.scheduledExercise.currentDay))(scheduledExerciseList)

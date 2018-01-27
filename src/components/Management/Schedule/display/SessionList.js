@@ -26,7 +26,7 @@ const TraineeDashboard = ({sessionList, removeSession, onInputFieldChange, modal
 	  							<div>{session.title}</div>
 	  							<InputWrapper {...checkbox}
 	  										id={ session._id}/>
-	  							<div>{moment(session.date).format("MMM Do YYYY")}</div>
+	  							<div>{moment(session.date).format("DD/MM/YYYY")}</div>
 	  							<div>{moment(session.start).format("HH:mm")}</div>
 	  							<div>{moment(session.end).format("HH:mm")}</div>
 	  							<div><i className="fa fa-trash-o" onClick={()=>removeSession(session._id)}></i></div>

@@ -18,15 +18,29 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 
 	return (
 		<div className="trainee-dashboard">
-			<h2>עמוד מתאמן</h2>
-			<TraineePersonalInfoComponent/>
-			<ScheduledExerciseListComponent/>
 			<div>
-			  	<GoalListComponent/>
-			  	<DietListComponent/>
+				<div className="dashboard-header"> <div>מתאמן</div></div>
+				<TraineePersonalInfoComponent/>
+			</div>
+			<div className="fade-in">
+				<div className="dashboard-header"> <div>תכנית שבועית</div></div>
+				<ScheduledExerciseListComponent/>
+			</div>
+			<div>
+				<div className="dashboard-header"> <div>שונות</div></div>
+				<div>
+				  	<GoalListComponent/>
+				  	<DietListComponent/>
+			  	</div>
 		  	</div>
-			<TraineeStatusListComponent/>
-			<SessionNameListComponent/>
+		  	<div>
+		  		<div className="dashboard-header"> <div>תכנית שבועית</div></div>
+				<TraineeStatusListComponent/>
+			</div>
+			<div>
+				<div className="dashboard-header"> <div>תכנית שבועית</div></div>
+				<SessionNameListComponent/>
+			</div>
 		</div>
 );
 }

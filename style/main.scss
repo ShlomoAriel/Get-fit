@@ -18,6 +18,12 @@ body {
   background-color: #e7e7e7;
   direction: rtl;
 }
+body {
+  margin: 0;
+  font-family: "Open-Sans";
+  background-color: #e7e7e7;
+  direction: rtl;
+}
 
 // Components
 @import "../src/components/home/style/main";
@@ -39,7 +45,20 @@ body {
 }
 .Select-control{
 	border: none;
+  background-color: transparent;
 }
+.personal-info{
+ .dashboard-picklist{
+    border: none;
+    border-bottom:1px solid #35ABAB;
+    border-radius:0px;
+  }
+  .has-value.Select--single > .Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label{
+        color: #35ABAB;
+        font-size:18px;
+  }
+}
+
 .fa-button{
 	width:40px!important;
 }
@@ -54,5 +73,32 @@ body {
   }
   .rbc-month-view {
       flex: 1;
+  }
+}
+.navbar{
+  background:#E1E1E1;
+  background:#FFFFFF;
+  margin-bottom:0px;
+  border:none;
+  font-size:15px;
+  font-weight:700;
+}
+.navbar-default .navbar-nav > li > a{
+  color:#58585a;
+}
+.navbar-default .navbar-nav > li:hover, .navbar-default .navbar-nav .active{
+  a{
+  color: #fa7d6a;
+  }
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+  color: #fa7d6a;
+  background-color: transparent;
+}
+.container-fluid{
+  padding:0px;
+  > div{
+    padding: 25px 0;
+    
   }
 }

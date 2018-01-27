@@ -9,6 +9,7 @@ import * as traineeActions from 'redux/actions/traineeActions'
 import * as trainingPackageActions from 'redux/actions/trainingPackageActions'
 import * as scheduledExerciseActions from 'redux/actions/scheduledExerciseActions'
 import * as exerciseActions from 'redux/actions/exerciseActions'
+import * as locationActions from 'redux/actions/locationActions'
 import * as goalActions from 'redux/actions/goalActions'
 import HeaderComponent from 'components/common/Header/container/HeaderComponent'
 
@@ -37,7 +38,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <HeaderComponent />
                 {this.props.children}
             </div>
@@ -63,6 +64,7 @@ function mapDispatchToProps(dispatch) {
         setToken(token){
             dispatch(loginActions.setToken(token))
             dispatch(traineeActions.getTraineeList())
+            dispatch(locationActions.getLocationList())
             dispatch(trainingPackageActions.getTrainingPackageList())
             dispatch(exerciseActions.getExerciseList())
             // dispatch(goalActions.getGoalList())

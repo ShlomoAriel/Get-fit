@@ -18,7 +18,7 @@ const Login = ({email, password, authenticated, onInputFieldChange, login}) => {
 				  		<TextInput {...passwordInput}/>
 				  	</div>
 				  	<div className="button-holder">
-				  		<TextInput {...passwordInput}/>
+				  		<input className="form-control"/>
 				  		<button className="fa fa-arrow-circle-o-right login-button"></button>
 				  	</div>
 			  	</div>

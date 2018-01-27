@@ -10,12 +10,16 @@ const ScheduledExerciseList = ({form,weekEnd,weekStart, homeSessionForm, schedul
 	formFields['weekDayInput'] = {onSelect:onInputFieldChange,type: 'picklist', fieldClass:'',field: 'weekDay', placeholder: 'Week Day', value: form.weekDay, type: 'picklist', options: weekDays ? weekDays : [] }
 	let weekField = {type: 'input',fieldClass:'form-control',field: 'description', name:'description', placeholder: 'תיאור', value: form.description, onUpdate: onInputFieldChange }
 	let sessionNameInput = {onSelect:onHomeSessionInputFieldChange,type: 'picklist', fieldClass:'',field: 'sessionName', placeholder: 'סוג אימון', value: homeSessionForm.sessionName, type: 'picklist', options: sessionNameList ? sessionNameList : [] }
-	
-	function setCurrent(fieldKey){
+	function setCurrentHeader(fieldKey){
 		setCurrentDay(fieldKey.value)
-		if(fieldKey.homeSessionValue){
-			onHomeSessionInputFieldChange('sessionName',fieldKey.homeSessionValue)
+		onHomeSessionInputFieldChange('sessionName',fieldKey.homeSessionValue)
+	}
+	function setCurrent(fieldKey){
+		if(!fieldKey.homeSessionValue){
+			onHomeSessionInputFieldChange('date',fieldKey.date)
+			toggleModal()
 		}
+		setCurrentHeader(fieldKey)
 	}
 
 	return (
@@ -32,22 +36,26 @@ const ScheduledExerciseList = ({form,weekEnd,weekStart, homeSessionForm, schedul
 					(weekDays).map( fieldKey =>
 						<div>
 				  		<label 	key={fieldKey.value} className={"" + (fieldKey.value == currentDay ? ' active' : '')} 
-				  				onClick={()=>setCurrent(fieldKey)}>
+				  				onClick={()=>setCurrentHeader(fieldKey)}>
 					  		{fieldKey.name}
 					  	</label>
 						  	<div onClick={()=>setCurrent(fieldKey)}>
-						  		{fieldKey.text}
+						  		{fieldKey.session && <span className="weekday-session">{fieldKey.session}</span>}
+						  		{fieldKey.homeSession && <span>{fieldKey.homeSession}</span>}
 						  	</div>
 				  	</div>
 					)
 				}
 				</div>
-				<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> תכנית אימון</h3>
-				<div className="dashboard-picklist">
-					<InputWrapper {...sessionNameInput}/>		  			
-				</div>
+				
 				<div className="session-program">
 					<div>
+						<div className="program-header">
+							<div className="dashboard-picklist">
+								<InputWrapper {...sessionNameInput}/>		  			
+							</div>
+							<i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
+						</div>
 						<div className="custom-row">
 							<div>#</div>
 							<div>תרגיל</div>
@@ -75,7 +83,9 @@ const ScheduledExerciseList = ({form,weekEnd,weekStart, homeSessionForm, schedul
 							)
 						}
 					</div>
-			 		{<ScheduledExerciseComponent toggleModal={toggleModal}className="form-modal fade-in" />}
+					<div className="program-header">
+			 			{<ScheduledExerciseComponent toggleModal={toggleModal}className="form-modal fade-in" />}
+			 		</div>
 			 	</div>
 			</div>
 		</div>

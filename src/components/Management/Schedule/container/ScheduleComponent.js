@@ -36,7 +36,7 @@ function mapStateToProps(state) {
             start:new Date(session.start),
             end:new Date(session.end),
             date:new Date(session.date),
-            title: session.trainee.firstName + ' ' + session.trainee.lastName + (session.text ? (' ' + session.text): ''),
+            title: session.trainee.firstName + ' ' + session.trainee.lastName + (session.text ? (' ' + session.text): '') + (session.location ? (' ' + session.location.name): ''),
             allDay:session.allDay,
             text:session.text,
             firstName:session.trainee.firstName,

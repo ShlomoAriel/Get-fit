@@ -20,6 +20,8 @@ const Signup = ({ form, traineeId, traineeList, traineeStatusList, modalOpen, ho
     formFields['waistCircInput'] = { type: 'input', fieldClass:'form-control',field: 'waistCirc', name:'waistCirc', placeholder: 'waistCirc', value: form.waistCirc, onUpdate: onInputFieldChange }
     formFields['assCircInput'] = { type: 'input', fieldClass:'form-control',field: 'assCirc', name:'assCirc', placeholder: 'assCirc', value: form.assCirc, onUpdate: onInputFieldChange }
     formFields['shoulderCircInput'] = { type: 'input', fieldClass:'form-control',field: 'shoulderCirc', name:'shoulderCirc', placeholder: 'shoulderCirc', value: form.shoulderCirc, onUpdate: onInputFieldChange }
+    formFields['pantsSizeInput'] = { type: 'input', fieldClass:'form-control',field: 'pantsSize', name:'pantsSize', placeholder: 'pantsSize', value: form.pantsSize, onUpdate: onInputFieldChange }
+    formFields['shirtSizeInput'] = { type: 'input', fieldClass:'form-control',field: 'shirtSize', name:'shirtSize', placeholder: 'shirtSize', value: form.shirtSize, onUpdate: onInputFieldChange }
     formFields['nameInput'] = { type: 'input', fieldClass:'form-control',field: 'name', name:'name', placeholder: 'name', value: form.name, onUpdate: onInputFieldChange }
 
 	return (

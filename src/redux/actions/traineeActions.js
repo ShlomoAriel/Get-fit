@@ -33,6 +33,21 @@ export function setCurrentTrainee(traineeId){
     return 
 }
 
+export function setEeditTrainee(traineeId){
+    return (dispatch, getState) => {
+        let trainee = R.find(R.propEq('_id', traineeId))(getState().trainee.traineeList);
+        if(trainee){
+            dispatch({
+                type: types.SET_EDIT_TRAINEE,
+                trainee: trainee
+            })
+        } else{
+                dispatch(getTrainee(traineeId))
+        }
+    }
+    return 
+}
+
 export function setTraineePackageList(packageList, traineeId){
     return {
         type: types.SET_TRAINEE_PACKAGE_LIST,
@@ -130,10 +145,10 @@ export function addTraineeTrainingPackage(){
     }
 }
 
-export function updaeTrainee(id, trainee){
+export function updaeTrainee(id){
     return (dispatch, getState) => {
         let form = getState().trainee.form
-        return http.put('https://get-fit-server.herokuapp.com/api/deleteTrainee/'+id, trainee)
+        return http.put('https://get-fit-server.herokuapp.com/api/updateTrainee/'+id, form)
         .then (
             response => {
                 dispatch(getTraineeList())

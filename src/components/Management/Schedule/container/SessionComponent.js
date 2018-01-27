@@ -4,6 +4,7 @@ import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
 import * as sessionActions from 'redux/actions/sessionActions'
 import * as traineeActions from 'redux/actions/traineeActions'
+import * as locationActions from 'redux/actions/locationActions'
 import Session from '../display/Session';
 
 class SessionComponent extends React.Component {
@@ -26,11 +27,15 @@ function mapStateToProps(state) {
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
+    let locationOptions = state.location.locationList.map( location => {
+        return { value:location._id, label: location.name }
+    })
     return {
         sessionList: state.session.sessionList,
         form: state.session.form,
         traineeId: state.trainee.form.traineeId,
         traineeList: traineeOptions,
+        locationList: locationOptions,
     }
 }
 
@@ -44,6 +49,9 @@ function mapDispatchToProps(dispatch) {
         },
         setCurrentTrainee(field, traineeId){
             dispatch( traineeActions.setCurrentTrainee(traineeId) )
+        },
+        setCurrentLocation(field, locationId){
+            dispatch( locationActions.setCurrentLocation(locationId) )
         },
         getSessionByTrainee(){
             dispatch( sessionActions.getSessionByTrainee() )

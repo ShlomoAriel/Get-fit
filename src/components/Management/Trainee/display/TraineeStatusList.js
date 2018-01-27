@@ -15,6 +15,8 @@ const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldC
 				  			<div className="custom-row">
 	  							<div>טקסט</div>		
 	  							<div>משקל</div>
+	  							<div>חולצה</div>
+	  							<div>מכנסיים</div>
 	  							<div>מותן</div>
 	  							<div>חזה</div>
 	  							<div>ישבן</div>
@@ -31,13 +33,15 @@ const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldC
 			  						<div key={traineeStatus._id} className="custom-row">
 			  							<div>{traineeStatus.name}</div>
 			  							<div>{traineeStatus.weight}</div>
+			  							<div>{traineeStatus.shirtSize}</div>
+			  							<div>{traineeStatus.pantsSize}</div>
 			  							<div>{traineeStatus.waistCirc}</div>
 			  							<div>{traineeStatus.chestCirc}</div>
 			  							<div>{traineeStatus.assCirc}</div>
 			  							<div>{traineeStatus.armCirc}</div>
 			  							<div>{traineeStatus.legCirc}</div>
 			  							<div>{traineeStatus.shoulderCirc}</div>
-			  							<div>{moment(traineeStatus.date).format("MMM Do YYYY")}</div>
+			  							<div>{moment(traineeStatus.date).format("DD/MM/YYYY")}</div>
 			  							<div><i className="fa fa-trash-o" onClick={()=>removeTraineeStatus(traineeStatus._id)}></i></div>
 			  						</div>)
 			  					}

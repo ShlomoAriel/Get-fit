@@ -8,12 +8,20 @@ import TraineeTrainingPackageListComponent from'../../Trainee/container/TraineeT
 const PaymentDashboard = ({paymentList, removeGoal, onInputFieldChange, editMode}) => {
 	
 	return (
-			 <div className="trainee-dashboard">
-				<h2>תשלומים וחבילות</h2>
+		<div className="trainee-dashboard">
+			<div>
+				<div className="dashboard-header"> <div>מתאמן</div></div>
 				<TraineePersonalInfoComponent/>
+			</div>
+			<div>
+				<div className="dashboard-header"> <div>תשלומים</div></div>
+				<PaymentComponent/>
+			</div>
+			<div>
+				<div className="dashboard-header"> <div>חבילות</div></div>
 				<TraineeTrainingPackageListComponent/>
-			  	<PaymentComponent/>
-			  </div>
+			</div>
+		</div>
 );
 }
 export default PaymentDashboard;

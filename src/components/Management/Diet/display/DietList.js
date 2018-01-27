@@ -6,7 +6,7 @@ const DietList = ({dietList, removeDiet, modalOpen, toggleModal}) => {
 		  <div className="diet-list list-general-wrapper">
 		   { modalOpen && <DietComponent toggleModal={toggleModal}/>}
 			  <div>
-			  	<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> תפריט</h3>
+			  	<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> טיפים תזונתיים</h3>
 			 	{ dietList.map( diet =>
 					<div key={diet._id} className="custom-row">
 						<div>{diet.text}</div>

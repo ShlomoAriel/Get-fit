@@ -17,11 +17,15 @@ const Schedule = ({ homeSessionForm, sessions, modalOpen, sessionType, toggleMod
 		selectSlot = onSelectHomeSessionSlot
 	}
 	return (
-		   <div className="">
-		   <div className="schedule-header">
+		<div className="">
+			<div className="trainee-dashboard">
+				<div>
+					<TraineePersonalInfoComponent/>   		
+				</div>
+			</div>
+			<div className="schedule-header container">
 			   <div>
-		  			<i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
-			   		<TraineePersonalInfoComponent/>   		
+						<i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
 			   </div>
 			   <div>
 			   		{ sessionType == 'homeSession' &&
@@ -38,20 +42,22 @@ const Schedule = ({ homeSessionForm, sessions, modalOpen, sessionType, toggleMod
 					   </div>
 				   </div>
 			   </div>
-		   </div>
-		   { (modalOpen &&  sessionType == 'session') && <SessionComponent toggleModal={toggleModal} className="trainee-dashboard"/>}
-		   { (modalOpen &&  sessionType == 'homeSession') && <HomeSessionComponent toggleModal={toggleModal} className="trainee-dashboard"/>}
-		    <BigCalendar
-			  min={new Date(2018, 1, 1, 6, 0, 0)}
-			  max={new Date(2018, 1, 1, 23, 0, 0)}
-		      events={sessions}
-		      timeslots={1}
-		      step={60}
-		      onSelectEvent={onSelectEvent}
-		      onSelectSlot={selectSlot}
-		      selectable={true}
-		    />
-		  </div>
+			</div>
+			{ (modalOpen &&  sessionType == 'session') && <SessionComponent toggleModal={toggleModal} className="trainee-dashboard"/>}
+			{ (modalOpen &&  sessionType == 'homeSession') && <HomeSessionComponent toggleModal={toggleModal} isView={false} className="trainee-dashboard"/>}
+			<div className="container">
+				<BigCalendar
+				  min={new Date(2018, 1, 1, 6, 0, 0)}
+				  max={new Date(2018, 1, 1, 23, 0, 0)}
+				  events={sessions}
+				  timeslots={1}
+				  step={60}
+				  onSelectEvent={onSelectEvent}
+				  onSelectSlot={selectSlot}
+				  selectable={true}
+				/>
+			</div>
+		</div>
 );
 }
 export default Schedule;
