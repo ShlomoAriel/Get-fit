@@ -11,7 +11,6 @@ const Signup = ({form, authenticated, exerciseList, onInputFieldChange, addExerc
 		  <div className="training-package">
 		  	<ExerciseList/>
 		  	<form onSubmit={addExercise}>
-		  		<h3>הוספת תרגיל</h3>
 			  	<div className="form">
 				  	{
 				  		Object.keys(formFields).map( fieldKey =>

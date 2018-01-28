@@ -10,12 +10,13 @@ const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, modalOpen, 
 			 	{ modalOpen && <GoalComponent toggleModal={toggleModal}/>}
 	  			<div>
 	  				<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> מטרות</h3>
-		  			<div className="custom-row">
-							<div>טקסט</div>		
+	  				{ goalList.lebgth > 0 &&
+	  					<div className="custom-row">
+							<div>תיאור</div>		
 							<div>הושג</div>
-							<div>תאריך</div>
 							<div></div>
 						</div>
+	  				}
 	  				{ 
 	  					goalList.map( goal =>{
 							checkbox['value'] = goal.achieved
@@ -24,7 +25,6 @@ const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, modalOpen, 
 	  							<div>{goal.text}</div>
 	  							<InputWrapper {...checkbox}
 	  										id={ goal._id}/>
-	  							<div>{moment(goal.date).format("DD/MM/YYYY")}</div>
 	  							<div><i className="fa fa-trash-o" onClick={()=>removeGoal(goal._id)}></i></div>
 	  						</div>)
 	  					}

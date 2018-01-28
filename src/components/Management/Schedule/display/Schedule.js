@@ -17,35 +17,39 @@ const Schedule = ({ homeSessionForm, sessions, modalOpen, sessionType, toggleMod
 		selectSlot = onSelectHomeSessionSlot
 	}
 	return (
-		<div className="">
-			<div className="trainee-dashboard">
-				<div>
-					<TraineePersonalInfoComponent/>   		
-				</div>
+		<div className="trainee-dashboard">
+			<div>
+				<div className="dashboard-header"> <div>מתאמן</div></div>
+				<TraineePersonalInfoComponent/>   		
 			</div>
-			<div className="schedule-header container">
-			   <div>
-						<i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
-			   </div>
-			   <div>
-			   		{ sessionType == 'homeSession' &&
-			   			<div className="personal-info slide-from-top">
-							<div className="dashboard-picklist"><InputWrapper {...sessionNameInput}/></div>
-						</div>
+			<div>
+		   		<div className="dashboard-header"> <div>יומן</div></div>
+				{
+					// <div>
+					// 	<i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
+					// </div>
+				}
+			   		{ 
+			   // 			sessionType == 'homeSession' &&
+			   // 			<div className="personal-info slide-from-top">
+						// 	<div className="dashboard-picklist"><InputWrapper {...sessionNameInput}/></div>
+						// </div>
 			   		}
-			   		<div className="schedule-switch">
-					   <div onClick={()=>setSessionType('session')} className={(sessionType == 'session'? "active" : "")}>
-					   		Sessions
-					   </div>
-					   <div onClick={()=>setSessionType('homeSession')} className={(sessionType == 'homeSession'? "active" : "")}>
-					   		Home Sessions
-					   </div>
-				   </div>
-			   </div>
 			</div>
 			{ (modalOpen &&  sessionType == 'session') && <SessionComponent toggleModal={toggleModal} className="trainee-dashboard"/>}
 			{ (modalOpen &&  sessionType == 'homeSession') && <HomeSessionComponent toggleModal={toggleModal} isView={false} className="trainee-dashboard"/>}
-			<div className="container">
+			<div>
+			<div className="column-view">
+				<div>
+				<div className="schedule-switch">
+				   <div onClick={()=>setSessionType('session')} className={(sessionType == 'session'? "active" : "")}>
+				   		Sessions
+				   </div>
+				   <div onClick={()=>setSessionType('homeSession')} className={(sessionType == 'homeSession'? "active" : "")}>
+				   		Home Sessions
+				   </div>
+			   </div>
+			   </div>
 				<BigCalendar
 				  min={new Date(2018, 1, 1, 6, 0, 0)}
 				  max={new Date(2018, 1, 1, 23, 0, 0)}
@@ -56,6 +60,7 @@ const Schedule = ({ homeSessionForm, sessions, modalOpen, sessionType, toggleMod
 				  onSelectSlot={selectSlot}
 				  selectable={true}
 				/>
+			</div>
 			</div>
 		</div>
 );

@@ -5,7 +5,10 @@ const LocationList = ({locationList, removeLocation}) => {
 	return (
 		  <div className="location-list list-general-wrapper">
 			  <div>
-			  	<h3>מקומות</h3>
+			  	<div className="custom-row">
+	  							<div>שם</div>	
+	  							<div></div>
+	  						</div>
 			 	{ locationList.map( location =>
 					<div key={location._id} className="custom-row">
 						<div>{location.name}</div>

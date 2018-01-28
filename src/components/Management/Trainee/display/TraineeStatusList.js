@@ -13,15 +13,15 @@ const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldC
 			  			<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> תמונת מצב</h3>
 			  			<div>
 				  			<div className="custom-row">
-	  							<div>טקסט</div>		
+	  							<div>תיאור</div>		
 	  							<div>משקל</div>
+	  							<div>זרוע</div>
+	  							<div>חזה</div>
+	  							<div>מותן</div>
+	  							<div>ישבן</div>
+	  							<div>רגל</div>
 	  							<div>חולצה</div>
 	  							<div>מכנסיים</div>
-	  							<div>מותן</div>
-	  							<div>חזה</div>
-	  							<div>ישבן</div>
-	  							<div>זרוע</div>
-	  							<div>רגל</div>
 	  							<div>כתפיים</div>
 	  							<div>תאריך</div>
 	  							<div></div>
@@ -33,13 +33,13 @@ const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldC
 			  						<div key={traineeStatus._id} className="custom-row">
 			  							<div>{traineeStatus.name}</div>
 			  							<div>{traineeStatus.weight}</div>
+			  							<div>{traineeStatus.armCirc}</div>
+			  							<div>{traineeStatus.chestCirc}</div>
+			  							<div>{traineeStatus.waistCirc}</div>
+			  							<div>{traineeStatus.assCirc}</div>
+			  							<div>{traineeStatus.legCirc}</div>
 			  							<div>{traineeStatus.shirtSize}</div>
 			  							<div>{traineeStatus.pantsSize}</div>
-			  							<div>{traineeStatus.waistCirc}</div>
-			  							<div>{traineeStatus.chestCirc}</div>
-			  							<div>{traineeStatus.assCirc}</div>
-			  							<div>{traineeStatus.armCirc}</div>
-			  							<div>{traineeStatus.legCirc}</div>
 			  							<div>{traineeStatus.shoulderCirc}</div>
 			  							<div>{moment(traineeStatus.date).format("DD/MM/YYYY")}</div>
 			  							<div><i className="fa fa-trash-o" onClick={()=>removeTraineeStatus(traineeStatus._id)}></i></div>

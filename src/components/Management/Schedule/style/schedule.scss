@@ -22,12 +22,25 @@
 }
 .schedule-switch{
 	display:flex;
-	margin:0px 10px;
+	margin:0px 10px 10px;
 	> div{
 	    border: 1px solid #ccc;
     	padding: 7px 15px;
+    	&:hover{
+    		cursor:pointer;
+    		background: #35ABAB;
+    		color:#ffffff;
+    	}
 	}
 	.active{
-		background: #99DFF9;
+		background: #35ABAB;
+		color:#ffffff;
+	}
+}
+.trainee-dashboard {
+	> div{
+		.column-view{
+			flex-direction: column;
+		}
 	}
 }

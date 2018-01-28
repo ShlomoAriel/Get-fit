@@ -51,6 +51,9 @@
 		width: 180px;
 	    border: 1px solid rgba(0, 0, 0, 0.3);
 	    border-radius: 6px;
+	        border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #35ABAB;
 	}
 	.dashboard-header{
         display: block;
@@ -80,6 +83,24 @@
 	> div{
 	    padding: 5px 12px;
 	    width:150px;
+	}
+	.fa{
+		&:hover{
+			color:#fa7d6a;
+			cursor:pointer;
+		}
+	}
+	.fa-trash-o{
+		&:hover{
+			color:red;
+			cursor:pointer;
+		}	
+	}
+	.fa-save{
+		&:hover{
+			color:#3878D9;
+			cursor:pointer;
+		}		
 	}
 }
 .form-modal{

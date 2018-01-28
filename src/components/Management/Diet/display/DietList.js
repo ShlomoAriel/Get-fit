@@ -7,6 +7,12 @@ const DietList = ({dietList, removeDiet, modalOpen, toggleModal}) => {
 		   { modalOpen && <DietComponent toggleModal={toggleModal}/>}
 			  <div>
 			  	<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> טיפים תזונתיים</h3>
+			  	{ dietList.lebgth > 0 &&
+			  		<div className="custom-row">
+							<div>תיאור</div>
+							<div></div>
+						</div>
+				}
 			 	{ dietList.map( diet =>
 					<div key={diet._id} className="custom-row">
 						<div>{diet.text}</div>

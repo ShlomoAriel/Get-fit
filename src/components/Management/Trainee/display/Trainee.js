@@ -23,7 +23,7 @@ const Signup = ({form, authenticated, traineeList, onInputFieldChange, addTraine
 	return (
 		  <div className="trainee-dashboard">
 		  	<div class="fade-in">
-		  					<div className="dashboard-header"> <div>מתאמן</div></div>
+		  					<div className="dashboard-header"> <div>מתאמנים</div></div>
 
 			  <div className="trainee">
 			  	<TraineeList/>

@@ -56,15 +56,17 @@ const ScheduledExerciseList = ({form,weekEnd,weekStart, homeSessionForm, schedul
 							</div>
 							<i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
 						</div>
-						<div className="custom-row">
-							<div>#</div>
-							<div>תרגיל</div>
-							<div>סטים</div>
-							<div>חזרות</div>
-							<div>סרטון</div>
-							<div></div>
-							<div></div>
-						</div>
+						{ scheduledExerciseList.length > 0 &&
+							<div className="custom-row">
+								<div>#</div>
+								<div>תרגיל</div>
+								<div>סטים</div>
+								<div>חזרות</div>
+								<div>סרטון</div>
+								<div></div>
+								<div></div>
+							</div>
+						}
 						{ 
 							scheduledExerciseList.map( scheduledExercise =>
 							<div key={scheduledExercise._id} className="custom-row">

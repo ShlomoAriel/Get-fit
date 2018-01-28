@@ -12,6 +12,7 @@ import traineeStatus from './traineeStatusReducer'
 import session from './sessionReducer'
 import homeSession from './homeSessionReducer'
 import sessionName from './sessionNameReducer'
+import expense from './expenseReducer'
 import location from './locationReducer'
 
 export default combineReducers({
@@ -25,6 +26,7 @@ export default combineReducers({
     traineeStatus,
     session,
     payment,
+    expense,
     homeSession,
     location,
     sessionName,

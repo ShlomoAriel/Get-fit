@@ -1,11 +1,12 @@
 import React from 'react';
 import TextInput from'../../../Elements/TextInput/TextInput'
 
-const Locaction = ({form, authenticated, locationList, onInputFieldChange, addLocation, removeLocaction, toggleModal}) => {
+const Expense = ({form, onInputFieldChange, addExpense}) => {
 	let formFields = {}
 	formFields['textInput'] = { fieldClass:'form-control',field: 'name', name:'name', placeholder: 'מיקום', value: form.name, onUpdate: onInputFieldChange }	
+	formFields['amountInput'] = { fieldClass:'form-control',field: 'amount', name:'amount', placeholder: 'סכום', value: form.amount, onUpdate: onInputFieldChange }	
 	return (
-		  	<form onSubmit={addLocation}>
+		  	<form onSubmit={addExpense}>
 			  	<div className="form">
 				  	{
 				  		Object.keys(formFields).map( fieldKey =>
@@ -22,4 +23,4 @@ const Locaction = ({form, authenticated, locationList, onInputFieldChange, addLo
 		  	</form>
 );
 }
-export default Locaction;
+export default Expense;

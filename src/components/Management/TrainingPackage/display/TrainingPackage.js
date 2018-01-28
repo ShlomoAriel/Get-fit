@@ -4,7 +4,7 @@ import TrainingPackageList from'../container/TrainingPackageListComponent'
 
 const Signup = ({form, authenticated, trainingPackageList, onInputFieldChange, addTrainingPackage, removeTrainingPackage}) => {
 	let formFields = {}
-    formFields['percentInput'] = { fieldClass:'form-control',field: 'percent', name:'percent', placeholder: 'percent', value: form.percent, onUpdate: onInputFieldChange }
+    // formFields['percentInput'] = { fieldClass:'form-control',field: 'percent', name:'percent', placeholder: 'percent', value: form.percent, onUpdate: onInputFieldChange }
     formFields['amountInput'] = { fieldClass:'form-control',field: 'amount', name:'amount', placeholder: 'amount', value: form.amount, onUpdate: onInputFieldChange }
     formFields['nameInput'] = {fieldClass:'form-control',field: 'name', name:'name', placeholder: 'name', value: form.name, onUpdate: onInputFieldChange }
     formFields['sessionsInput'] = {fieldClass:'form-control',field: 'sessions', name:'sessions', placeholder: 'sessions', value: form.sessions, onUpdate: onInputFieldChange }
@@ -12,7 +12,6 @@ const Signup = ({form, authenticated, trainingPackageList, onInputFieldChange, a
 			  <div className="training-package">
 			  <TrainingPackageList trainingPackageList = {trainingPackageList}/>
 			  	<form onSubmit={addTrainingPackage}>
-			  		<h3>הוספת חבילה</h3>
 				  	<div className="form">
 					  	{
 					  		Object.keys(formFields).map( fieldKey =>

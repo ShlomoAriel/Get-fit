@@ -8,7 +8,6 @@ const PaymentList = ({paymentList, removeGoal, onInputFieldChange, editMode, tot
 			 <div className="payment-list list-general-wrapper">
 			  	<div>
 			  		<div>
-			  			<h3>תשלומים</h3>
 			  			<div>
 				  			<div className="custom-row">
 	  							<div>טקסט</div>
