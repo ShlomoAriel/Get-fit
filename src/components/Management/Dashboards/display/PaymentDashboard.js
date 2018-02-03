@@ -11,10 +11,6 @@ const PaymentDashboard = ({paymentList, removeGoal, onInputFieldChange, editMode
 	return (
 		<div className="trainee-dashboard">
 			<div>
-				<div className="dashboard-header"> <div>מתאמן</div></div>
-				<TraineePersonalInfoComponent/>
-			</div>
-			<div>
 				<div className="dashboard-header"> <div>תשלומים</div></div>
 				<PaymentComponent/>
 			</div>

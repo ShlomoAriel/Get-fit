@@ -18,10 +18,6 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 
 	return (
 		<div className="trainee-dashboard">
-			<div>
-				<div className="dashboard-header"> <div>מתאמן</div></div>
-				<TraineePersonalInfoComponent/>
-			</div>
 			<div className="fade-in">
 				<div className="dashboard-header"> <div>תכנית שבועית</div></div>
 				<ScheduledExerciseListComponent/>

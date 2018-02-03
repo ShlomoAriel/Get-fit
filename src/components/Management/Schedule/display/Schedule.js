@@ -3,7 +3,6 @@ import TextInput from'../../../Elements/TextInput/TextInput'
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
-import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
 import SessionComponent from'../container/SessionComponent'
 import HomeSessionComponent from'../../HomeSession/container/HomeSessionComponent'
 
@@ -18,10 +17,6 @@ const Schedule = ({ homeSessionForm, sessions, modalOpen, sessionType, toggleMod
 	}
 	return (
 		<div className="trainee-dashboard">
-			<div>
-				<div className="dashboard-header"> <div>מתאמן</div></div>
-				<TraineePersonalInfoComponent/>   		
-			</div>
 			<div>
 		   		<div className="dashboard-header"> <div>יומן</div></div>
 				{

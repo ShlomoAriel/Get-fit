@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import TraineePersonalInfoComponent from 'components/Management/Trainee/container/TraineePersonalInfoComponent'
 
 const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
 
@@ -11,7 +12,7 @@ const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
 				// {route:'home',name:'ראשי'}, 
 				// {route:'traineeWorkout',name:'תכנית אימון'},
 				  {route:'schedule',name:'לוז'},
-				  {route:'traineeDashboard',name:'עמוד מתאמן'}, {route:'paymentDashboard',name:'תשלומים וחבילות'},
+				  {route:'',name:'עמוד מתאמן'}, {route:'paymentDashboard',name:'תשלומים וחבילות'},
 				  {route:'trainee',name:'מתאמנים'},
 				  {route:'settings',name:'הגדרות'},
 				  {route:'login',name:'התחברות'},]
@@ -19,7 +20,6 @@ const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
 	return (
 	    <nav className="navbar navbar-default">
 		  <div className="container-fluid container">
-		    
 		    <div className="navbar-header">
 		      <button type="button" className="navbar-toggle collapsed" onClick={toggleMenu} aria-expanded="false">
 		        <span className="sr-only">Toggle navigation</span>
@@ -27,7 +27,7 @@ const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
 		        <span className="icon-bar"></span>
 		        <span className="icon-bar"></span>
 		      </button>
-		      <a className="navbar-brand" onClick={toggleMenu}>Avital Fitness</a>
+		      <a className="navbar-brand" onClick={toggleMenu}>Avital Fitness Club</a>
 		    </div>
 		    <div className={"collapse navbar-collapse" + (menuOpen ? " in":"")} id="bs-example-navbar-collapse-1">
 		      <ul className="nav navbar-nav">
@@ -40,6 +40,7 @@ const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
 		      		</li>)
 		      }
 		      </ul>
+			<TraineePersonalInfoComponent/>
 		    </div>
 		  </div>
 		</nav>

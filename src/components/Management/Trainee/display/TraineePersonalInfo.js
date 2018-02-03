@@ -1,36 +1,37 @@
 import React from 'react';
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 
-const TraineePersonalInfo = ({currentTrainee, traineeList, traineeId, setCurrentTrainee}) => {
+const TraineePersonalInfo = ({currentTrainee, traineeList, traineeId, setCurrentTrainee, isExpanded, toggleExpand}) => {
 	let traineeInput = {onSelect:setCurrentTrainee,type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] }
 
 	return (
 		<div className="personal-info">
-			<div>
-				<div className="dashboard-picklist"><InputWrapper {...traineeInput}/></div>
+			<div className="shine personal-info-header" onClick={toggleExpand}>
+				<div>{currentTrainee.firstName && currentTrainee.firstName.substring(0, 1)}{currentTrainee.lastName && currentTrainee.lastName.substring(0, 1)}</div>
 			</div>
-			<div>
-				<h2>פרטים אישיים</h2>
-				<div>{currentTrainee.firstName} {currentTrainee.lastName}</div>
-				<div>{currentTrainee.identityNumber}</div>
+			<div className={"collapse-info " + (isExpanded ? "open" : "" )}>
+				<div>
+					<div className="dashboard-picklist"><InputWrapper {...traineeInput}/></div>
+				</div>
+				<div>
+					<h2>פרטים אישיים</h2>
+					<div>{currentTrainee.firstName} {currentTrainee.lastName}</div>
+					<div>{currentTrainee.identityNumber}</div>
+				</div>
+				<div>
+					<h2>פרטי תקשורת</h2>
+					<div>{currentTrainee.email}</div>
+					<div>{currentTrainee.phone}</div>
+					<div>{currentTrainee.address}</div>
+					{currentTrainee.facebook &&  <div><a target="_blanc" href={currentTrainee.facebook}>פייסבוק</a></div>}
+				</div>
+				<div>
+					<h2>נתונים</h2>
+					<div>{currentTrainee.medicalStatus}</div>
+					<div>{currentTrainee.medicine}</div>
+					<div>{currentTrainee.comment}</div>
+				</div>
 			</div>
-			<div>
-				<h2>פרטי תקשורת</h2>
-				<div>{currentTrainee.email}</div>
-				<div>{currentTrainee.phone}</div>
-				<div>{currentTrainee.address}</div>
-				{currentTrainee.facebook &&  <div><a target="_blanc" href={currentTrainee.facebook}>פייסבוק</a></div>}
-			</div>
-			<div>
-				<h2>נתונים</h2>
-				<div>{currentTrainee.medicalStatus}</div>
-				<div>{currentTrainee.medicine}</div>
-				<div>{currentTrainee.comment}</div>
-			</div>
-			<div>
-			</div>
-			
-				
 		</div>
 );
 }

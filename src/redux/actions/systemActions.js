@@ -13,6 +13,12 @@ export function toggleModal(modalName){
     }
 }
 
+export function toggleExpand(){
+    return {
+        type: types.TOGGLE_EXPAND
+    }
+}
+
 export function setCurrentTab(tab){
     return {
         type: types.SET_CURRENT_TAB,

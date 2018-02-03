@@ -17,8 +17,7 @@ import ScheduleComponent from 'components/Management/Schedule/container/Schedule
 
 export default (
     <Switch>
-        <Route exact path="/home" component={HomePageComponent}/>
-        <Route path="/traineeDashboard" component={TraineeDashboardComponent}/>
+        <Route exact path="/" component={TraineeDashboardComponent}/>
         <Route path="/traineeWorkout" component={WorkoutComponent}/>
         <Route path="/paymentDashboard" component={PaymentDashboardComponent}/>
         <Route path="/login" component={LoginComponent}/>

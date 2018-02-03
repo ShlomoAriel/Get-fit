@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import * as systemActions from 'redux/actions/systemActions'
 import * as traineeActions from 'redux/actions/traineeActions'
 import TraineePersonalInfo from '../display/TraineePersonalInfo'
 
@@ -36,7 +37,8 @@ function mapStateToProps(state) {
     return {
         currentTrainee: state.trainee.currentTrainee,
         traineeId: traineeId,
-        traineeList: traineeOptions
+        traineeList: traineeOptions,
+        isExpanded: state.system.personalInfoExpanded,
     }
 }
 
@@ -45,6 +47,9 @@ function mapDispatchToProps(dispatch) {
         setCurrentTrainee(field, traineeId){
             dispatch( traineeActions.setCurrentTrainee(traineeId) )
         },
+        toggleExpand(){
+          dispatch( systemActions.toggleExpand() )  
+        }
     }
 }
 
