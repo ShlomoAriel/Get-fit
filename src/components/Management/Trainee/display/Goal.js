@@ -10,7 +10,7 @@ const Signup = ({form, traineeId, traineeList, goalList, onInputFieldChange, add
 		  <div className="form-modal fade-in">
 		  	<form onSubmit={addGoal}>
 			  	<i className="fa fa-times-circle-o i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
-		  		<h3>Login & Get Fit!</h3>
+		  		
 			  	<div className="form slide-from-right">
 			  	{ Object.keys(formFields).map( fieldKey =>
 			  		<div key={fieldKey}>

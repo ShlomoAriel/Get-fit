@@ -23,7 +23,7 @@ const HomeSession = ({form, traineeId, sessionNameList, traineeList,sessionNameI
 		  	<form onSubmit={addHomeSession}>
 			  	<i className="fa fa-times-circle-o i-button" aria-hidden="true" onClick={()=>close()}></i>
 			  	{ form._id && <i className="fa fa-trash-o i-button" aria-hidden="true" onClick={()=>remove(form._id)}></i>}
-		  		<h3>Login & Get Fit!</h3>
+		  		
 			  	<div className="form slide-from-right">
 			  	{ Object.keys(formFields).map( fieldKey =>
 			  		<div key={fieldKey}>

@@ -3,7 +3,7 @@
     position:relative;
     background: #ffffff;
     border: 1px solid transparent;
-    z-index: 1;
+    z-index: 8;
 	> div{
 		padding: 0px 30px 0 20px;padding:10px 20px;
 		h2{
@@ -17,7 +17,7 @@
 		position: absolute;
 	}
 	.open{
-		top: 60px;
+		top: 45px;
 		width:300px;
     	background: #ffffff;
 		position: absolute;
@@ -32,19 +32,20 @@
 		    border-color: transparent transparent #35ABAB transparent;
 		    position: absolute;
 		    top: -10px;
-		    right: 15px;
+		    right: 7px;
 		}
 	}
 
 	.personal-info-header{
-    	padding: 0px;
-    	cursor:pointer;
+	    padding: 3px 10px;
+    	margin-top: 13px;
+	    cursor: pointer;
 	    background: #35ABAB;
 	    color: #ffffff;
-	    border-radius: 50%;
-	    width: 50px;
-	    height: 50px;
-        display: flex;
+	    border-radius: 3px;
+	    width: 103px;
+	    display: flex;
+	    -webkit-box-pack: center;
 	    justify-content: center;
 	    align-items: center;
 	    &:hover{

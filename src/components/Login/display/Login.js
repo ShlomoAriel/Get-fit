@@ -9,7 +9,7 @@ const Login = ({email, password, authenticated, onInputFieldChange, login}) => {
 		  <div className="login">
 		  { !authenticated ?
 		  	<form onSubmit={login}>
-		  		<h3>Login & Get Fit!</h3>
+		  		
 			  	<div className="form">
 				  	<div>
 				  		<TextInput {...emailInput}/>

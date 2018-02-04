@@ -31,7 +31,7 @@ function mapStateToProps(state) {
     let packages = state.trainee.traineePackageMap[traineeId]
     if(packages){
         totalBill = packages.reduce( (total, current )=>
-            total + current.quantity*current.trainingPackage.amount
+            total + current.quantity*current.amount
         , 0)
     }
     let paymentList = state.payment.paymentMap[traineeId] ? state.payment.paymentMap[traineeId] : []

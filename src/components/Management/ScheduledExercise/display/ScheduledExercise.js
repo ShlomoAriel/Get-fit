@@ -15,7 +15,7 @@ const ScheduledExercise = ({form, authenticated,traineeId, traineeList, exercise
 		  	<form onSubmit={addScheduledExercise}>
 		  		{
 		  			// <i className="fa fa-times-circle-o i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
-		  			// <h3>Login & Get Fit!</h3>
+		  			// 
 		  		}
 			  	<div className="form">
 				  	{

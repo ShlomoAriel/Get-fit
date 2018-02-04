@@ -34,7 +34,8 @@ function mapStateToProps(state) {
     let currentPackcage = R.find(R.propEq('_id',trainingPackageId))(state.trainingPackage.trainingPackageList)
     currentPackcage = currentPackcage ? currentPackcage : {}
     return {
-    	quantity: state.trainingPackage.form.quantity,
+        quantity: state.trainingPackage.form.quantity,
+    	percent: state.trainingPackage.form.percent,
     	traineePackageList: traineePackageList,
         traineeId: state.trainee.form.traineeId,
         trainingPackageList: trainingPackageOptions,

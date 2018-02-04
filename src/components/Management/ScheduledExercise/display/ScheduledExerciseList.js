@@ -34,16 +34,16 @@ const ScheduledExerciseList = ({form,weekEnd,weekStart, homeSessionForm, schedul
 				<div className="weekdays-wrapper">
 				{
 					(weekDays).map( fieldKey =>
-						<div>
-				  		<label 	key={fieldKey.value} className={"" + (fieldKey.value == currentDay ? ' active' : '')} 
-				  				onClick={()=>setCurrentHeader(fieldKey)}>
-					  		{fieldKey.name}
-					  	</label>
-						  	<div onClick={()=>setCurrent(fieldKey)}>
-						  		{fieldKey.session && <span className="weekday-session">{fieldKey.session}</span>}
-						  		{fieldKey.homeSession && <span>{fieldKey.homeSession}</span>}
-						  	</div>
-				  	</div>
+						<div key={fieldKey.value}>
+					  		<label 	key={fieldKey.value} className={"" + (fieldKey.value == currentDay ? ' active' : '')} 
+					  				onClick={()=>setCurrentHeader(fieldKey)}>
+						  		{fieldKey.name}
+						  	</label>
+							  	<div onClick={()=>setCurrent(fieldKey)}>
+							  		{fieldKey.session && <span className="weekday-session">{fieldKey.session}</span>}
+							  		{fieldKey.homeSession && <span>{fieldKey.homeSession}</span>}
+							  	</div>
+					  	</div>
 					)
 				}
 				</div>

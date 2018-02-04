@@ -15,7 +15,7 @@ const Session = ({form, traineeId, locationList, setCurrentLocation, traineeList
 		  	<form onSubmit={addSession}>
 			  	<i className="fa fa-times-circle-o i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
 			  	{ form._id && <i className="fa fa-trash-o i-button" aria-hidden="true" onClick={()=>removeSession(form._id)}></i>}
-		  		<h3>Login & Get Fit!</h3>
+		  		
 			  	<div className="form slide-from-right">
 			  		<InputWrapper {...formFields['textInput']}/>
 			  		<div className="">

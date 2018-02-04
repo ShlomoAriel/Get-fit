@@ -125,11 +125,19 @@ export function addTrainee(){
 
 export function addTraineeTrainingPackage(){
     return (dispatch, getState) => {
+        let trainingPackage = 
+        R.find(R.propEq('_id',getState().trainingPackage.form.trainingPackageId))(getState().trainingPackage.trainingPackageList)
+        if(!trainingPackage){
+            return
+        }
         let form = {
             trainee : getState().trainee.form.traineeId,
-            trainingPackage : getState().trainingPackage.form.trainingPackageId,
+            amount: trainingPackage.amount,
+            name: trainingPackage.name,
+            sessions: trainingPackage.sessions,
             date:Date(),
-            quantity: getState().trainingPackage.form.quantity
+            quantity: getState().trainingPackage.form.quantity,
+            percent: getState().trainingPackage.form.percent,
         }
         return http.post('https://get-fit-server.herokuapp.com/api/addTraineeTrainingPackage',form)
         .then (

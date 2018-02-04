@@ -7,7 +7,7 @@ const TraineePersonalInfo = ({currentTrainee, traineeList, traineeId, setCurrent
 	return (
 		<div className="personal-info">
 			<div className="shine personal-info-header" onClick={toggleExpand}>
-				<div>{currentTrainee.firstName && currentTrainee.firstName.substring(0, 1)}{currentTrainee.lastName && currentTrainee.lastName.substring(0, 1)}</div>
+				<div>{currentTrainee.firstName} {currentTrainee.lastName}</div>
 			</div>
 			<div className={"collapse-info " + (isExpanded ? "open" : "" )}>
 				<div>

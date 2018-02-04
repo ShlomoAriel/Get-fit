@@ -3,10 +3,11 @@ import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 import TrainingPackageList from'../../TrainingPackage/container/TrainingPackageListComponent'
 import ScheduledExerciseComponent from '../../ScheduledExercise/container/ScheduledExerciseComponent';
 
-const TraineeDashboard = ({traineePackageList, quantity, trainingPackageId, trainingPackageList, currentPackcage,
+const TraineeDashboard = ({traineePackageList, quantity, percent,trainingPackageId, trainingPackageList, currentPackcage,
 							onInputFieldChange, setCurrentTrainingPackage, removeTraineeTrainingPackage, addTraineeTrainingPackage}) => {
 	let formFields = {}
 	formFields['quantityInput'] = {fieldClass:'form-control quantity',type:'input',field: 'quantity', name:'quantity', placeholder: 'quantity', value: quantity, onUpdate: onInputFieldChange }
+	formFields['percentInput'] = {fieldClass:'form-control percent',type:'input',field: 'percent', name:'percent', placeholder: 'percent', value: percent, onUpdate: onInputFieldChange }
 	formFields['trainingPackageInput'] = {onSelect:setCurrentTrainingPackage,type: 'picklist', fieldClass:'',field: 'trainingPackage', placeholder: 'Training Package', value: trainingPackageId, type: 'picklist', options: trainingPackageList ? trainingPackageList : [] }
 	return (
 		  	<div>
@@ -17,6 +18,7 @@ const TraineeDashboard = ({traineePackageList, quantity, trainingPackageId, trai
 							<div>חבילה</div>	
 							<div>יחידות</div>  							
 							<div>מחיר</div>
+							<div>אחוז</div>
 							<div>אימונים</div>
 							<div></div>
 						</div>
@@ -24,10 +26,11 @@ const TraineeDashboard = ({traineePackageList, quantity, trainingPackageId, trai
 					{
 						traineePackageList.map( trainingPackage =>
 							<div key={trainingPackage._id} className="custom-row">
-								<div>{trainingPackage.trainingPackage.name}</div>
+								<div>{trainingPackage.name}</div>
 								<div>{trainingPackage.quantity}</div>
-								<div>{trainingPackage.trainingPackage.amount}</div>
-								<div>{trainingPackage.trainingPackage.sessions}</div>
+								<div>{trainingPackage.amount}</div>
+								<div>{trainingPackage.percent}</div>
+								<div>{trainingPackage.sessions}</div>
 								<div><i className="fa fa-trash-o" onClick={()=>removeTraineeTrainingPackage(trainingPackage._id)}></i></div>
 							</div>
 							)
