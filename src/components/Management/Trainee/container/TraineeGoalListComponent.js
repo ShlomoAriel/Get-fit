@@ -4,23 +4,23 @@ import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
 import * as goalActions from 'redux/actions/goalActions'
 import * as traineeActions from 'redux/actions/traineeActions'
-import GoalList from '../display/GoalList';
+import TraineeGoalList from '../display/TraineeGoalList';
 
-class GoalListComponent extends React.Component {
+class TraineeGoalListComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
     }
-    componentWillMount(){
-        this.props.getGoalList()
+    componentDidlMount(){
+        this.props.getGoalByTrainee()
     }
     componentDidUpdate(prevProps, prevState) {
       if(this.props.traineeId != prevProps.traineeId){
-         this.props.getGoalList()
+         this.props.getGoalByTrainee()
       }
     }
 
     render() {
-        return <GoalList{...this.props}/>
+        return <TraineeGoalList{...this.props}/>
     }
 }
 
@@ -28,8 +28,10 @@ function mapStateToProps(state) {
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
+    let traineeGoalList =  state.trainee.form.traineeId && state.goal.traineeGoalMap[state.trainee.form.traineeId] ? state.goal.traineeGoalMap[state.trainee.form.traineeId] : []
     return {
-        goalList: state.goal.goalList,
+        isAdmin: state.login.isAdmin,
+        traineeGoalList: traineeGoalList,
         form: state.goal.form,
         traineeId: state.trainee.form.traineeId,
         traineeList: traineeOptions,
@@ -45,8 +47,8 @@ function mapDispatchToProps(dispatch) {
         setCurrentTrainee(field, traineeId){
             dispatch( traineeActions.setCurrentTrainee(traineeId) )
         },
-        getGoalList(){
-            dispatch( goalActions.getGoalList() )
+        getGoalByTrainee(){
+            dispatch( goalActions.getGoalByTrainee() )
         },
         toggleModal(){
             dispatch(systemActions.toggleModal("goal"))
@@ -55,17 +57,13 @@ function mapDispatchToProps(dispatch) {
             dispatch(goalActions.toggleCheckbox(goalId, value))
         },
         removeGoal(id){
-            dispatch( goalActions.removeGoal(id) )
+            dispatch( goalActions.removeTraineeGoal(id) )
         },
         editGoal(id){
             dispatch( goalActions.updateGoal(id) )
         },
-        addGoal(e){
-            e.preventDefault();
-            dispatch( goalActions.addGoal() )
-        },
     }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )(GoalListComponent)
+export default connect( mapStateToProps, mapDispatchToProps )(TraineeGoalListComponent)
 

@@ -16,6 +16,7 @@
   "author": "Nehora Sharabi",
   "license": "ISC",
   "dependencies": {
+    "@khanacademy/react-multi-select": "^0.2.0",
     "axios": "^0.16.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -38,8 +39,9 @@
     "react-images-uploader": "^1.1.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-select": "^1.0.0-rc.10",
+    "react-select": "^1.2.1",
     "react-widgets": "^4.0.0",
+    "react-youtube": "^7.5.0",
     "redux": "^3.7.2",
     "redux-file-upload": "0.0.19",
     "redux-immutable-state-invariant": "^2.0.0",

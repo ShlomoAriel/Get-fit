@@ -39,6 +39,7 @@ function mapStateToProps(state) {
         total + current.amount
     , 0)
     return {
+        isAdmin: state.login.isAdmin,
         form: state.goal.form,
         traineeId: state.trainee.form.traineeId,
         traineeList: traineeOptions,

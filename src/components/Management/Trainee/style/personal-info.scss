@@ -17,9 +17,9 @@
 		position: absolute;
 	}
 	.open{
-		top: 45px;
+		top: 53px;
 		width:300px;
-    	background: #ffffff;
+    	background: rgba(255,255,255,0.9);
 		position: absolute;
 		display:block;
 		border: 1px solid #35ABAB;
@@ -32,27 +32,20 @@
 		    border-color: transparent transparent #35ABAB transparent;
 		    position: absolute;
 		    top: -10px;
-		    right: 7px;
+		    right: 15px;
 		}
 	}
 
 	.personal-info-header{
-	    padding: 3px 10px;
-    	margin-top: 13px;
+        padding: 3px 10px;
+	    margin-top: 13px;
 	    cursor: pointer;
-	    background: #35ABAB;
-	    color: #ffffff;
-	    border-radius: 3px;
-	    width: 103px;
+	    color: #35ABAB;
+	    border: 1px solid #35ABAB;
+	    border-radius: 15px;
 	    display: flex;
-	    -webkit-box-pack: center;
 	    justify-content: center;
 	    align-items: center;
-	    &:hover{
-	    	// color: #35ABAB;
-	    	// background: #ffffff;
-	    	// border: 1px solid #35ABAB;
-	    }
     }
 }
 .navbar-collapse{

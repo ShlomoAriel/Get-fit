@@ -2,21 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import TraineePersonalInfoComponent from 'components/Management/Trainee/container/TraineePersonalInfoComponent'
 
-const Header = ({menuOpen, currentTab, toggleMenu, goTo}) => {
+const Header = ({menuOpen, isAdmin, authenticated, currentTab, toggleMenu, goTo}) => {
 
 	function goToAndSet(tab){
 		toggleMenu()
 		goTo(tab)
 	}
-	const tabs = [
-				// {route:'home',name:'ראשי'}, 
-				// {route:'traineeWorkout',name:'תכנית אימון'},
+	let tabs = [
 				  {route:'schedule',name:'לוז'},
-				  {route:'',name:'עמוד מתאמן'}, {route:'paymentDashboard',name:'תשלומים וחבילות'},
-				  {route:'trainee',name:'מתאמנים'},
-				  {route:'settings',name:'הגדרות'},
-				  {route:'login',name:'התחברות'},]
-				  // {route:'exercise',name:'תרגילים'}, {route:'trainingPackage',name:'חבילות אימון'}]
+				  {route:'',name:'עמוד מתאמן'}, {route:'paymentDashboard',name:'תשלומים וחבילות'}]
+	if(isAdmin){
+		tabs.push({route:'trainee',name:'מתאמנים'})
+		tabs.push({route:'settings',name:'הגדרות'})
+	}
+	if(!authenticated){
+		tabs.push({route:'login',name:'התחברות'})
+	}
 	return (
 	    <nav className="navbar navbar-default">
 		  <div className="container-fluid container">

@@ -29,7 +29,8 @@ function mapStateToProps(state, ownProps) {
         return { value:trainee._id, label: trainee.firstName }
     })
     return {
-        traineeStatusList: state.traineeStatus.traineeStatusList,
+        isAdmin: state.login.isAdmin,
+        traineeStatusList: state.traineeStatus.traineeStatusList ? state.traineeStatus.traineeStatusList : [],
         form: state.traineeStatus.form,
         traineeId: state.trainee.form.traineeId,
         traineeList: traineeOptions,

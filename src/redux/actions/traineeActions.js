@@ -1,3 +1,7 @@
+var localUrl = "http://localhost:3001"
+var remoteUrl = "https://get-fit-server.herokuapp.com"
+var currentUrl = remoteUrl
+
 import * as types from './actionTypes'
 import R from 'ramda';
 import axios from 'axios';
@@ -61,7 +65,7 @@ export function getTrainee(id){
         if(!id){
             return
         }
-        return http.get('https://get-fit-server.herokuapp.com/api/getTrainee/' + id)
+        return http.get(currentUrl + '/api/getTrainee/' + id)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -77,7 +81,7 @@ export function getTrainee(id){
 
 export function getTraineeList(){
     return (dispatch, getState) => {
-        return http.get('https://get-fit-server.herokuapp.com/api/getTrainees')
+        return http.get(currentUrl + '/api/getTrainees')
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -93,7 +97,7 @@ export function getTraineeList(){
 export function getTraineePackageList(){
     return (dispatch, getState) => {
         let traineeId = getState().trainee.form.traineeId
-        return http.get('https://get-fit-server.herokuapp.com/api/getTraineeTrainingPackageByTrainee/' + traineeId)
+        return http.get(currentUrl + '/api/getTraineeTrainingPackageByTrainee/' + traineeId)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -108,8 +112,9 @@ export function getTraineePackageList(){
 }
 export function addTrainee(){
     return (dispatch, getState) => {
-        let form = getState().trainee.form
-        return http.post('https://get-fit-server.herokuapp.com/api/addTrainee',form)
+        let form = R.clone(getState().trainee.form)
+        form.role = '57d2837a13d468481b1fe133'
+        return http.post(currentUrl + '/api/addTrainee',form)
         .then ( 
             response => {
                 dispatch(getTraineeList())
@@ -139,7 +144,7 @@ export function addTraineeTrainingPackage(){
             quantity: getState().trainingPackage.form.quantity,
             percent: getState().trainingPackage.form.percent,
         }
-        return http.post('https://get-fit-server.herokuapp.com/api/addTraineeTrainingPackage',form)
+        return http.post(currentUrl + '/api/addTraineeTrainingPackage',form)
         .then (
             response => {
                 dispatch(getTraineePackageList())
@@ -156,7 +161,7 @@ export function addTraineeTrainingPackage(){
 export function updaeTrainee(id){
     return (dispatch, getState) => {
         let form = getState().trainee.form
-        return http.put('https://get-fit-server.herokuapp.com/api/updateTrainee/'+id, form)
+        return http.put(currentUrl + '/api/updateTrainee/'+id, form)
         .then (
             response => {
                 dispatch(getTraineeList())
@@ -174,7 +179,7 @@ export function removeTrainee(id){
     return (dispatch, getState) => {
         let form = getState().trainee.form
         const jwt = localStorage.getItem('token');
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteTrainee/'+id)
+        return http.remove(currentUrl + '/api/deleteTrainee/'+id)
         .then ( 
             response => {
                 dispatch(getTraineeList())
@@ -190,7 +195,7 @@ export function removeTrainee(id){
 
 export function removeTraineeTrainingPackage(id){
     return (dispatch, getState) => {
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteTraineeTrainingPackage/'+id)
+        return http.remove(currentUrl + '/api/deleteTraineeTrainingPackage/'+id)
         .then ( 
             response => {
                 dispatch(getTraineePackageList())

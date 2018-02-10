@@ -22,9 +22,7 @@ const TraineeDashboard = ({goalList, removeGoal, onInputFieldChange, modalOpen, 
 							checkbox['value'] = goal.achieved
 	  						return(
 	  						<div key={goal._id} className="custom-row">
-	  							<div>{goal.text}</div>
-	  							<InputWrapper {...checkbox}
-	  										id={ goal._id}/>
+	  							<div>{goal.name}</div>
 	  							<div><i className="fa fa-trash-o" onClick={()=>removeGoal(goal._id)}></i></div>
 	  						</div>)
 	  					}

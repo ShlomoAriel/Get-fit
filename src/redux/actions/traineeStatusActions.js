@@ -1,3 +1,7 @@
+var localUrl = "http://localhost:3001"
+var remoteUrl = "https://get-fit-server.herokuapp.com"
+var currentUrl = remoteUrl
+
 import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
 import axios from 'axios'
@@ -26,7 +30,7 @@ export function setCurrentTraineeStatus(traineeStatusId){
 
 export function getTraineeStatusList(){
     return (dispatch, getState) => {
-        return http.get('https://get-fit-server.herokuapp.com/api/getTraineeStatuss')
+        return http.get(currentUrl + '/api/getTraineeStatuss')
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -43,7 +47,7 @@ export function getTraineeStatusList(){
 export function getTraineeStatusByTrainee(){
     return (dispatch, getState) => {
         let traineeId = getState().trainee.form.traineeId
-        return http.get('https://get-fit-server.herokuapp.com/api/getTraineeStatusByTrainee/' + traineeId)
+        return http.get(currentUrl + '/api/getTraineeStatusByTrainee/' + traineeId)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -57,12 +61,15 @@ export function getTraineeStatusByTrainee(){
     }
 }
 
-export function addTraineeStatus(){
+export function addTraineeStatus(image){
     return (dispatch, getState) => {
         let form = R.clone(getState().traineeStatus.form)
         form.trainee = getState().trainee.form.traineeId
+        if(image){
+            form.image = image
+        }
         form.date = Date()
-        return http.post('https://get-fit-server.herokuapp.com/api/addTraineeStatus',form)
+        return http.post(currentUrl + '/api/addTraineeStatus',form)
         .then ( 
             response => {
                 dispatch(getTraineeStatusByTrainee())
@@ -79,7 +86,7 @@ export function addTraineeStatus(){
 export function updaeTraineeStatus(id, traineeStatus){
     return (dispatch, getState) => {
         let form = getState().traineeStatus.form
-        return http.put('https://get-fit-server.herokuapp.com/api/deleteTraineeStatus/'+id, traineeStatus)
+        return http.put(currentUrl + '/api/deleteTraineeStatus/'+id, traineeStatus)
         .then (
             response => {
                 dispatch(getTraineeStatusByTrainee())
@@ -97,7 +104,7 @@ export function removeTraineeStatus(id){
     return (dispatch, getState) => {
         let form = getState().traineeStatus.form
         const jwt = localStorage.getItem('token');
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteTraineeStatus/'+id)
+        return http.remove(currentUrl + '/api/deleteTraineeStatus/'+id)
         .then ( 
             response => {
                 dispatch(getTraineeStatusByTrainee())

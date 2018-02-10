@@ -28,6 +28,7 @@ function mapStateToProps(state) {
     })
     let traineeId = state.trainee.form.traineeId
     return {
+        isAdmin: state.login.isAdmin,
         currentTrainee: state.trainee.currentTrainee,
         quantity: state.trainingPackage.form.quantity,
         traineeId: traineeId,

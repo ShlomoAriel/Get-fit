@@ -5,6 +5,7 @@ const initialState = {
 	form:{
 	},
     goalList:[],
+    traineeGoalMap:{}
 }
 
 export default function(state = initialState, action) {
@@ -15,6 +16,8 @@ export default function(state = initialState, action) {
             return R.assocPath(['form','goalId'], action.goalId, state )
         case types.SET_GOAL_LIST:
             return R.assoc('goalList', action.goalList, state )
+        case types.SET_TRAINEE_GOAL_LIST:
+            return R.assocPath(['traineeGoalMap',action.traineeId], action.goalList, state )
         default:
             return state;
     }

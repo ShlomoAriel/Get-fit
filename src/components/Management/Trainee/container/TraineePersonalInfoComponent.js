@@ -35,6 +35,7 @@ function mapStateToProps(state) {
     //     traineeId = traineeOptions[0].value
     // }
     return {
+        isAdmin: state.login.isAdmin,
         currentTrainee: state.trainee.currentTrainee,
         traineeId: traineeId,
         traineeList: traineeOptions,

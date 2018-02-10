@@ -6,6 +6,8 @@ import { hashHistory } from 'react-router-dom'
 
 function mapStateToProps(state) {
     return {
+        authenticated:state.login.authenticated,
+        isAdmin: state.login.isAdmin,
     	menuOpen:state.system.menuOpen,
     	currentTab:state.system.currentTab,
     }

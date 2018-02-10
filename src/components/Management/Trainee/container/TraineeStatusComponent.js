@@ -1,4 +1,5 @@
 import React from 'react'
+import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
@@ -9,6 +10,11 @@ import TraineeStatus from '../display/TraineeStatus';
 class TraineeStatusComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
+        this.uploadImageToField = this.uploadImageToField.bind(this)
+        this.addTraineeStatus = this.addTraineeStatus.bind(this)
+    }
+    state = {
+        image:"{}",
     }
     componentWillMount(){
         this.props.getTraineeStatusByTrainee()
@@ -19,8 +25,30 @@ class TraineeStatusComponent extends React.Component {
       }
     }
     render() {
-        return <TraineeStatus{...this.props}/>
+        return <TraineeStatus {...this.props}
+                    uploadImageToField ={this.uploadImageToField}
+                    addTraineeStatus ={this.addTraineeStatus}
+        />
     }
+    uploadBackImage(acceptedFiles, rejectedFiles){
+        this.uploadImageToField(acceptedFiles[0], 'backPhoto')
+    }
+
+    uploadImageToField(file, fieldName){
+        let image = this.state.image
+        let reader = new FileReader()
+        let initialFile = R.clone(file[0])
+        reader.onloadend = () => {
+            let readerResult = R.clone(reader.result)
+            image = readerResult
+            this.setState({image})
+        }
+        reader.readAsDataURL(initialFile)
+    }
+    addTraineeStatus(){
+        this.props.userActions.addTraineeStatus(this.state.image)
+    }
+
 }
 
 function mapStateToProps(state, ownProps) {
@@ -38,6 +66,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
+        userActions:  bindActionCreators(traineeStatusActions, dispatch),
         onInputFieldChange(field, value){
             dispatch( traineeStatusActions.updateInputField(field, value) )
         },
@@ -50,10 +79,10 @@ function mapDispatchToProps(dispatch, ownProps) {
         editTraineeStatus(id){
             dispatch( traineeStatusActions.updateTraineeStatus(id) )
         },
-        addTraineeStatus(e){
-            e.preventDefault();
-            dispatch( traineeStatusActions.addTraineeStatus() )
-        },
+        // addTraineeStatus(e){
+        //     e.preventDefault();
+        //     dispatch( traineeStatusActions.addTraineeStatus() )
+        // },
         holdImages(image){
             let reader = new FileReader();
             // dispatch( traineeStatusActions.updateInputField('initialFile', {}) )

@@ -3,14 +3,19 @@ import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 import moment from 'moment'
 import TraineeStatusComponent from'../container/TraineeStatusComponent'
 
-const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldChange, modalOpen, toggleModal}) => {
+const TraineeDashboard = ({traineeStatusList, isAdmin, removeTraineeStatus, onInputFieldChange, modalOpen, toggleModal}) => {
 	let checkbox = { type:'checkbox',fieldClass:'form-control',field: 'checkbox', name:'text', onChange: onInputFieldChange }
 	return (
 			 <div className="trainee-status list-general-wrapper slide-from-right-hard">
 			  	<div>
 			  		{ modalOpen && <TraineeStatusComponent toggleModal={toggleModal}/>}
 			  		<div>
-			  			<h3><i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i> תמונת מצב</h3>
+			  			<h3>
+			  				{ isAdmin &&
+			  					<i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
+			  				}
+			  				תמונת מצב
+			  				</h3>
 			  			<div>
 				  			<div className="custom-row">
 	  							<div>תיאור</div>		
@@ -42,7 +47,10 @@ const TraineeDashboard = ({traineeStatusList, removeTraineeStatus, onInputFieldC
 			  							<div>{traineeStatus.pantsSize}</div>
 			  							<div>{traineeStatus.shoulderCirc}</div>
 			  							<div>{moment(traineeStatus.date).format("DD/MM/YYYY")}</div>
-			  							<div><i className="fa fa-trash-o" onClick={()=>removeTraineeStatus(traineeStatus._id)}></i></div>
+			  							{ isAdmin &&
+			  								<div><i className="fa fa-trash-o" onClick={()=>removeTraineeStatus(traineeStatus._id)}></i></div>
+			  							}
+			  							
 			  						</div>)
 			  					}
 			  						)

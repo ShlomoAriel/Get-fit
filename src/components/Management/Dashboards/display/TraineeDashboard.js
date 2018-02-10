@@ -3,13 +3,13 @@ import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 import TrainingPackageList from'../../TrainingPackage/container/TrainingPackageListComponent'
 import ScheduledExerciseComponent from '../../ScheduledExercise/container/ScheduledExerciseComponent'
 import ScheduledExerciseListComponent from '../../ScheduledExercise/container/ScheduledExerciseListComponent'
-import GoalListComponent from '../../Trainee/container/GoalListComponent'
+import TraineeGoalListComponent from '../../Trainee/container/TraineeGoalListComponent'
 import TraineeStatusListComponent from '../../Trainee/container/TraineeStatusListComponent'
 import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
 import DietListComponent from '../../Diet/container/DietListComponent'
 import SessionNameListComponent from '../../HomeSession/container/SessionNameListComponent'
 // import TraineeTrainingPackageListComponent from'../container/TraineeTrainingPackageListComponent'
-const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, trainingPackageList, trainingPackageId, traineePackageList, quantity,
+const TraineeDashboard = ({currentTrainee,form, traineeList, isAdmin, traineeId, trainingPackageList, trainingPackageId, traineePackageList, quantity,
 							setCurrentTrainingPackage, onInputFieldChange, setCurrentTrainee, addTraineeTrainingPackage,}) => {
 	let formFields = {}
 	let traineeInput = {onSelect:setCurrentTrainee,type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] }
@@ -25,7 +25,7 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 			<div>
 				<div className="dashboard-header"> <div>שונות</div></div>
 				<div>
-				  	<GoalListComponent/>
+				  	<TraineeGoalListComponent/>
 				  	<DietListComponent/>
 			  	</div>
 		  	</div>
@@ -33,10 +33,12 @@ const TraineeDashboard = ({currentTrainee,form, traineeList, traineeId, training
 		  		<div className="dashboard-header"> <div>תכנית שבועית</div></div>
 				<TraineeStatusListComponent/>
 			</div>
-			<div>
-				<div className="dashboard-header"> <div>תכנית שבועית</div></div>
-				<SessionNameListComponent/>
-			</div>
+			{ isAdmin &&
+				<div>
+					<div className="dashboard-header"> <div>תכנית שבועית</div></div>
+					<SessionNameListComponent/>
+				</div>
+			}
 		</div>
 );
 }

@@ -12,9 +12,6 @@ class GoalComponent extends React.Component {
     }
     componentWillMount(){}
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId){
-         this.props.getGoalByTrainee()
-      }
     }
 
     render() {
@@ -51,9 +48,8 @@ function mapDispatchToProps(dispatch) {
         editGoal(id){
             dispatch( goalActions.updateGoal(id) )
         },
-        addGoal(e){
-            e.preventDefault();
-            dispatch( goalActions.addGoal() )
+        addGoal(name){
+            dispatch( goalActions.addGoal(name) )
         },
     }
 }

@@ -6,7 +6,7 @@ import ExpenseComponent from '../../Payment/container/ExpenseComponent'
 import TraineePersonalInfoComponent from '../../Trainee/container/TraineePersonalInfoComponent'
 import TraineeTrainingPackageListComponent from'../../Trainee/container/TraineeTrainingPackageListComponent'
 
-const PaymentDashboard = ({paymentList, removeGoal, onInputFieldChange, editMode}) => {
+const PaymentDashboard = ({paymentList, isAdmin, removeGoal, onInputFieldChange, editMode}) => {
 	
 	return (
 		<div className="trainee-dashboard">
@@ -14,14 +14,18 @@ const PaymentDashboard = ({paymentList, removeGoal, onInputFieldChange, editMode
 				<div className="dashboard-header"> <div>תשלומים</div></div>
 				<PaymentComponent/>
 			</div>
-			<div>
-				<div className="dashboard-header"> <div>חבילות</div></div>
-				<TraineeTrainingPackageListComponent/>
-			</div>
-			<div>
-				<div className="dashboard-header"> <div>הוצאות</div></div>
-				<ExpenseComponent/>
-			</div>
+			{ isAdmin &&
+				<div>
+					<div className="dashboard-header"> <div>חבילות</div></div>
+					<TraineeTrainingPackageListComponent/>
+				</div>
+			}
+			{ isAdmin &&
+				<div>
+					<div className="dashboard-header"> <div>הוצאות</div></div>
+					<ExpenseComponent/>
+				</div>
+			}
 		</div>
 );
 }

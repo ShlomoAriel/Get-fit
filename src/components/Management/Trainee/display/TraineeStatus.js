@@ -9,7 +9,7 @@ import ImageUploader from 'react-images-upload';
 
 
 
-const Signup = ({ form, traineeId, traineeList, traineeStatusList, modalOpen, holdImages,
+const Signup = ({ form, traineeId, traineeList, traineeStatusList, modalOpen, holdImages, uploadImageToField,
 				  toggleModal, onInputFieldChange, addTraineeStatus, removeTraineeStatus, setCurrentTrainee}) => {
 	let formFields = {}
 	formFields['traineeInput'] = {onSelect:setCurrentTrainee, type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] },
@@ -41,7 +41,7 @@ const Signup = ({ form, traineeId, traineeList, traineeStatusList, modalOpen, ho
 			            <ImageUploader
 			                withIcon={false}
 			                buttonText='Choose images'
-			                onChange={holdImages}
+			                onChange={uploadImageToField}
 			                imgExtension={['.jpg', '.gif', '.png', '.gif']}
 			                maxFileSize={5242880}
 			                withLabel={false}

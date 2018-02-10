@@ -25,6 +25,7 @@ class DietListComponent extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isAdmin: state.login.isAdmin,
         modalOpen:state.system.modalOpen["diet"],
         traineeId: state.trainee.form.traineeId,
         dietList: state.diet.dietList

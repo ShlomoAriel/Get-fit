@@ -69,6 +69,7 @@ function mapStateToProps(state) {
     let daylList = R.filter(R.propEq('weekDay',state.scheduledExercise.currentDay))(scheduledExerciseList)
     let exerciseList = R.filter(R.propEq('sessionName',state.homeSession.form.sessionName))(scheduledExerciseList)
     return {
+        isAdmin: state.login.isAdmin,
         weekStart:weekStart,
         weekEnd:weekEnd,
         form: state.scheduledExercise.form,

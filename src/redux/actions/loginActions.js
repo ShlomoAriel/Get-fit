@@ -35,6 +35,5 @@ function storeUserCredentials(data) {
 	    window.localStorage.setItem('token', data.token);
 	    window.localStorage.setItem('currentUser', data.user._id);
 	    window.localStorage.setItem('currentUserRole', data.user.role._id);
-	    // this.useCredentials(data.token);
 	}
 }

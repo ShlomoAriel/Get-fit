@@ -1,3 +1,7 @@
+var localUrl = "http://localhost:3001"
+var remoteUrl = "https://get-fit-server.herokuapp.com"
+var currentUrl = remoteUrl
+
 import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
 import axios from 'axios'
@@ -17,6 +21,14 @@ export function setGoalList(goalList){
     }
 }
 
+export function setTraineeGoalList(goalList, traineeId){
+    return {
+        type: types.SET_TRAINEE_GOAL_LIST,
+        goalList: goalList,
+        traineeId: traineeId,
+    }
+}
+
 export function setCurrentGoal(goalId){
     return {
         type: types.SET_CURRENT_GOAL,
@@ -26,7 +38,7 @@ export function setCurrentGoal(goalId){
 
 export function getGoalList(){
     return (dispatch, getState) => {
-        return http.get('https://get-fit-server.herokuapp.com/api/getGoals')
+        return http.get(currentUrl + '/api/getGoals')
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -43,11 +55,14 @@ export function getGoalList(){
 export function getGoalByTrainee(){
     return (dispatch, getState) => {
         let traineeId = getState().trainee.form.traineeId
-        return http.get('https://get-fit-server.herokuapp.com/api/getGoalByTrainee/' + traineeId)
+        if(!traineeId){
+            return
+        }
+        return http.get(currentUrl + '/api/getTraineeGoals/' + traineeId)
         .then ( 
             response => {
                 console.log('Success: ' + response)
-                dispatch(setGoalList(response.data))
+                dispatch(setTraineeGoalList(response.data, traineeId))
             }
         )
         .catch( 
@@ -57,13 +72,34 @@ export function getGoalByTrainee(){
     }
 }
 
-export function addGoal(){
+export function addGoal(name){
+    return (dispatch, getState) => {
+        let form = {name:name}
+        return http.post(currentUrl + '/api/addGoal',form)
+        .then ( 
+            response => {
+                dispatch(getGoalList())
+                console.log('Success: ' + response)
+            }
+        )
+        .catch( 
+            error => 
+                console.log('error loging in: ' + error)
+        )
+    }
+}
+
+export function addTraineeGoals(values){
     return (dispatch, getState) => {
         let form = R.clone(getState().goal.form)
         form.trainee = getState().trainee.form.traineeId
         form.date = Date()
         form.achieved = false
-        return http.post('https://get-fit-server.herokuapp.com/api/addGoal',form)
+        form.values = values
+        if(form.text){
+            form.values += form.values != '' ? ',' + form.text : form.text
+        }
+        return http.post(currentUrl + '/api/addTraineeGoals',form)
         .then ( 
             response => {
                 dispatch(getGoalByTrainee())
@@ -80,7 +116,7 @@ export function addGoal(){
 export function updaeGoal(id, goal){
     return (dispatch, getState) => {
         let form = getState().goal.form
-        return http.put('https://get-fit-server.herokuapp.com/api/deleteGoal/'+id, goal)
+        return http.put(currentUrl + '/api/deleteGoal/'+id, goal)
         .then (
             response => {
                 dispatch(getGoalByTrainee())
@@ -96,10 +132,11 @@ export function updaeGoal(id, goal){
 
 export function toggleCheckbox(id, value){
     return (dispatch, getState) => {
-        let goalList = getState().goal.goalList
-        let goal = R.find(R.propEq('_id',id))(goalList)
+        let traineeId = getState().trainee.currentTrainee._id 
+        let goalList = getState().goal.traineeGoalMap[traineeId]
+        let goal = R.clone(R.find(R.propEq('_id',id))(goalList))
         goal.achieved = value
-        return http.put('https://get-fit-server.herokuapp.com/api/updateGoal/'+id, goal)
+        return http.put(currentUrl + '/api/updateTraineeGoal/'+id, goal)
         .then (
             response => {
                 dispatch(getGoalByTrainee())
@@ -117,7 +154,25 @@ export function removeGoal(id){
     return (dispatch, getState) => {
         let form = getState().goal.form
         const jwt = localStorage.getItem('token');
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteGoal/'+id)
+        return http.remove(currentUrl + '/api/deleteGoal/'+id)
+        .then ( 
+            response => {
+                dispatch(getGoalList())
+                console.log('Success: ' + response)
+            }
+        )
+        .catch( 
+            error => 
+                console.log('error loging in: ' + error)
+        )
+    }
+}
+
+export function removeTraineeGoal(id){
+    return (dispatch, getState) => {
+        let form = getState().goal.form
+        const jwt = localStorage.getItem('token');
+        return http.remove(currentUrl + '/api/deleteTraineeGoal/'+id)
         .then ( 
             response => {
                 dispatch(getGoalByTrainee())
