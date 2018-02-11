@@ -54,7 +54,7 @@ export function getGoalList(){
 
 export function getGoalByTrainee(){
     return (dispatch, getState) => {
-        let traineeId = getState().trainee.form.traineeId
+        let traineeId = getState().trainee.currentTrainee._id
         if(!traineeId){
             return
         }
@@ -92,7 +92,7 @@ export function addGoal(name){
 export function addTraineeGoals(values){
     return (dispatch, getState) => {
         let form = R.clone(getState().goal.form)
-        form.trainee = getState().trainee.form.traineeId
+        form.trainee = getState().trainee.currentTrainee._id
         form.date = Date()
         form.achieved = false
         form.values = values

@@ -24,7 +24,7 @@ function mapStateToProps(state) {
     return {
         locationList: state.location.locationList,
         form: state.location.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
     }
 }
 

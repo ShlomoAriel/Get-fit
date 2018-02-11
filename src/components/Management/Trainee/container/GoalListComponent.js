@@ -31,7 +31,7 @@ function mapStateToProps(state) {
     return {
         goalList: state.goal.goalList,
         form: state.goal.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
         modalOpen:state.system.modalOpen["goal"],
     }

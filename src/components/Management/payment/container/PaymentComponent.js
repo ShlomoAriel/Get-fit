@@ -31,7 +31,7 @@ function mapStateToProps(state) {
     return {
         currentTrainee: state.trainee.currentTrainee,
         form: state.payment.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
     }
 }

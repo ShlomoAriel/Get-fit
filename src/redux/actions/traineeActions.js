@@ -96,7 +96,7 @@ export function getTraineeList(){
 }
 export function getTraineePackageList(){
     return (dispatch, getState) => {
-        let traineeId = getState().trainee.form.traineeId
+        let traineeId = getState().trainee.currentTrainee._id
         return http.get(currentUrl + '/api/getTraineeTrainingPackageByTrainee/' + traineeId)
         .then ( 
             response => {
@@ -136,7 +136,7 @@ export function addTraineeTrainingPackage(){
             return
         }
         let form = {
-            trainee : getState().trainee.form.traineeId,
+            trainee : getState().trainee.currentTrainee._id,
             amount: trainingPackage.amount,
             name: trainingPackage.name,
             sessions: trainingPackage.sessions,

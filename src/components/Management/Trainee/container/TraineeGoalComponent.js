@@ -49,7 +49,7 @@ function mapStateToProps(state) {
     let goalOptions = state.goal.goalList.map( goal => {
         return { value:goal.name, label: goal.name }
     })
-    let traineeGoalList =  state.trainee.form.traineeId && state.goal.traineeGoalMap[state.trainee.form.traineeId] ? state.goal.traineeGoalMap[state.trainee.form.traineeId] : []
+    let traineeGoalList =  state.trainee.currentTrainee._id && state.goal.traineeGoalMap[state.trainee.currentTrainee._id] ? state.goal.traineeGoalMap[state.trainee.currentTrainee._id] : []
     traineeGoalList = traineeGoalList.map( goal => {
         return { value:goal.name, label: goal.name }
     })
@@ -57,7 +57,7 @@ function mapStateToProps(state) {
     return {
         traineeGoalList: traineeGoalList,
         form: state.goal.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
         goalOptions: goalOptions
     }

@@ -26,7 +26,7 @@ export function setCurrentPayment(paymentId){
 
 export function getPaymentByTrainee(local){
     return (dispatch, getState) => {
-        let traineeId = getState().trainee.form.traineeId
+        let traineeId = getState().trainee.currentTrainee._id
         if(local && getState().payment.paymentMap[traineeId]){
             return
         }
@@ -71,7 +71,7 @@ export function getPaymentList(){
 export function addPayment(){
     return (dispatch, getState) => {
         let form = R.clone(getState().payment.form)
-        form.trainee = getState().trainee.form.traineeId
+        form.trainee = getState().trainee.currentTrainee._id
         form.date = Date()
         form.achieved = false
         return http.post('https://get-fit-server.herokuapp.com/api/addPayment',form)

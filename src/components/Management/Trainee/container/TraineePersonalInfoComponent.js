@@ -8,15 +8,13 @@ class TraineePersonalInfoComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
     }
-    componentWillMount(){
-        if(this.props.traineeList[0]){
-            this.props.setCurrentTrainee("",this.props.traineeList[0].value)    
+    componentDidMount(){
+        let traineeId = window.localStorage.getItem('currentTrainee')
+        if(traineeId){
+            this.props.setCurrentTrainee("",traineeId)
         }
     }
     componentDidUpdate(prevProps, prevState) {
-      if(!this.props.traineeId && this.props.traineeList && this.props.traineeList[0]){
-        this.props.setCurrentTrainee("",this.props.traineeList[0].value)
-      }
     }
 
     render() {
@@ -30,7 +28,7 @@ function mapStateToProps(state) {
         return { value:trainee._id, label: trainee.firstName }
     })
     traineeOptions.push({ value:undefined, label: 'כולם' })
-    let traineeId = state.trainee.form.traineeId
+    let traineeId = state.trainee.currentTrainee._id
     // if(!traineeId && traineeOptions[0]){
     //     traineeId = traineeOptions[0].value
     // }

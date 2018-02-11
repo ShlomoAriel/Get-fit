@@ -51,7 +51,7 @@ export function getSessionList(){
 
 export function getSessionByTrainee(){
     return (dispatch, getState) => {
-        let traineeId = getState().trainee.form.traineeId
+        let traineeId = getState().trainee.currentTrainee._id
         if(!traineeId){
             return
         }
@@ -72,7 +72,7 @@ export function getSessionByTrainee(){
 export function addSession(){
     return (dispatch, getState) => {
         let form = R.clone(getState().session.form)
-        form.trainee = getState().trainee.form.traineeId
+        form.trainee = getState().trainee.currentTrainee._id
         form.done = false
         let day = form.date
         form.date = R.clone(form.date.startOf('day'))

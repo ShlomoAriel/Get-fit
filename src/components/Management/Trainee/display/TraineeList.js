@@ -1,7 +1,7 @@
 import React from 'react';
 import TextInput from'../../../Elements/TextInput/TextInput'
 
-const Signup = ({traineeList, removeTrainee, setEeditTrainee, updaeTrainee, currentTraineeId}) => {
+const TraineeList = ({traineeList, removeTrainee, setEeditTrainee, updaeTrainee, currentTraineeId}) => {
 	return (
 		  <div className="trainee-list list-general-wrapper">
 		  	<div>
@@ -36,4 +36,4 @@ const Signup = ({traineeList, removeTrainee, setEeditTrainee, updaeTrainee, curr
 		  </div>
 );
 }
-export default Signup;
+export default TraineeList;

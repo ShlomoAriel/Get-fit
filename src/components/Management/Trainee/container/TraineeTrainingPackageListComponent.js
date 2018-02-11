@@ -28,7 +28,7 @@ function mapStateToProps(state) {
 	let trainingPackageOptions = state.trainingPackage.trainingPackageList.map( trainingPackage => {
         return { value:trainingPackage._id, label: trainingPackage.name }
     })
-    let traineeId = state.trainee.form.traineeId
+    let traineeId = state.trainee.currentTrainee._id
     let traineePackageList = state.trainee.traineePackageMap[traineeId] ? state.trainee.traineePackageMap[traineeId] : []
     let trainingPackageId   = state.trainingPackage.form.trainingPackageId
     let currentPackcage = R.find(R.propEq('_id',trainingPackageId))(state.trainingPackage.trainingPackageList)
@@ -37,7 +37,7 @@ function mapStateToProps(state) {
         quantity: state.trainingPackage.form.quantity,
     	percent: state.trainingPackage.form.percent,
     	traineePackageList: traineePackageList,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         trainingPackageList: trainingPackageOptions,
         trainingPackageId: trainingPackageId,
         currentPackcage:currentPackcage,

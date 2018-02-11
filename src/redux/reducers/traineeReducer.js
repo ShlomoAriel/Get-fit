@@ -22,8 +22,8 @@ export default function(state = initialState, action) {
     	case types.UPDATE_TRAINEE_FIELD:
     		return R.assocPath(['form',action.field], action.value, state )
         case types.SET_CURRENT_TRAINEE:
-            var newState =  R.assocPath(['form','traineeId'], action.trainee._id, state )
-            return R.assoc('currentTrainee', action.trainee, newState )
+            // var newState =  R.assocPath(['form','traineeId'], action.trainee._id, state )
+            return R.assoc('currentTrainee', action.trainee, state )
         case types.SET_EDIT_TRAINEE:
             var newState =  R.clone(state)
             newState.form = R.mergeDeepRight(emptyForm,action.trainee)

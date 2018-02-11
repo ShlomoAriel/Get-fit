@@ -29,7 +29,7 @@ function mapStateToProps(state) {
     return {
         dietList: state.diet.dietList,
         form: state.diet.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
     }
 }

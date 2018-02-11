@@ -2,7 +2,7 @@ import React from 'react';
 import InputWrapper from'../../../Elements/InputWrapper/InputWrapper'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-const Signup = ({form, traineeId, traineeList,addTraineeGoals, goalOptions, goalList, onInputFieldChange, addGoal, removeGoal, setCurrentTrainee, toggleModal,value,onChange}) => {
+const TraineeGoal = ({form, traineeId, traineeList,addTraineeGoals, goalOptions, goalList, onInputFieldChange, addGoal, removeGoal, setCurrentTrainee, toggleModal,value,onChange}) => {
 	let formFields = {}
 	formFields['traineeInput'] = {onSelect:setCurrentTrainee, type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] },
     formFields['textInput'] = { type: 'input', fieldClass:'form-control',field: 'text', name:'text', placeholder: 'text', value: form.text, onUpdate: onInputFieldChange }
@@ -38,4 +38,4 @@ const Signup = ({form, traineeId, traineeList,addTraineeGoals, goalOptions, goal
 		  </div>
 );
 }
-export default Signup;
+export default TraineeGoal;

@@ -17,7 +17,7 @@ function mapStateToProps(state) {
     })
     return {
     	form: state.scheduledExercise.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
         sessionNameList: sessionNameOptions,
         exerciseList:exerciseOptions,

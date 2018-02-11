@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import TraineePersonalInfoComponent from 'components/Management/Trainee/container/TraineePersonalInfoComponent'
 
-const Header = ({menuOpen, isAdmin, authenticated, currentTab, toggleMenu, goTo}) => {
+const Header = ({menuOpen, logout, isAdmin, authenticated, currentTab, toggleMenu, goTo}) => {
 
 	function goToAndSet(tab){
 		toggleMenu()
@@ -39,6 +39,9 @@ const Header = ({menuOpen, isAdmin, authenticated, currentTab, toggleMenu, goTo}
 	      					{tab.name}
 		      			</Link>		
 		      		</li>)
+		      }
+		      { authenticated &&
+		      	<li onClick={logout}><a>התנתק</a></li>
 		      }
 		      </ul>
 			<TraineePersonalInfoComponent/>

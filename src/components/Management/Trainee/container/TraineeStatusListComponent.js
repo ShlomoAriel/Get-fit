@@ -32,7 +32,7 @@ function mapStateToProps(state, ownProps) {
         isAdmin: state.login.isAdmin,
         traineeStatusList: state.traineeStatus.traineeStatusList ? state.traineeStatus.traineeStatusList : [],
         form: state.traineeStatus.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
         modalOpen:state.system.modalOpen["traineeStatus"],
     }

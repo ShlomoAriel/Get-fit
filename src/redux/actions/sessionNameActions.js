@@ -42,7 +42,7 @@ export function getSessionNameList(){
 
 export function getSessionNameByTrainee(){
     return (dispatch, getState) => {
-        let traineeId = getState().trainee.form.traineeId
+        let traineeId = getState().trainee.currentTrainee._id
         if(!traineeId){
             return
         }
@@ -63,7 +63,7 @@ export function getSessionNameByTrainee(){
 export function addSessionName(){
     return (dispatch, getState) => {
         let form = R.clone(getState().sessionName.form)
-        form.trainee = getState().trainee.form.traineeId
+        form.trainee = getState().trainee.currentTrainee._id
         return http.post('https://get-fit-server.herokuapp.com/api/addSessionName',form)
         .then ( 
             response => {

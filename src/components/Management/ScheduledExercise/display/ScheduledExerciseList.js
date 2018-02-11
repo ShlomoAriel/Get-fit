@@ -34,12 +34,12 @@ const ScheduledExerciseList = ({form,weekEnd, isAdmin, weekStart, homeSessionFor
 		<div className="scheduled-exercise-list list-general-wrapper">
 			 { isAdmin && modalOpen && <HomeSessionComponent toggleModal={toggleModal}/>}
 			<div>
+				<div className="week-header">
+					<div className="arrow-button" onClick={()=>setScheduledWeek(scheduleWeek-1)}> <i className="fa fa-chevron-right" aria-hidden="true"></i> </div>
+					<div> {moment(weekStart).format('DD/MM/YYYY')} - {moment(weekEnd).format('DD/MM/YYYY')} </div>
+					<div className="arrow-button"onClick={()=>setScheduledWeek(scheduleWeek+1)}> <i className="fa fa-chevron-left" aria-hidden="true"></i> </div>
+				</div>
 				<div className="schedule-wrapper">
-					<div className="week-header">
-						<div className="arrow-button" onClick={()=>setScheduledWeek(scheduleWeek-1)}> <i className="fa fa-chevron-right" aria-hidden="true"></i> </div>
-						<div> {moment(weekStart).format('DD/MM/YYYY')} - {moment(weekEnd).format('DD/MM/YYYY')} </div>
-						<div className="arrow-button"onClick={()=>setScheduledWeek(scheduleWeek+1)}> <i className="fa fa-chevron-left" aria-hidden="true"></i> </div>
-					</div>
 					<div className="weekdays-wrapper">
 					{
 						(weekDays).map( fieldKey =>
@@ -86,15 +86,16 @@ const ScheduledExerciseList = ({form,weekEnd, isAdmin, weekStart, homeSessionFor
 								<div>{scheduledExercise.exercise && scheduledExercise.exercise.name}</div>
 								<div>{scheduledExercise.sets}</div>
 								<div>{scheduledExercise.reps}</div>
-								<div><a target="_blanc" href={scheduledExercise.exercise && scheduledExercise.exercise.link}>סרטון</a></div>
+	  							<div><a target="_blanc" href={scheduledExercise.exercise && scheduledExercise.exercise.link}><i className="fa fa-film"></i></a></div>
 								<div><i className="fa fa-trash-o" onClick={()=>removeScheduledExercise(scheduledExercise._id)}></i></div>
 								<div><i className="fa fa-pencil" onClick={()=>editScheduledExercise(scheduledExercise._id)}></i></div>
-								{ scheduledExercise.exercise.link && 
-									 <YouTube
-								        videoId={utils.getYoutubeId(scheduledExercise.exercise.link)}
-								        opts={opts}
-								        onReady={1}
-								      />
+								{ 
+									// scheduledExercise.exercise.link && 
+									//  <YouTube
+								 //        videoId={utils.getYoutubeId(scheduledExercise.exercise.link)}
+								 //        opts={opts}
+								 //        onReady={1}
+								 //      />
 								}
 							</div>
 							)

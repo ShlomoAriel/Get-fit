@@ -21,7 +21,7 @@ class ExpenseListComponent extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         expenseList: state.expense.expenseList,
         form: state.expense.form,
     }

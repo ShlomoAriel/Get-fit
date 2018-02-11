@@ -28,6 +28,9 @@
 		display:flex;
 		justify-content: space-between;
 	    align-items: start;
+	    @media only screen and (max-width: 1199px)  {
+	    	flex-direction: column;
+	    }
 	}
 	.custom-row{
 		> div{
@@ -62,7 +65,12 @@
 		justify-content: start;
 		align-items: center;
 		align-content: center;
+		margin: 1px;
 		box-shadow: 0px 0px 3px 0px #35ABAB;
+		@media only screen and (max-width: 1199px)  {
+			display:inline-flex;
+		    margin-bottom: 1px;
+		}
 		> div{
 		}
 		span{

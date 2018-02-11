@@ -45,8 +45,8 @@ function mapStateToProps(state) {
     let currentDate = moment(weekStart).add(state.scheduledExercise.scheduleWeek, 'weeks')
     let weekStart = currentDate.clone().startOf('week');
     let weekEnd = currentDate.clone().endOf('week');
-    let sessions = state.session.sessionList
-    let homeSessions = state.homeSession.homeSessionList
+    let sessions = state.session.sessionList ? state.session.sessionList : []
+    let homeSessions = state.homeSession.homeSessionList ? state.homeSession.homeSessionList : []
     let days = []
     for (var i = 0; i <= 6; i++) {
         let day = moment(weekStart).add(i, 'days').format()
@@ -76,7 +76,7 @@ function mapStateToProps(state) {
         homeSessionForm: state.homeSession.form,
         scheduledExerciseList: exerciseList,
         sessionNameList: sessionNameOptions,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         modalOpen:state.system.modalOpen["scheduledExercise"],
         traineeList: traineeOptions,
         weekDays: days,

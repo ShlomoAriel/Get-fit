@@ -19,7 +19,11 @@ export default function(state = initialState, action) {
     		return R.assocPath(['form',action.field], action.value, state )
     	case types.SET_TOKEN:
             let newState = R.assoc('token', action.token, state )
-            newState.isAdmin = systemUtils.isAdmin()
+            if(!action.token || action.token == ''){
+                newState.isAdmin = false
+            } else{
+                newState.isAdmin = systemUtils.isAdmin()
+            }
     		return R.assoc('authenticated', newState.token !== '', newState )
         default:
             return state;

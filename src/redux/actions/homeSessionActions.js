@@ -42,7 +42,10 @@ export function getHomeSessionList(){
 
 export function getHomeSessionByTrainee(){
     return (dispatch, getState) => {
-        let traineeId = getState().trainee.form.traineeId
+        let traineeId = getState().trainee.currentTrainee._id
+        if(!traineeId){
+            return
+        }
         return http.get('https://get-fit-server.herokuapp.com/api/getHomeSessionByTrainee/' + traineeId)
         .then ( 
             response => {
@@ -66,7 +69,7 @@ export function addHomeSession(){
             let form = {}
             form.date = R.clone(getState().homeSession.form.date)
             form.sessionName = R.clone(getState().homeSession.form.sessionName)
-            form.trainee = getState().trainee.form.traineeId
+            form.trainee = getState().trainee.currentTrainee._id
             form.done = form.done ? form.done : false
             let weekCount = getState().homeSession.form.weekCount
             let formArray2 = [...Array(weekCount-1)]

@@ -51,7 +51,7 @@ export function getTraineeScheduledExercisesByDay(params){
     return (dispatch, getState) => {
         let params={
             weekDay:getState().scheduledExercise.form.weekDay,
-            trainee:getState().trainee.form.traineeId
+            trainee:getState().trainee.currentTrainee._id
         }
         if(!params.weekDay || !params.trainee){
             return
@@ -74,7 +74,7 @@ export function getTraineeScheduledExercisesBySessionName(params){
     return (dispatch, getState) => {
         let params={
             sessionName:getState().homeSession.form.sessionName,
-            trainee:getState().trainee.form.traineeId
+            trainee:getState().trainee.currentTrainee._id
         }
         if(!params.sessionName || !params.trainee){
             return
@@ -97,7 +97,7 @@ export function getTraineeScheduledExercises(){
     return (dispatch, getState) => {
         let scheduledExerciseState = getState().scheduledExercise
         let params={
-            trainee:getState().trainee.form.traineeId
+            trainee:getState().trainee.currentTrainee._id
         }
         if(!params.trainee){
             return

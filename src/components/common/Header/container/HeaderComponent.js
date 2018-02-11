@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
+import * as loginActions from 'redux/actions/loginActions'
 import Header from '../display/Header';
 import { hashHistory } from 'react-router-dom'
 
@@ -20,7 +21,10 @@ function mapDispatchToProps(dispatch) {
         },
         goTo(tab){
         	dispatch(systemActions.setCurrentTab(tab))
-        }
+        },
+        logout(){   
+            dispatch(loginActions.logout())
+        },
     }
 }
 

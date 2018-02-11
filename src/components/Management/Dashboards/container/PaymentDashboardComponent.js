@@ -26,7 +26,7 @@ function mapStateToProps(state) {
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
-    let traineeId = state.trainee.form.traineeId
+    let traineeId = state.trainee.currentTrainee._id
     let paymentList = state.payment.paymentMap[traineeId] ? state.payment.paymentMap[traineeId] : []
     return {
         isAdmin: state.login.isAdmin,

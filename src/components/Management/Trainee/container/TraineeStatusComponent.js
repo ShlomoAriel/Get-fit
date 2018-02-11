@@ -58,7 +58,7 @@ function mapStateToProps(state, ownProps) {
     return {
         traineeStatusList: state.traineeStatus.traineeStatusList,
         form: state.traineeStatus.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
         modalOpen:state.system.modalOpen,
     }

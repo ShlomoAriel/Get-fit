@@ -23,7 +23,7 @@ class PaymentListComponent extends React.Component {
 }
 
 function mapStateToProps(state) {
-    let traineeId = state.trainee.form.traineeId
+    let traineeId = state.trainee.currentTrainee._id
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
@@ -31,7 +31,7 @@ function mapStateToProps(state) {
     let packages = state.trainee.traineePackageMap[traineeId]
     if(packages){
         totalBill = packages.reduce( (total, current )=>
-            total + current.quantity*current.amount
+            total + current.quantity*current.amount*(current.percent*0.08)
         , 0)
     }
     let paymentList = state.payment.paymentMap[traineeId] ? state.payment.paymentMap[traineeId] : []
@@ -41,7 +41,7 @@ function mapStateToProps(state) {
     return {
         isAdmin: state.login.isAdmin,
         form: state.goal.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
         paymentList: paymentList,
         totalPayed:totalPayed,

@@ -1,7 +1,7 @@
 import React from 'react';
 import TextInput from'../../../Elements/TextInput/TextInput'
 
-const Signup = ({trainingPackageList, removeTrainingPackage}) => {
+const TrainingPackageList = ({trainingPackageList, removeTrainingPackage}) => {
 	return (
 		  <div className="training-package-list list-general-wrapper">
 		  			<div>
@@ -26,4 +26,4 @@ const Signup = ({trainingPackageList, removeTrainingPackage}) => {
 		  </div>
 );
 }
-export default Signup;
+export default TrainingPackageList;

@@ -28,12 +28,12 @@ function mapStateToProps(state) {
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
-    let traineeGoalList =  state.trainee.form.traineeId && state.goal.traineeGoalMap[state.trainee.form.traineeId] ? state.goal.traineeGoalMap[state.trainee.form.traineeId] : []
+    let traineeGoalList =  state.trainee.currentTrainee._id && state.goal.traineeGoalMap[state.trainee.currentTrainee._id] ? state.goal.traineeGoalMap[state.trainee.currentTrainee._id] : []
     return {
         isAdmin: state.login.isAdmin,
         traineeGoalList: traineeGoalList,
         form: state.goal.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,
         modalOpen:state.system.modalOpen["goal"],
     }

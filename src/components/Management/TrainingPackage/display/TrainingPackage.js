@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from'../../../Elements/TextInput/TextInput'
 import TrainingPackageList from'../container/TrainingPackageListComponent'
 
-const Signup = ({form, authenticated, trainingPackageList, onInputFieldChange, addTrainingPackage, removeTrainingPackage}) => {
+const TrainingPackage = ({form, authenticated, trainingPackageList, onInputFieldChange, addTrainingPackage, removeTrainingPackage}) => {
 	let formFields = {}
     // formFields['percentInput'] = { fieldClass:'form-control',field: 'percent', name:'percent', placeholder: 'percent', value: form.percent, onUpdate: onInputFieldChange }
     formFields['amountInput'] = { fieldClass:'form-control',field: 'amount', name:'amount', placeholder: 'amount', value: form.amount, onUpdate: onInputFieldChange }
@@ -29,4 +29,4 @@ const Signup = ({form, authenticated, trainingPackageList, onInputFieldChange, a
 			  </div>
 );
 }
-export default Signup;
+export default TrainingPackage;

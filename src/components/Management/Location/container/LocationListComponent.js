@@ -22,7 +22,7 @@ class LocationListComponent extends React.Component {
 function mapStateToProps(state) {
     return {
         modalOpen:state.system.modalOpen["location"],
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         locationList: state.location.locationList
     }
 }

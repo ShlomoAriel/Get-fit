@@ -75,8 +75,7 @@ body {
   .rbc-month-view {
       flex: 1;
   }
-}
-.navbar{
+}.navbar{
   background:#E1E1E1;
   background:#FFFFFF;
   margin-bottom:0px;
@@ -98,8 +97,14 @@ body {
 }
 .container-fluid{
   padding:0px;
+  @media only screen and (max-width: 1199px)  {
+    padding: 0px 15px;
+  }
   > div{
     padding: 25px 0;
-    
+    @media only screen and (max-width: 1199px)  {
+      padding:0px;
+      border-bottom: 1px solid #e7e7e7;
+    }
   }
 }

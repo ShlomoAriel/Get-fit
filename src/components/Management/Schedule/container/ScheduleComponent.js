@@ -66,7 +66,7 @@ function mapStateToProps(state) {
 
     return {
         homeSessionForm: state.homeSession.form,
-        traineeId: state.trainee.form.traineeId,
+        traineeId: state.trainee.currentTrainee._id,
         modalOpen:state.system.modalOpen["session"],
         sessionNameList: sessionNameOptions,
         sessionType:state.session.sessionType,

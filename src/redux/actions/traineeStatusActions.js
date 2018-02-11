@@ -46,7 +46,10 @@ export function getTraineeStatusList(){
 
 export function getTraineeStatusByTrainee(){
     return (dispatch, getState) => {
-        let traineeId = getState().trainee.form.traineeId
+        let traineeId = getState().trainee.currentTrainee._id
+        if(!traineeId){
+            return
+        }
         return http.get(currentUrl + '/api/getTraineeStatusByTrainee/' + traineeId)
         .then ( 
             response => {
@@ -64,7 +67,7 @@ export function getTraineeStatusByTrainee(){
 export function addTraineeStatus(image){
     return (dispatch, getState) => {
         let form = R.clone(getState().traineeStatus.form)
-        form.trainee = getState().trainee.form.traineeId
+        form.trainee = getState().trainee.currentTrainee._id
         if(image){
             form.image = image
         }
