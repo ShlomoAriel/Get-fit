@@ -1,6 +1,6 @@
 var localUrl = "http://localhost:3001"
 var remoteUrl = "https://get-fit-server.herokuapp.com"
-var currentUrl = localUrl
+var currentUrl = remoteUrl
 var traineeDataMap = [
                         {action:'SET_DIET_MAP_TRAINEE', modelList:'Diet'},
                         {action:'SET_TRAINEE_GOAL_LIST', modelList:'TraineeGoal'},
