@@ -1,6 +1,6 @@
 var localUrl = "http://localhost:3001"
 var remoteUrl = "https://get-fit-server.herokuapp.com"
-var currentUrl = remoteUrl
+var currentUrl = localUrl
 
 import * as types from './actionTypes'
 import R from 'ramda';

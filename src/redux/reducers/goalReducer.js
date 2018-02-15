@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
         case types.SET_GOAL_LIST:
             return R.assoc('goalList', action.goalList, state )
         case types.SET_TRAINEE_GOAL_LIST:
-            return R.assocPath(['traineeGoalMap',action.traineeId], action.goalList, state )
+            return R.assocPath(['traineeGoalMap',action.traineeId], action.list, state )
         default:
             return state;
     }

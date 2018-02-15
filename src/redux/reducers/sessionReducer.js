@@ -6,6 +6,9 @@ const initialState = {
 	},
     sessionList:[],
     sessionType:'session',
+    sessionMap:{
+
+    }
 }
 
 export default function(state = initialState, action) {
@@ -18,6 +21,8 @@ export default function(state = initialState, action) {
             return R.assoc('sessionType', action.sessionType, state )
         case types.SET_SESSION_LIST:
             return R.assoc('sessionList', action.sessionList, state )
+          case types.SET_TRAINEE_SESSION_LIST:
+            return R.assocPath(['sessionMap',action.traineeId], action.list, state )
         default:
             return state;
     }

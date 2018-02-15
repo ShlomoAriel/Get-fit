@@ -8,6 +8,9 @@ const initialState = {
     currentDay:2,
     scheduleWeek:0,
     scheduledExerciseList:[],
+    scheduledExerciseMap:{
+
+    }
 }
 
 export default function(state = initialState, action) {
@@ -20,6 +23,8 @@ export default function(state = initialState, action) {
             return R.assoc('currentDay', action.day, state )
         case types.SET_SCHEDULED_WEEK:
             return R.assoc('scheduleWeek', action.value, state )
+        case types.SET_TRAINEE_SCHEDULEDEXERCISE_LIST:
+            return R.assocPath(['scheduledExerciseMap',action.traineeId], action.list, state )
         default:
             return state;
     }

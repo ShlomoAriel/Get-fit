@@ -16,10 +16,12 @@ export default function(state = initialState, action) {
             return R.assocPath(['form','paymentId'], action.paymentId, state )
         case types.SET_PAYMENT_LIST:
             return R.assoc('paymentList', action.paymentList, state )
+        // case types.SET_PAYMENT_MAP:
+        //     let traineePaymentMap = R.clone(state.paymentMap)
+        //     traineePaymentMap[action.traineeId] = action.list
+        //     return R.assoc('paymentMap', traineePaymentMap, state )
         case types.SET_PAYMENT_MAP:
-            let traineePaymentMap = R.clone(state.paymentMap)
-            traineePaymentMap[action.traineeId] = action.paymentList
-            return R.assoc('paymentMap', traineePaymentMap, state )
+            return R.assocPath(['paymentMap',action.traineeId], action.list, state )
         default:
             return state;
     }

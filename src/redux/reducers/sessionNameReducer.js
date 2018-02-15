@@ -5,6 +5,9 @@ const initialState = {
 	form:{
 	},
     sessionNameList:[],
+    sessionNameMap:{
+
+    }
 }
 
 export default function(state = initialState, action) {
@@ -15,6 +18,8 @@ export default function(state = initialState, action) {
             return R.assocPath(['form','sessionNameId'], action.sessionNameId, state )
         case types.SET_SESSION_NAME_LIST:
             return R.assoc('sessionNameList', action.sessionNameList, state )
+        case types.SET_TRAINEE_SESSIONNAME_LIST:
+            return R.assocPath(['sessionNameMap',action.traineeId], action.list, state )
         default:
             return state;
     }
