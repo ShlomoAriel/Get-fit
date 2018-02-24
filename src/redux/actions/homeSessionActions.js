@@ -1,3 +1,7 @@
+var localUrl = "http://localhost:3001"
+var remoteUrl = "https://get-fit-server.herokuapp.com"
+var currentUrl = localUrl
+
 import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
 import axios from 'axios'
@@ -26,7 +30,7 @@ export function setCurrentHomeSession(HomeSessionId){
 
 export function getHomeSessionList(){
     return (dispatch, getState) => {
-        return http.get('https://get-fit-server.herokuapp.com/api/getHomeSessions')
+        return http.get(currentUrl + '/api/getHomeSessions')
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -46,7 +50,7 @@ export function getHomeSessionByTrainee(){
         if(!traineeId){
             return
         }
-        return http.get('https://get-fit-server.herokuapp.com/api/getHomeSessionByTrainee/' + traineeId)
+        return http.get(currentUrl + '/api/getHomeSessionByTrainee/' + traineeId)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -59,7 +63,6 @@ export function getHomeSessionByTrainee(){
         )
     }
 }
-
 export function addHomeSession(){
     return (dispatch, getState) => {
         if(getState().homeSession.form._id){
@@ -78,11 +81,16 @@ export function addHomeSession(){
             formArray2.forEach((_, i) => {
                 formArray[i+1] = R.assoc('date',new Date(form.date.add(1, 'weeks')), form) ;
             });
-            return http.post('https://get-fit-server.herokuapp.com/api/addHomeSessions',formArray)
+            return http.post(currentUrl + '/api/addHomeSessions',formArray)
             .then ( 
                 response => {
-                    dispatch(getHomeSessionByTrainee())
-                    console.log('Success: ' + response)
+                    let trainneeHomeSesions = [...(getState().trainee.currentTrainee.HomeSesssion), ...(response.data)]
+                    dispatch({
+                        type: types.SET_CURRENT_TRAINEE_LIST,
+                        listName: 'HomeSesssion',
+                        list: trainneeHomeSesions
+                    })
+                    console.log('Success: ' + trainneeHomeSesions)
                 }
             )
             .catch( 
@@ -96,7 +104,7 @@ export function addHomeSession(){
 export function updaeHomeSession(){
     return (dispatch, getState) => {
         let form = getState().homeSession.form
-        return http.put('https://get-fit-server.herokuapp.com/api/upsertHomeSession/', form)
+        return http.put(currentUrl + '/api/upsertHomeSession/', form)
         .then (
             response => {
                 dispatch(getHomeSessionByTrainee())
@@ -115,7 +123,7 @@ export function toggleCheckbox(id, value){
         let HomeSessionList = getState().HomeSession.HomeSessionList
         let HomeSession = R.find(R.propEq('_id',id))(HomeSessionList)
         HomeSession.achieved = value
-        return http.put('https://get-fit-server.herokuapp.com/api/updateHomeSession/'+id, HomeSession)
+        return http.put(currentUrl + '/api/updateHomeSession/'+id, HomeSession)
         .then (
             response => {
                 dispatch(getHomeSessionByTrainee())
@@ -132,11 +140,16 @@ export function toggleCheckbox(id, value){
 export function removeHomeSession(id){
     return (dispatch, getState) => {
         const jwt = localStorage.getItem('token');
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteHomeSession/'+id)
+        return http.remove(currentUrl + '/api/deleteHomeSession/'+id)
         .then ( 
             response => {
-                dispatch(getHomeSessionByTrainee())
-                console.log('Success: ' + response)
+                let newHomeSessions = (getState().trainee.currentTrainee.HomeSesssion).filter( item => item._id != id )
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'HomeSesssion',
+                    list: newHomeSessions
+                })
+                console.log('Success: ' + newHomeSessions)
             }
         )
         .catch( 

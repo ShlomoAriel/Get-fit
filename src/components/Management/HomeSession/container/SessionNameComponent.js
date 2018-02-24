@@ -12,9 +12,9 @@ class SessionNameComponent extends React.Component {
     }
     componentWillMount(){}
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId){
-         this.props.getSessionNameByTrainee()
-      }
+      // if(this.props.traineeId != prevProps.traineeId){
+      //    this.props.getSessionNameByTrainee()
+      // }
     }
 
     render() {
@@ -27,7 +27,7 @@ function mapStateToProps(state) {
         return { value:trainee._id, label: trainee.firstName }
     })
     return {
-        sessionNameList: state.sessionName.sessionNameList,
+        sessionNameList: state.trainee.currentTrainee.SessionName ? state.trainee.currentTrainee.SessionName : [],
         form: state.sessionName.form,
         traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,

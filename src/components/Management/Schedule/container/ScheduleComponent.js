@@ -3,74 +3,59 @@ import {connect} from 'react-redux';
 import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
 import * as sessionActions from 'redux/actions/sessionActions'
+import * as webUIActions from 'redux/actions/webUIActions'
 import * as sessionNameActions from 'redux/actions/sessionNameActions'
 import * as homeSessionActions from 'redux/actions/homeSessionActions'
 import Schedule from '../display/Schedule';
 import moment from 'moment';
+import * as scheduleUtils from 'utils/scheduleUtils'
 
 class ScheduleComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
+        this.setSessionTrainee = this.setSessionTrainee.bind(this)
+    }
+    state = {
+        traineeId:null,
+        viewAll:true,
     }
     componentWillMount(){
-        this.props.getSessionByTrainee()
     }
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId){
-         this.props.getSessionByTrainee()
-         this.props.getHomeSessionByTrainee()
-         this.props.getSessionNameByTrainee()
-      }
     }
-
+    setSessionTrainee(viewAll){
+        this.setState({viewAll})
+        if(!viewAll){
+            this.props.getSessionByTraineeId(this.props.traineeId)
+        } else{
+            this.props.getSessionList()
+        }
+        return true
+    }
     render() {
-        return <Schedule{...this.props}/>
+        return <Schedule
+            {...this.props}
+            setSessionTrainee={this.setSessionTrainee}
+            viewAll={this.state.viewAll}
+            />
     }
 }
 
 function mapStateToProps(state) {
-    let sessions = state.session.sessionList
-    let homeSessions = state.homeSession.homeSessionList
-    if(sessions && state.session.sessionType == 'session'){
-        sessions = sessions.map(session =>{ return {
-            start:new Date(session.start),
-            end:new Date(session.end),
-            date:new Date(session.date),
-            title: session.trainee.firstName + ' ' + session.trainee.lastName + (session.text ? (' ' + session.text): '') + (session.location ? (' ' + session.location.name): ''),
-            allDay:session.allDay,
-            text:session.text,
-            firstName:session.trainee.firstName,
-            lastName:session.trainee.lastName,
-            _id:session._id,
-            trainee:{_id:session.trainee._id},
-            allDay:false,
-            type:'session',
-        }})
-    }
+    let sessions = scheduleUtils.getScheduleSessions(state)
+    let traineeOptions = scheduleUtils.getScheduleTraineeList(state)
     let sessionNameOptions = state.sessionName.sessionNameList.map( sessionName => {
         return { value:sessionName._id, label: sessionName.name }
     })
-    if(homeSessions && state.session.sessionType == 'homeSession'){
-        sessions = homeSessions.map(homeSession =>{ return {
-            start:new Date(homeSession.date),
-            end:new Date(homeSession.date),
-            date:new Date(homeSession.date),
-            trainee:{_id:homeSession.trainee._id},
-            sessionName:{_id:homeSession.sessionName._id},
-            _id:homeSession._id,
-            title:(homeSession.sessionName ? homeSession.sessionName.name: '') + ' ' + homeSession.trainee.firstName + ' ' + homeSession.trainee.lastName,
-            allDay:true,
-            type:'homeSession',
-        }})
-    }
-
     return {
-        homeSessionForm: state.homeSession.form,
+        traineeList: traineeOptions,
         traineeId: state.trainee.currentTrainee._id,
+        homeSessionForm: state.homeSession.form,
         modalOpen:state.system.modalOpen["session"],
         sessionNameList: sessionNameOptions,
         sessionType:state.session.sessionType,
         sessions:sessions,
+        isOpen: state.webUI.isOpen['schedule'],
     }
 }
 
@@ -88,8 +73,8 @@ function mapDispatchToProps(dispatch) {
         setSessionType(type){
             dispatch( sessionActions.setSessionType(type) )
         },
-        getSessionByTrainee(){
-            dispatch( sessionActions.getSessionByTrainee() )
+        getSessionByTraineeId(id){
+            dispatch( sessionActions.getSessionByTraineeId(id) )
         },
         getHomeSessionByTrainee(){
             dispatch( homeSessionActions.getHomeSessionByTrainee() )
@@ -99,6 +84,9 @@ function mapDispatchToProps(dispatch) {
         },
         editSession(id){
             dispatch( sessionActions.updateSession(id) )
+        },
+        getSessionList(){
+            dispatch( sessionActions.getSessionList() )
         },
         addSession(e){
             e.preventDefault();
@@ -132,6 +120,9 @@ function mapDispatchToProps(dispatch) {
         getSessionNameByTrainee(){
             dispatch( sessionNameActions.getSessionNameByTrainee() )
         },
+        getSessionByTrainee(id){
+            dispatch( sessionActions.getSessionyTraineeId(id) )
+        }
     }
 }
 

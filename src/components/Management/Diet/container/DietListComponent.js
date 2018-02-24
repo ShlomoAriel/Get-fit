@@ -10,12 +10,12 @@ class DietListComponent extends React.Component {
         super(props, context)
     }
     componentWillMount(){
-        this.props.getDietByTrainee()
+        // this.props.getDietByTrainee()
     }
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId || (this.props.form && this.props.form.weekDay != prevProps.form.weekDay)){
-         this.props.getDietByTrainee()
-      }
+      // if(this.props.traineeId != prevProps.traineeId || (this.props.form && this.props.form.weekDay != prevProps.form.weekDay)){
+      //    this.props.getDietByTrainee()
+      // }
     }
 
     render() {
@@ -28,7 +28,7 @@ function mapStateToProps(state) {
         isAdmin: state.login.isAdmin,
         modalOpen:state.system.modalOpen["diet"],
         traineeId: state.trainee.currentTrainee._id,
-        dietList: state.diet.dietList
+        dietList: state.trainee.currentTrainee.Diet ? state.trainee.currentTrainee.Diet : []
     }
 }
 

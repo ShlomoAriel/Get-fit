@@ -1,3 +1,6 @@
+var localUrl = "http://localhost:3001"
+var remoteUrl = "https://get-fit-server.herokuapp.com"
+var currentUrl = localUrl
 import * as types from './actionTypes'
 import axios from 'axios';
 import * as http from '../../utils/axiosWrapper'
@@ -33,7 +36,7 @@ export function setScheduledExerciseList(scheduledExerciseList){
 
 export function getScheduledExerciseList(){
     return (dispatch, getState) => {
-        return http.get('https://get-fit-server.herokuapp.com/api/getScheduledExercises')
+        return http.get(currentUrl + '/api/getScheduledExercises')
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -56,7 +59,7 @@ export function getTraineeScheduledExercisesByDay(params){
         if(!params.weekDay || !params.trainee){
             return
         }
-        return http.get('https://get-fit-server.herokuapp.com/api/getTraineeScheduledExercisesByDay',params)
+        return http.get(currentUrl + '/api/getTraineeScheduledExercisesByDay',params)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -79,7 +82,7 @@ export function getTraineeScheduledExercisesBySessionName(params){
         if(!params.sessionName || !params.trainee){
             return
         }
-        return http.get('https://get-fit-server.herokuapp.com/api/getTraineeScheduledExercisesBySessionName',params)
+        return http.get(currentUrl + '/api/getTraineeScheduledExercisesBySessionName',params)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -102,7 +105,7 @@ export function getTraineeScheduledExercises(){
         if(!params.trainee){
             return
         }
-        return http.get('https://get-fit-server.herokuapp.com/api/getTraineeScheduledExercises',params)
+        return http.get(currentUrl + '/api/getTraineeScheduledExercises',params)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -117,14 +120,19 @@ export function getTraineeScheduledExercises(){
 }
 export function addScheduledExercise(){
     return (dispatch, getState) => {
-        let form = getState().scheduledExercise.form
+        let form = {...getState().scheduledExercise.form}
         form.trainee = getState().trainee.currentTrainee._id
         form.sessionName = getState().homeSession.form.sessionName
-        return http.post('https://get-fit-server.herokuapp.com/api/addScheduledExercise',form)
+        return http.post(currentUrl + '/api/addScheduledExercise',form)
         .then ( 
             response => {
-                dispatch(getTraineeScheduledExercisesBySessionName())
-                console.log('Success: ' + response)
+                let newScheduledExercise = [...(getState().trainee.currentTrainee.ScheduledExercise), response.data]
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'ScheduledExercise',
+                    list: newScheduledExercise
+                })
+                console.log('Success: ' + newScheduledExercise)
             }
         )
         .catch( 
@@ -138,7 +146,7 @@ export function updaeScheduledExercise(id, scheduledExercise){
     return (dispatch, getState) => {
         let form = getState().scheduledExercise.form
         form.trainee = getState().trainee.currentTrainee._id
-        return http.put('https://get-fit-server.herokuapp.com/api/deleteScheduledExercise/'+id, scheduledExercise)
+        return http.put(currentUrl + '/api/deleteScheduledExercise/'+id, scheduledExercise)
         .then (
             response => {
                 dispatch(getScheduledExerciseList())
@@ -155,12 +163,16 @@ export function updaeScheduledExercise(id, scheduledExercise){
 export function removeScheduledExercise(id){
     return (dispatch, getState) => {
         let form = getState().scheduledExercise.form
-        const jwt = localStorage.getItem('token');
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteScheduledExercise/'+id)
+        return http.remove(currentUrl + '/api/deleteScheduledExercise/'+id)
         .then ( 
             response => {
-                dispatch(getTraineeScheduledExercisesBySessionName())
-                console.log('Success: ' + response)
+                let newScheduledExercise = (getState().trainee.currentTrainee.ScheduledExercise).filter( item => item._id != id )
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'ScheduledExercise',
+                    list: newScheduledExercise
+                })
+                console.log('Success: ' + newScheduledExercise)
             }
         )
         .catch( 

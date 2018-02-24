@@ -12,6 +12,7 @@ import * as exerciseActions from 'redux/actions/exerciseActions'
 import * as locationActions from 'redux/actions/locationActions'
 import * as goalActions from 'redux/actions/goalActions'
 import HeaderComponent from 'components/common/Header/container/HeaderComponent'
+import Loader from 'components/common//Loader/Loader'
 
 
 class App extends React.Component {
@@ -39,8 +40,11 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <HeaderComponent />
-                {this.props.children}
+                <Loader isOpen={this.props.isOpen}/>
+                <div>
+                  <HeaderComponent />
+                  {this.props.children}
+                </div>
             </div>
         )
     }
@@ -52,7 +56,8 @@ App.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     return {
-        authenticated:state.login.authenticated
+        authenticated:state.login.authenticated,
+        isOpen: state.webUI.isOpen['main']
     }
 }
 

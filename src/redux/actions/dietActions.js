@@ -1,3 +1,6 @@
+var localUrl = "http://localhost:3001"
+var remoteUrl = "https://get-fit-server.herokuapp.com"
+var currentUrl = localUrl
 import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
 import axios from 'axios'
@@ -26,7 +29,7 @@ export function setCurrentDiet(dietId){
 
 export function getDietList(){
     return (dispatch, getState) => {
-        return http.get('https://get-fit-server.herokuapp.com/api/getDiets')
+        return http.get(currentUrl + '/api/getDiets')
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -46,7 +49,7 @@ export function getDietByTrainee(){
         if(!traineeId){
             return
         }
-        return http.get('https://get-fit-server.herokuapp.com/api/getDietByTrainee/' + traineeId)
+        return http.get(currentUrl + '/api/getDietByTrainee/' + traineeId)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -65,11 +68,16 @@ export function addDiet(){
         let form = R.clone(getState().diet.form)
         form.trainee = getState().trainee.currentTrainee._id
         form.date = Date()
-        return http.post('https://get-fit-server.herokuapp.com/api/addDiet',form)
+        return http.post(currentUrl + '/api/addDiet',form)
         .then ( 
             response => {
-                dispatch(getDietByTrainee())
-                console.log('Success: ' + response)
+                let newDiet = [...(getState().trainee.currentTrainee.Diet), response.data]
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'Diet',
+                    list: newDiet
+                })
+                console.log('Success: ' + newDiet)
             }
         )
         .catch( 
@@ -82,7 +90,7 @@ export function addDiet(){
 export function updaeDiet(id, diet){
     return (dispatch, getState) => {
         let form = getState().diet.form
-        return http.put('https://get-fit-server.herokuapp.com/api/deleteDiet/'+id, diet)
+        return http.put(currentUrl + '/api/deleteDiet/'+id, diet)
         .then (
             response => {
                 dispatch(getDietByTrainee())
@@ -100,11 +108,16 @@ export function removeDiet(id){
     return (dispatch, getState) => {
         let form = getState().diet.form
         const jwt = localStorage.getItem('token');
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteDiet/'+id)
+        return http.remove(currentUrl + '/api/deleteDiet/'+id)
         .then ( 
             response => {
-                dispatch(getDietByTrainee())
-                console.log('Success: ' + response)
+                let newDiet = (getState().trainee.currentTrainee.Diet).filter( item => item._id != id )
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'Diet',
+                    list: newDiet
+                })
+                console.log('Success: ' + newDiet)
             }
         )
         .catch( 

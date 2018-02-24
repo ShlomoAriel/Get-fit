@@ -9,7 +9,8 @@ import HomeSessionComponent from'../../HomeSession/container/HomeSessionComponen
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
 BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
-const Schedule = ({ homeSessionForm, sessions, modalOpen, sessionType, toggleModal, onHomeSessionInputFieldChange, sessionNameList, onSelectEvent, onSelectSessionSlot, onSelectHomeSessionSlot, setSessionType }) => {
+const Schedule = ({ homeSessionForm, isOpen, viewAll, traineeId,sessions,traineeList,setSessionTrainee, modalOpen, sessionType, toggleModal, onHomeSessionInputFieldChange, sessionNameList, onSelectEvent, onSelectSessionSlot, onSelectHomeSessionSlot, setSessionType }) => {
+	let traineeListField = {onSelect:setSessionTrainee, type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] }
 	let sessionNameInput = {onSelect:onHomeSessionInputFieldChange,type: 'picklist', fieldClass:'',field: 'sessionName', placeholder: 'סוג אימון', value: homeSessionForm.sessionName, type: 'picklist', options: sessionNameList ? sessionNameList : [] }
 	let selectSlot = onSelectSessionSlot
 	if(sessionType == 'homeSession'){
@@ -19,33 +20,34 @@ const Schedule = ({ homeSessionForm, sessions, modalOpen, sessionType, toggleMod
 		<div className="trainee-dashboard">
 			<div>
 		   		<div className="dashboard-header"> <div>יומן</div></div>
-				{
-					// <div>
-					// 	<i className="fa fa-plus-square-o  i-button" aria-hidden="true" onClick={()=>toggleModal()}></i>
-					// </div>
-				}
-			   		{ 
-			   // 			sessionType == 'homeSession' &&
-			   // 			<div className="personal-info slide-from-top">
-						// 	<div className="dashboard-picklist"><InputWrapper {...sessionNameInput}/></div>
-						// </div>
-			   		}
 			</div>
 			{ (modalOpen &&  sessionType == 'session') && <SessionComponent toggleModal={toggleModal} className="trainee-dashboard"/>}
 			{ (modalOpen &&  sessionType == 'homeSession') && <HomeSessionComponent toggleModal={toggleModal} isView={false} className="trainee-dashboard"/>}
 			<div>
 			<div className="column-view">
-				<div>
-				<div className="schedule-switch">
-				   <div onClick={()=>setSessionType('session')} className={(sessionType == 'session'? "active" : "")}>
-				   		Sessions
-				   </div>
-				   <div onClick={()=>setSessionType('homeSession')} className={(sessionType == 'homeSession'? "active" : "")}>
-				   		Home Sessions
-				   </div>
+				<div className="row-view">
+					<div className="schedule-switch">
+					   <div onClick={()=>setSessionType('session')} className={(sessionType == 'session'? "active" : "")}>
+					   		אימון אישי
+					   </div>
+					   <div onClick={()=>setSessionType('homeSession')} className={(sessionType == 'homeSession'? "active" : "")}>
+					   		אימון ביתי
+					   </div>
+				    </div>
+				    { sessionType == 'session' &&
+				    	<div className="schedule-switch">
+						  <div onClick={()=>setSessionTrainee(true)} className={(viewAll == true? "active" : "")}>
+						  	 כולם
+					   	  </div>
+						  <div onClick={()=>setSessionTrainee(false)} className={(viewAll == false? "active" : "")}>
+						  	מתאמן נוכחי
+					   	  </div>
+				   	  </div>
+				    }
+				    
 			   </div>
-			   </div>
-				<BigCalendar
+			   {
+			   	<BigCalendar
 				  min={new Date(2018, 1, 1, 6, 0, 0)}
 				  max={new Date(2018, 1, 1, 23, 0, 0)}
 				  events={sessions}
@@ -55,6 +57,7 @@ const Schedule = ({ homeSessionForm, sessions, modalOpen, sessionType, toggleMod
 				  onSelectSlot={selectSlot}
 				  selectable={true}
 				/>
+			   }
 			</div>
 			</div>
 		</div>

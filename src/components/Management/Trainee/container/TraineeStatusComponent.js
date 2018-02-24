@@ -17,12 +17,12 @@ class TraineeStatusComponent extends React.Component {
         image:"{}",
     }
     componentWillMount(){
-        this.props.getTraineeStatusByTrainee()
+        // this.props.getTraineeStatusByTrainee()
     }
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId){
-         this.props.getTraineeStatusByTrainee()
-      }
+      // if(this.props.traineeId != prevProps.traineeId){
+      //    this.props.getTraineeStatusByTrainee()
+      // }
     }
     render() {
         return <TraineeStatus {...this.props}

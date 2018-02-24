@@ -12,11 +12,10 @@ class HomeSessionComponent extends React.Component {
     }
     componentWillMount(){}
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId){
-         this.props.getHomeSessionByTrainee()
-          this.props.getSessionNameByTrainee()
-
-      }
+      // if(this.props.traineeId != prevProps.traineeId){
+      //    this.props.getHomeSessionByTrainee()
+      //     this.props.getSessionNameByTrainee()
+      // }
     }
 
     render() {
@@ -25,10 +24,12 @@ class HomeSessionComponent extends React.Component {
 }
 
 function mapStateToProps(state) {
+    let currentTrainee = state.trainee.currentTrainee
+    let sessionNames = state.trainee.currentTrainee.SessionName ? state.trainee.currentTrainee.SessionName : []
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
-    let sessionNameOptions = state.sessionName.sessionNameList.map( sessionName => {
+    let sessionNameOptions = sessionNames.map( sessionName => {
         return { value:sessionName._id, label: sessionName.name }
     })
     return {

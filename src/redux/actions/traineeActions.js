@@ -24,17 +24,16 @@ export function setTraineeList(traineeList){
 
 export function setCurrentTrainee(traineeId){
     return (dispatch, getState) => {
-        let trainee = R.find(R.propEq('_id', traineeId))(getState().trainee.traineeList);
-        if(trainee){
-            dispatch({
-                type: types.SET_CURRENT_TRAINEE,
-                trainee: trainee
-            })
-        } else{
+        // let trainee = R.find(R.propEq('_id', traineeId))(getState().trainee.traineeList);
+        // if(trainee){
+        //     dispatch({
+        //         type: types.SET_CURRENT_TRAINEE,
+        //         trainee: trainee
+        //     })
+        // } else{
                 dispatch(getTrainee(traineeId))
-        }
+        // }
     }
-    return 
 }
 
 export function setEeditTrainee(traineeId){
@@ -69,7 +68,13 @@ export function getTrainee(id){
         .then ( 
             response => {
                 console.log('Success: ' + response)
-                dispatch(setCurrentTrainee(id))
+                if(response.data.trainee){
+                    response.data.trainee = {...response.data.trainee, ...response.data.models}
+                    dispatch({
+                        type: types.SET_CURRENT_TRAINEE,
+                        trainee: response.data.trainee
+                    })
+                }
             }
         )
         .catch( 

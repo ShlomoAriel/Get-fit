@@ -40,7 +40,15 @@
 .trainee-dashboard {
 	> div{
 		.column-view{
+		    display: flex;
 			flex-direction: column;
 		}
+		.row-view{
+		    display: flex;
+			flex-direction: row;
+		}
 	}
+}
+.rbc-slot-selection {
+    width: 100%;
 }

@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
 import * as loginActions from 'redux/actions/loginActions'
+import * as webUIActions from 'redux/actions/webUIActions'
 import Login from '../display/Login';
 
 function mapStateToProps(state) {
@@ -24,7 +25,11 @@ function mapDispatchToProps(dispatch) {
         login(e){
             e.preventDefault();
             dispatch( loginActions.login() )
+        },
+        toggleLoader(){
+            dispatch(webUIActions.toggleLoaderAt('main'))
         }
+
     }
 }
 

@@ -1,6 +1,6 @@
 var localUrl = "http://localhost:3001"
 var remoteUrl = "https://get-fit-server.herokuapp.com"
-var currentUrl = remoteUrl
+var currentUrl = localUrl
 
 import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
@@ -75,8 +75,13 @@ export function addTraineeStatus(image){
         return http.post(currentUrl + '/api/addTraineeStatus',form)
         .then ( 
             response => {
-                dispatch(getTraineeStatusByTrainee())
-                console.log('Success: ' + response)
+                 let newTraineeStatus = [...(getState().trainee.currentTrainee.TraineeStatus), response.data]
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'TraineeStatus',
+                    list: newTraineeStatus
+                })
+                console.log('Success: ' + newTraineeStatus)
             }
         )
         .catch( 
@@ -110,8 +115,13 @@ export function removeTraineeStatus(id){
         return http.remove(currentUrl + '/api/deleteTraineeStatus/'+id)
         .then ( 
             response => {
-                dispatch(getTraineeStatusByTrainee())
-                console.log('Success: ' + response)
+                let newTraineeStatus = (getState().trainee.currentTrainee.TraineeStatus).filter( item => item._id != id )
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'TraineeStatus',
+                    list: newTraineeStatus
+                })
+                console.log('Success: ' + newTraineeStatus)
             }
         )
         .catch( 

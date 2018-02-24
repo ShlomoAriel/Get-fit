@@ -1,3 +1,7 @@
+var localUrl = "http://localhost:3001"
+var remoteUrl = "https://get-fit-server.herokuapp.com"
+var currentUrl = localUrl
+
 import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
 import axios from 'axios'
@@ -35,7 +39,7 @@ export function setSessionType(sessionType){
 
 export function getSessionList(){
     return (dispatch, getState) => {
-        return http.get('https://get-fit-server.herokuapp.com/api/getSessions')
+        return http.get(currentUrl+ '/api/getSessions')
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -55,10 +59,34 @@ export function getSessionByTrainee(){
         if(!traineeId){
             return
         }
-        return http.get('https://get-fit-server.herokuapp.com/api/getSessionByTrainee/' + traineeId)
+        return http.get(currentUrl+ '/api/getSessionByTrainee/' + traineeId)
         .then ( 
             response => {
                 console.log('Success: ' + response)
+                dispatch(setSessionList(response.data))
+            }
+        )
+        .catch( 
+            error => 
+                console.log('error loging in: ' + error)
+        )
+    }
+}
+
+export function getSessionByTraineeId(traineeId){
+    return (dispatch, getState) => {
+        if(!traineeId){
+            return
+        }
+        if(getState().session.sessionMap[traineeId]){
+            dispatch(setSessionList(getState().session.sessionMap[traineeId]))
+            return
+        }
+        return http.get(currentUrl+ '/api/getSessionByTrainee/' + traineeId)
+        .then ( 
+            response => {
+                console.log('Success: ' + response)
+                dispatch({type:'SET_TRAINEE_SESSION_LIST',traineeId:traineeId, list:response.data})
                 dispatch(setSessionList(response.data))
             }
         )
@@ -82,11 +110,16 @@ export function addSession(){
         day.hours(form.end.hours())
         day.minutes(form.end.minutes())
         form.end = day.toDate();
-        return http.put('https://get-fit-server.herokuapp.com/api/upsertSession',form)
+        return http.put(currentUrl+ '/api/upsertSession',form)
         .then ( 
             response => {
-                dispatch(getSessionByTrainee())
-                console.log('Success: ' + response)
+                let trainneeSession = [...(getState().trainee.currentTrainee.Session), response.data]
+                    dispatch({
+                        type: types.SET_CURRENT_TRAINEE_LIST,
+                        listName: 'Session',
+                        list: trainneeSession
+                    })
+                    console.log('Success: ' + trainneeSession)
             }
         )
         .catch( 
@@ -101,7 +134,7 @@ export function toggleCheckbox(id, value){
         let sessionList = getState().session.sessionList
         let session = R.find(R.propEq('_id',id))(sessionList)
         session.achieved = value
-        return http.put('https://get-fit-server.herokuapp.com/api/updateSession/'+id, session)
+        return http.put(currentUrl+ '/api/updateSession/'+id, session)
         .then (
             response => {
                 dispatch(getSessionByTrainee())
@@ -119,11 +152,16 @@ export function removeSession(id){
     return (dispatch, getState) => {
         let form = getState().session.form
         const jwt = localStorage.getItem('token');
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteSession/'+id)
+        return http.remove(currentUrl+ '/api/deleteSession/'+id)
         .then ( 
             response => {
-                dispatch(getSessionByTrainee())
-                console.log('Success: ' + response)
+                let newSession = (getState().trainee.currentTrainee.Session).filter( item => item._id != id )
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'Session',
+                    list: newSession
+                })
+                console.log('Success: ' + newSession)
             }
         )
         .catch( 

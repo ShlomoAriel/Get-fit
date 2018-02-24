@@ -11,12 +11,12 @@ class TraineeStatusListComponent extends React.Component {
         super(props, context)
     }
     componentWillMount(){
-        this.props.getTraineeStatusByTrainee()
+        // this.props.getTraineeStatusByTrainee()
     }
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId){
-         this.props.getTraineeStatusByTrainee()
-      }
+      // if(this.props.traineeId != prevProps.traineeId){
+      //    this.props.getTraineeStatusByTrainee()
+      // }
     }
 
     render() {
@@ -30,7 +30,7 @@ function mapStateToProps(state, ownProps) {
     })
     return {
         isAdmin: state.login.isAdmin,
-        traineeStatusList: state.traineeStatus.traineeStatusList ? state.traineeStatus.traineeStatusList : [],
+        traineeStatusList: state.trainee.currentTrainee.TraineeStatus ? state.trainee.currentTrainee.TraineeStatus : [],
         form: state.traineeStatus.form,
         traineeId: state.trainee.currentTrainee._id,
         traineeList: traineeOptions,

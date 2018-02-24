@@ -1,3 +1,7 @@
+var localUrl = "http://localhost:3001"
+var remoteUrl = "https://get-fit-server.herokuapp.com"
+var currentUrl = localUrl
+
 import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
 import axios from 'axios'
@@ -26,7 +30,7 @@ export function setCurrentSessionName(sessionNameId){
 
 export function getSessionNameList(){
     return (dispatch, getState) => {
-        return http.get('https://get-fit-server.herokuapp.com/api/getSessionNames')
+        return http.get(currentUrl + '/api/getSessionNames')
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -46,7 +50,7 @@ export function getSessionNameByTrainee(){
         if(!traineeId){
             return
         }
-        return http.get('https://get-fit-server.herokuapp.com/api/getSessionNameByTrainee/' + traineeId)
+        return http.get(currentUrl + '/api/getSessionNameByTrainee/' + traineeId)
         .then ( 
             response => {
                 console.log('Success: ' + response)
@@ -64,11 +68,16 @@ export function addSessionName(){
     return (dispatch, getState) => {
         let form = R.clone(getState().sessionName.form)
         form.trainee = getState().trainee.currentTrainee._id
-        return http.post('https://get-fit-server.herokuapp.com/api/addSessionName',form)
+        return http.post(currentUrl + '/api/addSessionName',form)
         .then ( 
             response => {
-                dispatch(getSessionNameByTrainee())
-                console.log('Success: ' + response)
+                let newSessionName = [...(getState().trainee.currentTrainee.SessionName), response.data]
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'SessionName',
+                    list: newSessionName
+                })
+                console.log('Success: ' + newSessionName)
             }
         )
         .catch( 
@@ -81,7 +90,7 @@ export function addSessionName(){
 export function updaeSessionName(id, sessionName){
     return (dispatch, getState) => {
         let form = getState().sessionName.form
-        return http.put('https://get-fit-server.herokuapp.com/api/deleteSessionName/'+id, sessionName)
+        return http.put(currentUrl + '/api/deleteSessionName/'+id, sessionName)
         .then (
             response => {
                 dispatch(getSessionNameByTrainee())
@@ -100,7 +109,7 @@ export function toggleCheckbox(id, value){
         let sessionNameList = getState().sessionName.sessionNameList
         let sessionName = R.find(R.propEq('_id',id))(sessionNameList)
         sessionName.achieved = value
-        return http.put('https://get-fit-server.herokuapp.com/api/updateSessionName/'+id, sessionName)
+        return http.put(currentUrl + '/api/updateSessionName/'+id, sessionName)
         .then (
             response => {
                 dispatch(getSessionNameByTrainee())
@@ -118,11 +127,16 @@ export function removeSessionName(id){
     return (dispatch, getState) => {
         let form = getState().sessionName.form
         const jwt = localStorage.getItem('token');
-        return http.remove('https://get-fit-server.herokuapp.com/api/deleteSessionName/'+id)
+        return http.remove(currentUrl + '/api/deleteSessionName/'+id)
         .then ( 
             response => {
-                dispatch(getSessionNameByTrainee())
-                console.log('Success: ' + response)
+                let newSessionName = (getState().trainee.currentTrainee.SessionName).filter( item => item._id != id )
+                dispatch({
+                    type: types.SET_CURRENT_TRAINEE_LIST,
+                    listName: 'SessionName',
+                    list: newSessionName
+                })
+                console.log('Success: ' + newSessionName)
             }
         )
         .catch( 

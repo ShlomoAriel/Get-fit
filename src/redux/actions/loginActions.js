@@ -1,6 +1,6 @@
 var localUrl = "http://localhost:3001"
 var remoteUrl = "https://get-fit-server.herokuapp.com"
-var currentUrl = remoteUrl
+var currentUrl = localUrl   
 var traineeDataMap = [
                         {action:'SET_DIET_MAP_TRAINEE', modelList:'Diet'},
                         {action:'SET_TRAINEE_GOAL_LIST', modelList:'TraineeGoal'},
@@ -32,11 +32,16 @@ export function setToken(token){
 export function login(field, value){
     return (dispatch, getState) => {
         let form = getState().login.form
+        dispatch({
+            type: types.TOGGLE_LOADER_FIELD,
+            field: 'main'
+        })
         return axios.post(currentUrl + '/api/authenticate',form)
         .then ( 
             response => {
                 dispatch( storeUserCredentials(response.data) )
                 if(response.data.trainee){
+                    response.data.trainee = {...response.data.trainee, ...response.data.models}
                     dispatch({
                         type: types.SET_CURRENT_TRAINEE,
                         trainee: response.data.trainee
@@ -50,6 +55,10 @@ export function login(field, value){
                             traineeId: response.data.trainee._id
                         })
                     }
+                })
+                dispatch({
+                    type: types.TOGGLE_LOADER_FIELD,
+                    field: 'main'
                 })
                 dispatch( setToken(response.data.token) )
             }

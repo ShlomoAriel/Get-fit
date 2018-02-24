@@ -5,18 +5,19 @@ import * as systemActions from 'redux/actions/systemActions'
 import * as goalActions from 'redux/actions/goalActions'
 import * as traineeActions from 'redux/actions/traineeActions'
 import TraineeGoalList from '../display/TraineeGoalList';
+import * as modelUtils from 'utils/modelUtils'
 
 class TraineeGoalListComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
     }
     componentDidlMount(){
-        this.props.getGoalByTrainee()
+        // this.props.getGoalByTrainee()
     }
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId){
-         this.props.getGoalByTrainee()
-      }
+      // if(this.props.traineeId != prevProps.traineeId){
+      //    this.props.getGoalByTrainee()
+      // }
     }
 
     render() {
@@ -28,7 +29,10 @@ function mapStateToProps(state) {
     let traineeOptions = state.trainee.traineeList.map( trainee => {
         return { value:trainee._id, label: trainee.firstName }
     })
-    let traineeGoalList =  state.trainee.currentTrainee._id && state.goal.traineeGoalMap[state.trainee.currentTrainee._id] ? state.goal.traineeGoalMap[state.trainee.currentTrainee._id] : []
+    let currentTrainee = state.trainee.currentTrainee
+    let traineeGoalList = currentTrainee.TraineeGoal ? currentTrainee.TraineeGoal : []
+    //modelUtils.populateModelList(currentTrainee.TraineeGoal, 'goal', state.goal.goalLists)
+    // let traineeGoalList =  state.trainee.currentTrainee._id && state.goal.traineeGoalMap[state.trainee.currentTrainee._id] ? state.goal.traineeGoalMap[state.trainee.currentTrainee._id] : []
     return {
         isAdmin: state.login.isAdmin,
         traineeGoalList: traineeGoalList,

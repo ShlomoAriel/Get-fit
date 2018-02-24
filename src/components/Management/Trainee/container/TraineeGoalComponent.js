@@ -12,14 +12,14 @@ class GoalComponent extends React.Component {
         this.addTraineeGoals = this.addTraineeGoals.bind(this)
     }
     componentWillMount(){
-        this.props.getGoalByTrainee()
+        // this.props.getGoalByTrainee()
         this.props.getGoalList()
     }
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.traineeId != prevProps.traineeId){
-        this.props.getGoalByTrainee()
-         this.props.getGoalList()
-      }
+      // if(this.props.traineeId != prevProps.traineeId){
+        // this.props.getGoalByTrainee()
+         // this.props.getGoalList()
+      // }
     }
      state = {
         values: '',
@@ -49,7 +49,7 @@ function mapStateToProps(state) {
     let goalOptions = state.goal.goalList.map( goal => {
         return { value:goal.name, label: goal.name }
     })
-    let traineeGoalList =  state.trainee.currentTrainee._id && state.goal.traineeGoalMap[state.trainee.currentTrainee._id] ? state.goal.traineeGoalMap[state.trainee.currentTrainee._id] : []
+    let traineeGoalList = state.trainee.currentTrainee.TraineeGoal ? state.trainee.currentTrainee.TraineeGoal : []
     traineeGoalList = traineeGoalList.map( goal => {
         return { value:goal.name, label: goal.name }
     })

@@ -14,6 +14,7 @@ import homeSession from './homeSessionReducer'
 import sessionName from './sessionNameReducer'
 import expense from './expenseReducer'
 import location from './locationReducer'
+import webUI from './webUIReducer'
 
 export default combineReducers({
     system,
@@ -30,5 +31,6 @@ export default combineReducers({
     homeSession,
     location,
     sessionName,
+    webUI,
     diet,
 });
