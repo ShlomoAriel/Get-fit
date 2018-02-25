@@ -8,7 +8,7 @@ const Login = ({email, password, authenticated, onInputFieldChange, login}) => {
 	return (
 		  <div className="login">
 		  { !authenticated ?
-		  	<form onSubmit={login}>
+		  	<form onSubmit={login} method="post">
 		  		
 			  	<div className="form">
 				  	<div>

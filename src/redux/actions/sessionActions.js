@@ -1,6 +1,6 @@
 var localUrl = "http://localhost:3001"
 var remoteUrl = "https://get-fit-server.herokuapp.com"
-var currentUrl = localUrl
+var currentUrl = remoteUrl
 
 import * as types from './actionTypes'
 import * as http from '../../utils/axiosWrapper'
@@ -119,6 +119,7 @@ export function addSession(){
                         listName: 'Session',
                         list: trainneeSession
                     })
+                    dispatch(getSessionList())
                     console.log('Success: ' + trainneeSession)
             }
         )
@@ -161,6 +162,7 @@ export function removeSession(id){
                     listName: 'Session',
                     list: newSession
                 })
+                dispatch(getSessionList())
                 console.log('Success: ' + newSession)
             }
         )

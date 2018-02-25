@@ -13,48 +13,57 @@ import * as scheduleUtils from 'utils/scheduleUtils'
 class ScheduleComponent extends React.Component {
     constructor(props, context) {
         super(props, context)
-        this.setSessionTrainee = this.setSessionTrainee.bind(this)
+        this.setSessionStatus = this.setSessionStatus.bind(this)
+        this.setSessionType = this.setSessionType.bind(this)
     }
     state = {
-        traineeId:null,
-        viewAll:true,
+        traineeId: null,
+        viewAll: true,
+        sessionType: 'session',
+        sessions: [],
     }
     componentWillMount(){
+        this.state.sessions = this.props.allSessions
+        this.props.getSessionList()
     }
     componentDidUpdate(prevProps, prevState) {
-    }
-    setSessionTrainee(viewAll){
-        this.setState({viewAll})
-        if(!viewAll){
-            this.props.getSessionByTraineeId(this.props.traineeId)
-        } else{
-            this.props.getSessionList()
+        if(this.props.allSessions != prevProps.allSessions || this.props.currentTrainee != prevProps.currentTrainee){
+            this.setSessionStatus(this.state.viewAll, this.state.sessionType)
         }
+    }
+    setSessionType(sessionType){
+        this.setState({sessionType})
+        this.setSessionStatus(this.state.viewAll)
+    }
+    setSessionStatus(viewAll, sessionType){
+        this.setState({viewAll, sessionType})
+        this.state.sessions = scheduleUtils.getScheduleSessions(this.props.allSessions, this.props.currentTrainee, sessionType, this.props.isAdmin, viewAll)
         return true
     }
     render() {
         return <Schedule
             {...this.props}
-            setSessionTrainee={this.setSessionTrainee}
+            setSessionStatus={this.setSessionStatus}
+            setSessionType={this.setSessionType}
+            sessionType={this.state.sessionType}
+            sessions={this.state.sessions}
             viewAll={this.state.viewAll}
             />
     }
 }
 
 function mapStateToProps(state) {
-    let sessions = scheduleUtils.getScheduleSessions(state)
-    let traineeOptions = scheduleUtils.getScheduleTraineeList(state)
+    // let sessions = scheduleUtils.getScheduleSessions(state)
     let sessionNameOptions = state.sessionName.sessionNameList.map( sessionName => {
         return { value:sessionName._id, label: sessionName.name }
     })
     return {
-        traineeList: traineeOptions,
-        traineeId: state.trainee.currentTrainee._id,
+        isAdmin: state.login.isAdmin,
+        currentTrainee: state.trainee.currentTrainee,
         homeSessionForm: state.homeSession.form,
         modalOpen:state.system.modalOpen["session"],
         sessionNameList: sessionNameOptions,
-        sessionType:state.session.sessionType,
-        sessions:sessions,
+        allSessions:state.session.sessionList,
         isOpen: state.webUI.isOpen['schedule'],
     }
 }
@@ -70,9 +79,9 @@ function mapDispatchToProps(dispatch) {
         toggleModal(){
             dispatch(systemActions.toggleModal("session"))
         },
-        setSessionType(type){
-            dispatch( sessionActions.setSessionType(type) )
-        },
+        // setSessionType(type){
+        //     dispatch( sessionActions.setSessionType(type) )
+        // },
         getSessionByTraineeId(id){
             dispatch( sessionActions.getSessionByTraineeId(id) )
         },

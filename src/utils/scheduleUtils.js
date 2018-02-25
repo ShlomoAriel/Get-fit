@@ -1,13 +1,15 @@
 import * as modelUtils from 'utils/modelUtils'
 
-export function getScheduleSessions(state){
-    let currentTrainee = state.trainee.currentTrainee
+export function getScheduleSessions(sessionList, currentTrainee, sessionType, isAdmin, viewAll){
     let homeSessions = modelUtils.populateModelList(currentTrainee.HomeSesssion, 'sessionName', currentTrainee.SessionName)
-    let sessions = state.session.sessionList
-    if(sessions && state.session.sessionType == 'session'){
-        sessions = sessions.map(session =>{ 
+    let sessions = sessionList
+    if(sessions && sessionType == 'session'){
+        sessions = sessions.map(session =>{
+            if(!viewAll && session.trainee._id != currentTrainee._id){
+                return{}
+            }
             let title = 'תפוס'
-            if(state.login.isAdmin || session.trainee._id == currentTrainee._id){
+            if(isAdmin || session.trainee._id == currentTrainee._id){
                 title = session.trainee ? session.trainee.firstName + ' ' + session.trainee.lastName : ''
             }
             return {
@@ -26,7 +28,7 @@ export function getScheduleSessions(state){
         }})
     }
     
-    if(homeSessions && state.session.sessionType == 'homeSession'){
+    if(homeSessions && sessionType == 'homeSession'){
         sessions = homeSessions.map(homeSession =>{ return {
             start:new Date(homeSession.date),
             end:new Date(homeSession.date),

@@ -1,9 +1,33 @@
+import React from 'react'
 import {connect} from 'react-redux';
 import R from 'ramda';
 import * as systemActions from 'redux/actions/systemActions'
 import * as loginActions from 'redux/actions/loginActions'
 import * as webUIActions from 'redux/actions/webUIActions'
 import Login from '../display/Login';
+
+class LoginComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context)
+    }
+    componentWillMount(){}
+      
+    componentDidUpdate(prevProps, prevState) {
+        if( (this.props.authenticated)){
+          const jwt = localStorage.getItem('token')
+          if(jwt){
+            this.props.history.push('/')
+          } 
+      }  
+    }
+
+    render() {
+        return (
+            <Login{...this.props}/>
+        )
+    }
+
+}
 
 function mapStateToProps(state) {
     return {
@@ -33,5 +57,5 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )(Login)
+export default connect( mapStateToProps, mapDispatchToProps )(LoginComponent)
 

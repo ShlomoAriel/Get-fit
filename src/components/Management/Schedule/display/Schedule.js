@@ -9,8 +9,7 @@ import HomeSessionComponent from'../../HomeSession/container/HomeSessionComponen
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
 BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
-const Schedule = ({ homeSessionForm, isOpen, viewAll, traineeId,sessions,traineeList,setSessionTrainee, modalOpen, sessionType, toggleModal, onHomeSessionInputFieldChange, sessionNameList, onSelectEvent, onSelectSessionSlot, onSelectHomeSessionSlot, setSessionType }) => {
-	let traineeListField = {onSelect:setSessionTrainee, type: 'picklist', fieldClass:'',field: 'trainee', placeholder: 'Trainee', value: traineeId, type: 'picklist', options: traineeList ? traineeList : [] }
+const Schedule = ({ homeSessionForm, isOpen, viewAll, isAdmin, sessions,setSessionStatus, modalOpen, sessionType, toggleModal, onHomeSessionInputFieldChange, sessionNameList, onSelectEvent, onSelectSessionSlot, onSelectHomeSessionSlot, setSessionType }) => {
 	let sessionNameInput = {onSelect:onHomeSessionInputFieldChange,type: 'picklist', fieldClass:'',field: 'sessionName', placeholder: 'סוג אימון', value: homeSessionForm.sessionName, type: 'picklist', options: sessionNameList ? sessionNameList : [] }
 	let selectSlot = onSelectSessionSlot
 	if(sessionType == 'homeSession'){
@@ -27,19 +26,19 @@ const Schedule = ({ homeSessionForm, isOpen, viewAll, traineeId,sessions,trainee
 			<div className="column-view">
 				<div className="row-view">
 					<div className="schedule-switch">
-					   <div onClick={()=>setSessionType('session')} className={(sessionType == 'session'? "active" : "")}>
+					   <div onClick={()=>setSessionStatus(viewAll,'session')} className={(sessionType == 'session'? "active" : "")}>
 					   		אימון אישי
 					   </div>
-					   <div onClick={()=>setSessionType('homeSession')} className={(sessionType == 'homeSession'? "active" : "")}>
+					   <div onClick={()=>setSessionStatus(viewAll,'homeSession')} className={(sessionType == 'homeSession'? "active" : "")}>
 					   		אימון ביתי
 					   </div>
 				    </div>
 				    { sessionType == 'session' &&
 				    	<div className="schedule-switch">
-						  <div onClick={()=>setSessionTrainee(true)} className={(viewAll == true? "active" : "")}>
+						  <div onClick={()=>setSessionStatus(true, sessionType)} className={(viewAll == true? "active" : "")}>
 						  	 כולם
 					   	  </div>
-						  <div onClick={()=>setSessionTrainee(false)} className={(viewAll == false? "active" : "")}>
+						  <div onClick={()=>setSessionStatus(false, sessionType)} className={(viewAll == false? "active" : "")}>
 						  	מתאמן נוכחי
 					   	  </div>
 				   	  </div>
@@ -53,9 +52,28 @@ const Schedule = ({ homeSessionForm, isOpen, viewAll, traineeId,sessions,trainee
 				  events={sessions}
 				  timeslots={1}
 				  step={60}
-				  onSelectEvent={onSelectEvent}
-				  onSelectSlot={selectSlot}
-				  selectable={true}
+				  onSelectEvent={isAdmin ? onSelectEvent : null}
+				  onSelectSlot={isAdmin ? selectSlot : null}
+				  selectable={isAdmin}
+				  eventPropGetter={
+				    (event, start, end, isSelected) => {
+				      let newStyle = {
+				        backgroundColor: "lightgreen",
+				        color: 'black',
+				        borderRadius: "0px",
+				        border: "none"
+				      };
+
+				      if (event.title == 'תפוס'){
+				        newStyle.backgroundColor = "lightgray"
+				      }
+
+				      return {
+				        className: "",
+				        style: newStyle
+				      };
+				    }
+				  }
 				/>
 			   }
 			</div>

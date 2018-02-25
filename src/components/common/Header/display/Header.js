@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import TraineePersonalInfoComponent from 'components/Management/Trainee/container/TraineePersonalInfoComponent'
 
-const Header = ({menuOpen, logout, isAdmin, authenticated, currentTab, toggleMenu, goTo}) => {
+const Header = ({menuOpen, logout, isAdmin, authenticated, currentTab, toggleMenu, goTo, param}) => {
 
 	function goToAndSet(tab){
 		toggleMenu()
