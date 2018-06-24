@@ -59,7 +59,6 @@ const ScheduledExerciseList = ({form,weekEnd, isAdmin, weekStart, homeSessionFor
 				</div>
 				
 				<div className="session-program">
-					<div>
 						<div className="program-header">
 							<div className="dashboard-picklist">
 								<InputWrapper {...sessionNameInput}/>		  			
@@ -100,7 +99,6 @@ const ScheduledExerciseList = ({form,weekEnd, isAdmin, weekStart, homeSessionFor
 							</div>
 							)
 						}
-					</div>
 					{ isAdmin &&
 						<div className="program-header">
 				 			{<ScheduledExerciseComponent toggleModal={toggleModal}className="form-modal fade-in" />}

@@ -11,6 +11,7 @@
 	}
 	.program-header{
 	    display: flex;
+	    width: 100%;
 	    align-items: center;
 	    margin-top: 50px;
 	    margin-bottom: 10px;
@@ -19,6 +20,11 @@
 		    border: 1px solid #35ABAB;
 		    border-radius: 2px;
 		}
+		@media only screen and (max-width: 1199px)  {
+			.dashboard-picklist{
+	    		width:100%;
+	    	}
+	    }
 	    i{
 	    	margin-right:10px;
 	    	color:#306A6A;

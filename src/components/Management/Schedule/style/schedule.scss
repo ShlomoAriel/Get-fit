@@ -49,6 +49,22 @@
 		}
 	}
 }
+@media only screen and (max-width: 1199px)  {
+	.rbc-toolbar-label{}
+	.rbc-toolbar{
+		flex-direction: column;
+	}
+	.schedule-switch > div{
+		    padding: 2px 9px;
+	}
+	.trainee-dashboard {
+		> div{
+			.row-view{
+				// flex-direction: column;
+			}
+		}
+	}
+}
 .rbc-slot-selection {
     width: 100%;
 }
