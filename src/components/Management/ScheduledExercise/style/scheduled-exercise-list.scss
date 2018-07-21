@@ -34,9 +34,7 @@
 		display:flex;
 		justify-content: space-between;
 	    align-items: start;
-	    @media only screen and (max-width: 1199px)  {
-	    	flex-direction: column;
-	    }
+	    flex-direction: column;
 	}
 	.custom-row{
 		> div{

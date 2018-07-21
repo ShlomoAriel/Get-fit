@@ -86,8 +86,14 @@ const ScheduledExerciseList = ({form,weekEnd, isAdmin, weekStart, homeSessionFor
 								<div>{scheduledExercise.sets}</div>
 								<div>{scheduledExercise.reps}</div>
 	  							<div><a target="_blanc" href={scheduledExercise.exercise && scheduledExercise.exercise.link}><i className="fa fa-film"></i></a></div>
-								<div><i className="fa fa-trash-o" onClick={()=>removeScheduledExercise(scheduledExercise._id)}></i></div>
-								<div><i className="fa fa-pencil" onClick={()=>editScheduledExercise(scheduledExercise._id)}></i></div>
+								{
+									isAdmin &&
+									<div><i className="fa fa-trash-o" onClick={()=>removeScheduledExercise(scheduledExercise._id)}></i></div>
+								}
+								{
+									isAdmin &&
+									<div><i className="fa fa-pencil" onClick={()=>editScheduledExercise(scheduledExercise._id)}></i></div>
+								}
 								{ 
 									// scheduledExercise.exercise.link && 
 									//  <YouTube

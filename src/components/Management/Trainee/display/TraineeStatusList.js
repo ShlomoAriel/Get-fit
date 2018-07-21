@@ -7,7 +7,6 @@ const TraineeDashboard = ({traineeStatusList, isAdmin, removeTraineeStatus, onIn
 	let checkbox = { type:'checkbox',fieldClass:'form-control',field: 'checkbox', name:'text', onChange: onInputFieldChange }
 	return (
 			 <div className="trainee-status list-general-wrapper slide-from-right-hard">
-			  	<div>
 			  		{ modalOpen && <TraineeStatusComponent toggleModal={toggleModal}/>}
 			  		<div>
 			  			<h3>
@@ -16,7 +15,7 @@ const TraineeDashboard = ({traineeStatusList, isAdmin, removeTraineeStatus, onIn
 			  				}
 			  				תמונת מצב
 			  				</h3>
-			  			<div>
+			  			<div className="status-table">
 				  			<div className="custom-row">
 	  							<div>תיאור</div>		
 	  							<div>משקל</div>
@@ -57,7 +56,6 @@ const TraineeDashboard = ({traineeStatusList, isAdmin, removeTraineeStatus, onIn
 			  				}
 			  			</div>
 			  		</div>
-			  	</div>
 			  </div>
 );
 }
